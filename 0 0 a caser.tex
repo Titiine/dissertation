@@ -1,0 +1,124 @@
+    
+\subsection{ERASE THIS SECTION}
+
+
+
+\subsection{Energy intake}
+-speed
+
+After being touched by the avatar, the food object communicates to the StateScript (via llSay, see section \ref{oldref...}) the characteristic parameters for the food. When the parameters data cannot be found in the literature, the only parameter sent is the total amount of carbohydrates contained in the food item, and a default behaviour is followed. The default behaviour is based on a interpolation of a sample glucose absorption function (or a curve) that was computed from the mathematical model chosen. As shown in figure ~\ref{fig:absCurve}, if we take a step of 2 seconds, the increasing of the value is saved every 2 seconds. This increasing is then converted into a percentage of the global amount of carbohydrates as described in table~\ref{tab:percentageValues}. This list of percentage values will be the model for the carbohydrates released in the blood during digestion. 
+The percentage associated to each point/step is then directly used to compute the amount of carbs, and added to the global blood glucose. 
+
+The "peak" value corresponds at t=30 minutes (in real life) corresponds to the glycemic index, given by the tables. 
+The step used can be made smaller if more precision is needed for the "digestion process".
+
+END
+%%%%%%%%%%%%%%
+
+\iffalse
+
++simultaneousFood
+-insulin
+
+
+Computation : 
+ 
+-Energy intake
+    *generic skeleton
+    *speed
+    
+-Realistic system :
+    A) food need to disappear : 
+        1)was a problem : how to add energy continuously if the object that contained the food script died ? 
+        2)wait a fixed amount of time (depending on the kind of objects, how long it's supposed to take to eat it) before being destroyed.
+        
+    B) food animation : the avatar have to seem realistically eating the food item. Thus :
+        1) different kind of animations for different kind of food. 3 main animations : eat a normal item, like a cake, drink, or eat like a sandwich.
+        2) food orientation issue : it was an important issue... Use a distributor object cf "Giving objects" subsection
+    
+    C) supporting simultaneous food items eaten when an "active period" can overlapp.
+    D) Food name written from the script
+    
+\fi
+%%%%%%%%%%%%%%
+ 
+1)Symptoms : Using Qavimator 
+
+The second use case implied (?) to describe various symptoms that characterize hypoglycemia and hyperglycemia and the way to render/display them within (?) Opensim.\\
+-Confusion, dizzyness\\
+-Headache\\
+-Sweating\\
+-Going to the loo
+
+%%
+
+-Unresponsivity (in case of hyperglycemia), which means that the avatar cannot move for some directions. This can be done by randomly making some keys unresponsive. 
+As a consequence, the avatar won't be able to turn left or right while walking, for a given amount of time. 
+While the avatar's condition is worsening, the symptom is made stronger (?) by blocking more and more keys.\\
+
+-Confusion, which means that the avatar won't respond (?) correctly to the commands(?) given by the user. 
+If the user presses key up, instead of jumping, the avatar would turn right, or go backwards(reculer ?). \\
+
+-Difficulty to make things because of a lack of energy is rendered (?) by slowing the avatar's movements. Walking will be slowed. \\
+
+The same kind of script can be used for the two first symptoms. The solution consists in overriding the usual behaviour (?) of the keyboard's keys, calling the ... functions. \\
+In the first case, ..\\
+In the second case, ..\\
+
+For the third symptom, we can figure out two solutions. The first one consists on blocking the commands similarly to the two first cases. The script uses a timer, and make the "up" key (used for walking or running) inactive two times out of three.
+The second solution is to use the physics in Opensim, applying an opposite force to the avatar. 
+The advantage of this solution is that some actions that are supposed to require more energy in real life will be correctly rendered by being almost impossible. 
+For instance, the first solution will only make the avatar climb a mountain slower, while the second solution will make it impossible to climb when the 
+A noticeable difference between the two solution will be visible for instance while climbing a mountain. 
+Starting from the ground, the slope is at first soft so the avatar can walk, even slowly in both cases. Then, it gets steeper and steeper when the avatar reaches the top. 
+In this situation, using the second solution will make it impossible to climb, which is realistic, while the first one will make it possible, without taking into account the difficulty of the task.\\
+
+-Animation that shows the uncounsciousness related to hypoglycemia. 
+Some people may say silly things or act in completely unusual ways when they have a low blood sugar.
+They can behave spectacularly or even become violent. Two renderings were implemented here : one the one hand, an animation played is illustrating a bizarre or extreme reaction to hypoglycemia. 
+One the other hand, la prise de parole (?) of the avatar will be negatively affected. INVERSER L'ORDRE\\
+
+Altering the avatar's speaking capacities can be done by changing the words the user typed to speak to other avatars.
+To model anger, the words that the user wrote to communicate by text messages with other avatars inworld can be changed into uppercase. 
+To model confusion, words can be replaced by others, for instance other words that begin with the same letter. \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+MIS AILLEURS !!
+
+\iffalse
+
+The effects of hypoglycemia were then simulated by the use of animations realized using an external software, QAvimator~\cite{qavimatorWebsite}. Other softwares can be used to create and edit animations such as Poser~\cite{PoserWebsite}, Maya~\cite{mayaWebsite} and Blender~\cite{BlenderWebsite}, an open-source alternative to Maya. Qavimator was chosen because it's light and easy to use compared to Maya and Blender. Unlike Maya and Poser, it is free.\\
+
+Qavimator is an Qt port of Avimator~\cite{avimatorWebsite}, an open source animation editor originally created for avatar's animations in Second Life. The BVH (Biovision Hierarchy)~\cite{thingvold1999biovision} format is used for the animations in Second life and is popular in the animation community to represent movements of humanoid structures. \\
+
+A BVH file is composed of two sections, a header and a data section. The initial pose of the skeleton is described in the header section by specifiying the position of each joint, which are the green dots visibles in figure~\ref{qavimatorSkeleton}. \\
+
+\begin{figure}[h]
+  \caption{Skeleton displayed by Qavimator~\cite{qavimatorWebsite}. Each green dot represents a joint}
+  \centering
+  \includegraphics[scale=0.6]{qavimatorSkeleton.png}
+  \label{qavimatorSkeleton}
+\end{figure}
+
+An animation is a sequence of frames, which are key moments of the animation, like the pictures for a movie. The frames are visible in the timeline window, visible in figure~\ref{qavimatorTimelineZoom1}.
+By adding a new frame in the timeline, and specifiying the new position of all the joints in the current frame, an animation can be build. The position of each joint is described by a set of rotation, position and scale parameters. Figure~\ref{qavimatorTimeline} shows the editor window with 3 frames in the timeline and all the parameters for a given point (9 parameters) in the parameter window, visible in figure~\ref{qavimatorTimelineZoom2}.
+
+\begin{figure}[h]
+  \caption{Sequence of positions by Qavimator~\cite{qavimatorWebsite}. }
+  \centering
+  \includegraphics[scale=0.6]{qavimatorTimeline.png}
+  \label{qavimatorTimeline}
+\end{figure}
+
+Insulin animation (CITE THE IMAGES Insulin1 - 4)
+
+Some animation used in this project were available online (created by Linda Kellie), such as the piano and the fishing animation.
+
+FIN MIS AILLEURS !!
+%%%%%%%%%%%%%%%%%%%%%%%%%%ù
+\fi
+
+The main animation built for this project was the one used to inject insulin. The first frame is a movement that involves the right collar, shoulder and forearm to move the insulin carried by the right hand into a correct position to begin the injection. The second frame sets the correct position for the right thight were insulin will be injected, and change the adomen and chest position to make the avatar lean forward. Next movement is to make the avatar look at his tight, while the arm comes down to put the needle into the thigh and without moving during 10 seconds, as required for an insulin injection.
+
+=>Talk about animation priorities ? 
+

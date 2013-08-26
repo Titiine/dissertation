@@ -86,5 +86,5 @@ Step(t) =  1 if t>=0
 	    0 if t<0
 Redistributor :
 1)muscles	value in g. each second
-2)liver		400g. max #check
+2)liver		400g. max %check
 3)fat		40g sugar = 30g fat #find, use a factor to set it

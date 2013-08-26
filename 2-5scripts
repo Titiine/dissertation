@@ -23,7 +23,7 @@
 \section{Scripts, objects and avatars}
 In this section, implementation issues and choices are discussed, while reporting on the progress made.
 \subsection{Avatars and Objects}
-\\In Opensimulator, each user is characterized by a 3D avatar in the form of a human being. The appearance of the avatar is highly customizable. Modifications are done in the client on the ``appearance'' menu and include physical parameters such as gender, height, weight. Then, each special part of the body has dozens of parameters. Fat, muscles or hair, including colour, size or volume repartition can be personalized. The user can also add create and change clothes with the cloth editor using an interface as shown in figure~\ref{fig:app} ~\cite{SLAvatar}, or import them. 
+In Opensimulator, each user is characterized by a 3D avatar in the form of a human being. The appearance of the avatar is highly customizable. Modifications are done in the client on the ``appearance'' menu and include physical parameters such as gender, height, weight. Then, each special part of the body has dozens of parameters. Fat, muscles or hair, including colour, size or volume repartition can be personalized. The user can also add create and change clothes with the cloth editor using an interface as shown in figure~\ref{fig:app} ~\cite{SLAvatar}, or import them. 
 \begin{figure}[h]
   \caption{Appearance editor}
   \centering
@@ -34,17 +34,18 @@ Communication between different avatars can be done when the user is exploring a
 \paragraph{Avatars} can be moved in the simulator by walking, running, flying and teleportation. An animation system can be modelled to create new activities from special animation files.
 
 \paragraph{Objects} are the second main entity in Opensimulator. They are created by users and can be exported and imported. All the content in Opensimulator is composed of objects: houses, vehicles, pets and furnitures are objects. We will need to use objects to model food and medical stuff related with diabetes, such as syringes or glucose meters. Creating an object can be done by using the user interface by linking prims, that are the basic components such as cubes and cylinders. The other way to create objects is to use sculpties, based on imported meshes created by 3D computer graphics software, and to modify them. Objects can be linked together and compose bigger objects.
-A lot of content is available on the internet, so food objects can be downloaded and imported to be used directly. We already use fruits (pear, apple), drink, sugar cubes and a hot dog in our feeding system.
+A lot of content is available on the internet, so food objects can be downloaded and imported to be used directly. We already use fruits (pear, apple), drink, sugar cubes and a hot dog in our feeding system.\\
 
-\\Avatars and objects can be controlled directly in the viewer, which is the 3D client of the opensimulator server. For more complex tasks and automated controls, a scripting language can be used. Scripts are necessary to control or restrict avatars's actions. The main part of the software diabetes simulation is done by scripting. 
+Avatars and objects can be controlled directly in the viewer, which is the 3D client of the opensimulator server. For more complex tasks and automated controls, a scripting language can be used. Scripts are necessary to control or restrict avatars's actions. The main part of the software diabetes simulation is done by scripting. 
 
 
 
 \subsection{Scripts}
-\\Opensimulator has its scripting language called OSSL, and also supports a wide part of LSL~\cite{URLLSL} the Second life scripting language. More than 300 functions are available, controlling the avatars positions and animations (see figure~\ref{fig:piano}) or the objects settings. An system of events allow to trigger reactions. For instance, a door can be opened when an avatar touches it. The event involved would be ``touchEvent'' and a function is then called to rotate the door, or change its position. Vehicles control, like cars is another main usage of scripts.
+Opensimulator has its scripting language called OSSL, and also supports a wide part of LSL~\cite{URLLSL} the Second life scripting language. More than 300 functions are available, controlling the avatars positions and animations (see figure~\ref{fig:piano}) or the objects settings. An system of events allow to trigger reactions. For instance, a door can be opened when an avatar touches it. The event involved would be ``touchEvent'' and a function is then called to rotate the door, or change its position. Vehicles control, like cars is another main usage of scripts.
 
 \paragraph{Avatar scripting and objects}
-Opensimulator scripts are directly written in the 3D viewer when objects are created and modified. Each script is part of a given object, like a sub-object can be part of the main object. However, avatars can't be composed of objects, so scripts cannot be direcly added to avatars. The only way to alter an avatars behavior was to add a script in an object that was attached to an avatar. The attachment mechanism is used to link objects to an avatar on attachment sites, such as the hand, the skull or the back. A bag worn on the back or a hat on the head are examples of objects attached to an avatar. Thus, I created an object that will be the main script to control the avatar's behaviour. This object is then attached and should not be detached from the avatar, else the system that control the diabetic avatar simulation will be broken. 
+Opensimulator scripts are directly written in the 3D viewer when objects are created and modified. Each script is part of a given object, like a sub-object can be part of the main object. However, avatars can't be composed of objects, so scripts cannot be direcly added to avatars. The only way to alter an avatars behavior was to add a script in an object that was attached to an avatar. The attachment mechanism is used to link objects to an avatar on attachment sites, such as the hand, the skull or the back. A bag worn on the back or a hat on the head are examples of objects attached to an avatar. 
+% MOVED TO MYWORK Thus, I created an object that will be the main script to control the avatar's behaviour. This object is then attached and should not be detached from the avatar, else the system that control the diabetic avatar simulation will be broken. 
 
 \begin{figure}[h]
   \caption{Scripting to make the avatar play the piano}
@@ -57,6 +58,10 @@ Opensimulator scripts are directly written in the 3D viewer when objects are cre
 Two main scripts were developed for the simulation system. The first script encodes the system that controls blood glucose and insulin, and the second one was used to control the ``food's behaviour''.
 
 \paragraph{First script}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%
+\iffalse
+
 The first script needed to be put in an object attached to an avatar to control its blood levels and behaviour. It also needed to display some values at key moments of the simultion to make the user see how his state is evolving. For this two purposes, I created an invisible flat rectangular object and attached it to the avatar's back. 
 
 Blood glucose and energy consumption are supported by the script.%OLD:underlying system. 
@@ -71,6 +76,10 @@ And blood glucose variable can decrease:
 
 \includegraphics{diabetes_drawing}
 
+\fi
+
+%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 It seems important to distinguish a difference of treatment between two kind of activities from a low blood sugar perspective: the ones that will be performed less efficiently and others that will be impossible to do. For instance, running or flying will be impossible, because energy consumption is supposed to be too important in this case, but walking or speaking are allowed actions. In order to model gradually the symptoms of hypoglycemia, walking can be slowed according to the amount of sugar - eg energy - available for consumption. To summarize, three situations would be experienced in case of hypoglycemia, explained with the example of walking to set the ideas:
 \begin{itemize}
 \item below the first threshold, the activity is slowed in proportion to blood glucose levels.

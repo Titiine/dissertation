@@ -1,0 +1,35 @@
+\subsection{}
+%Diabetes and motivation:
+%http://www.medhelp.org/posts/Diabetes---Juvenile-Type-I/lack-of-enthusiasm-for-caring-for-my-diabetes--need-help/show/420693
+%http://www.medhelp.org/posts/Diabetes---Juvenile-Type-I/motivation-to-manage-my-diabetes/show/420757
+%http://www.medhelp.org/posts/Diabetes---Juvenile-Type-I/Very-Low-Energy/show/419180
+
+%passione par la course  http://www.afd.asso.fr/actualites/la-passion-du-trail-pour-depasser-sa-maladie-002475 
+% son blog http://ludo84-passion-trail.eklablog.com/recent/2
+
+%wc latex: 
+%begin  228
+%obj    
+%end 
+
+%Previously in 5WorkDone.tex%
+
+
+\section{What to stimulate ?}
+\subsection{Aims of the simulation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLLE A L ARRACHE, REPARER (avant dernier paragraphe de rapport peit de nick)
+%% Coller le dernier ailleurs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{1) Glucosim as a simulation tool}
+We want to offer a simulation environment where users can have a virtual life, and any kind of activities. For this purpose, a user is represented by an avatar, which is a 3D representation of a human being. Opensimulator already allows an advanced personalization of the avatars, and a large range of activities such as running, taking objects, changing clothes or partying. The current version doesn't meet our requirements as there is nothing to handle energy points and food systems in Opensimulator, needed if we want to simulate how diabetes would affect a “diabetic avatar”.
+In our prototype, a feeding system, with food that releases sugar in the avatar's body, and a physical activity system, consuming the avatar's energy according to what he's doing (running, dancing, sleeping...) will be implemented. In order to teach about diabetes, a user should be able to change the values of the in-blood parameters, such as glucose, fat or insulin, and look at how things are evolving. New actions need to be implemented to support the range of caring activities a diabetic patient is expected to perform (blood testing, insulin injection...). In addition, a range of symptoms are to be implemented for matching situations, such as hypo or hyperglycaemia.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The simulations is a tool for the patient to simulate the direct effect his actions has on his body. 
+Playing with the parameters - blood glucose, insulin, BMI and weight - is a way to understand better what's going on.
+By having a good understanding of the disease, the patient is more able to predict how his blood glucose may evolve. A patient with enough understanding and intuition about the causes of blood level changes would manage his diabetes better than a patient that follows blindly ready-made guidelines.
+\\
+\subsection{(New:) A good/well balanced diabetes management}
+Good diabetes management is caracterized by glucose levels always 

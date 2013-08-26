@@ -1,0 +1,50 @@
+\section{Tools}
+\label{sec:devtools}
+
+\subsection{Opensim}
+Objects can be attached and detached (because we speak about the StateScript that shouldn't be detached later)
+
+TODO Copy from ...
+\subsection{Viewers}
+\subsubsection{Imprudence}
+TODO Copy from Architecture 
+\subsubsection{Firestorm}
+TODO
+\cite{firestormWebsite}
+
+
+\subsection{QAvimator}
+
+Like Second Life, Opensim make use of animations to animate the avatars. They need to be created with an external software and then inported into Opensim.
+%The effects of hypoglycemia were then simulated by the use of animations realized using 
+In this project, QAvimator~\cite{qavimatorWebsite} was used to build them. Other softwares can be used to create and edit animations such as Poser~\cite{PoserWebsite}, Maya~\cite{mayaWebsite} and Blender~\cite{BlenderWebsite}, an open-source alternative to Maya. Qavimator was chosen because it's light and easy to use compared to Maya and Blender. Unlike Maya and Poser, it is free.\\
+
+Qavimator is an Qt port of Avimator~\cite{avimatorWebsite}, an open source animation editor originally created for avatar's animations in Second Life. The BVH (Biovision Hierarchy)~\cite{thingvold1999biovision} format is used for the animations in Second life and is popular in the animation community to represent movements of humanoid structures. \\
+
+A BVH file is composed of two sections, a header and a data section. The initial pose of the skeleton is described in the header section by specifiying the position of each joint, which are the green dots visibles in figure~\ref{qavimatorSkeleton}. \\
+
+\begin{figure}[h]
+  \caption{Skeleton displayed by Qavimator~\cite{qavimatorWebsite}. Each green dot represents a joint}
+  \centering
+  \includegraphics[scale=0.6]{qavimatorSkeleton.png}
+  \label{qavimatorSkeleton}
+\end{figure}
+
+An animation is a sequence of frames, which are key moments of the animation, like the pictures for a movie. The frames are visible in the timeline window, visible in figure~\ref{qavimatorTimelineZoom1}.
+By adding a new frame in the timeline, and specifiying the new position of all the joints in the current frame, an animation can be build. The position of each joint is described by a set of rotation, position and scale parameters. Figure~\ref{qavimatorTimeline} shows the editor window with 3 frames in the timeline and all the parameters for a given point (9 parameters) in the parameter window, visible in figure~\ref{qavimatorTimelineZoom2}.
+
+\begin{figure}[h]
+  \caption{Sequence of positions by Qavimator~\cite{qavimatorWebsite}. }
+  \centering
+  \includegraphics[scale=0.6]{qavimatorTimeline.png}
+  \label{qavimatorTimeline}
+\end{figure}
+
+%Insulin animation (CITE THE IMAGES Insulin1 - 4)
+
+%Some animation used in this project were available online (created by Linda Kellie), such as the piano and the fishing animation.
+
+\subsection{Web server}
+TODO \\
+Write (maybe copy a little from architecture ?)\\
+Copy from schlumberger ?

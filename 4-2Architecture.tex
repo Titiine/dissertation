@@ -1,0 +1,18 @@
+\section{Architecture}
+
+\subsection{Architecture of the software}
+TODO : explain how the different development tools from section ~\ref{sec:devtools} will be assembled.
+
+
+\subsection{Scripts main architecture - Overview}
+TODO : Big schéma\\
+
+This section describes the architecture of the application based on the different scripts and the links between them.
+As Opensimulator is used as a frame, there is some unusual constraint for coding: each script need to be attached to one object, and scripts cannot share data. \\
+
+Scripts can be divided in 3 catagories:
+\begin{itemize}
+\item The StateScript can be considered as the first category. Controlling the avatar's behaviour and its internal blood and insulin systems, it is the main script.
+\item Scripts that perform a specific task strongly related to the nature of the object that is hosting the script. This category of domain-related scripts includes the FoodScript, the InsulinScript, and the MeterScript. All these scripts communicate with the StateScript, as described in ~\ref{ref:scriptComm}.
+\item Service scripts, or scripts used as supports for other scripts or tasks. They can be considered as Pure Fabrications. The maintenance scripts and the scripts used to display the Energy Bar and educational content about diabetes belong to this category.
+\end{itemize}
