@@ -1,0 +1,90 @@
+%wc latex: 
+%begin  793
+%obj    
+%end 
+
+\section{The Glucose-Insulin underlying model}
+\label{sec:mymodelSection}
+    
+A model describing the evolution of blood glucose depending on the intakes of food and insulin is needed for two reasons.
+\subsection{Model requirements}
+\paragraph{}
+The 3D simulation of the symptoms and physical condition needs a model, roughly based on the biological mechanisms. This model doesn't to be exactly accurate, because we need it only to trigger hypos, hypers or abilities to do a range of actions. As an example of ability, we can mention that the less sugar the avatar has (below a given threshold), the hardest it will be for him to run or dance in a party.
+\paragraph{}
+The model will also be needed for the web interface, in which rates and graphs would be displayed so that teenagers that are using the application will be able to see the consequences of having a meal, an insulin injection, or any kind of activity in real time. This will give them a better understanding of how insulin works and how sugars are used, especially along the time. This model do need a certain precision as they are supposed to use it to understand better the underlying mechanisms of diabetes. However, the educational aspect here is also more important than the accuracy needed. For instance, if the complex phenomenon x and y are involved in the process, and other parameters A, B and C has an influence on it, x and y phenomenon won't be modelled nor considered as parameters of our model if they don't need to be known by the adolescents.  
+
+\subsection{Computational Model}
+The following model tries to meet the requirements described above. As expected, the key variable of this model is glucose. On one hand, we try to estimate realistically his evolution according to the known amounts of glucose eaten by the avatar, insulin intakes, energy consumption. On the other hand, the biological mechanisms should be 
+
+At this point of the project, we don't expect accurate nor complete realistic blood values, because the first use of this model will be done for the "in-game" simulation, eg the simulation of the symptoms and activities in the 3D environment. We should also specify that time in the simulation will be speeded. For this reason, blood glucose and insulin evolution over time won't be the same as the real life ones, which support the fact that a good agreement with experimental medical data is not needed. 
+
+$GlucoseB$ is the glucose in the blood, $p_{activity}$ and $p_{food}$ are the characteristic parameters respectively for a given activity and for a given type of food.$x$ is a quantity of intake (food or insulin).
+ %#todo talk about the links between this model and bergman's%
+\paragraph{}
+
+$\begin{array}{l l}
+    GlucoseB(t) = & \quad  GlucoseB(t-1) + GlucoseFromFood(t, p_{food}, x_{food})\\  & \quad + GlucoseReleased(t)
+    - GlucoseConsumption(t, state, p_{activity})\\  & \quad - InsulinEffect(t, x_{insulin})\\
+  \end{array}$
+
+\paragraph{}
+With $p_{activity}$ = $\left\{ 
+  \begin{array}{l l}
+    \tau & \quad \textrm{fonction's period}\\
+    Activity(t) & \quad \textrm{the fonction describing how glucose is used }\\
+    t_{0} & \quad \textrm{time when the activity began}
+  \end{array} \right.$
+  
+and $p_{food}$ = $\left\{ 
+  \begin{array}{l l}
+    \tau & \quad \textrm{fonction's period}\\
+    Food(t) & \quad \textrm{the fonction describing how glucose is released }\\
+    t_{0} & \quad \textrm{time when food is eaten}
+  \end{array} \right.$
+
+\paragraph{}
+InsulinEffect(t,$x_{insulin}$) describes the part of glucose removed from the bloodstream to be stored (mainly in the liver, in the form of glucagon).
+  
+The previous model can be detailed 
+\paragraph{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\small
+$\begin{array}{l l l}
+    GlucoseB(t) = 
+        & \quad GlucoseB(t-1)      & \quad \textrm{glucose already there}\\
+        
+        & \quad + \displaystyle \sum_{\substack{i\in \textrm{food eaten}  }} x_{i}*Food(t-t_{0}_{i})    
+* Step(t – t_{0}_{i} - \tau_{i})        & \quad \textrm{glucose released by each food}\\
+
+        & \quad +GlucoseRel(t-t_{0}) * Step(Gmax-G(t-1))      & \quad \textrm{glucose released by liver}\\
+        & \quad -BaselineActivity(state)      & \quad \textrm{glucose used for `basal' living}\\
+        & \quad -\displaystyle \sum_{\substack{
+   i\in \textrm{activities}  }}     Activity_{i}(t-t_{0}_{i}) * Step(t – t_{0}_{i} - \tau_{i}     & \quad \textrm{activities and sports}\\
+        & \quad -$\alpha$(meal) * Insulin(t-t_{0}) * Step(t – t_{0} – \tau_{i})      & \quad \textrm{insulin action on glucose}
+  \end{array}$
+  \normalsize
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+where 
+  $\left\{ 
+  \begin{array}{l l}
+    state & \quad \textrm{avatar's state: awake or sleeping}\\
+    $\alpha$(meal) & \quad \textrm{given a meal time, amount of glucose removed per unit of insulin}\\
+    Step(x) & \quad \textrm{step function, whose value is zero for negative argument and}\\ & \quad \textrm{ one for positive argument }
+  \end{array} \right.$
+
+\paragraph{}
+The step function allows us to use any kind of mathematical function to describe $Activity$, $GlucoseRel$ or $Insulin$. Indeed, we only take the restriction of the function we are interested in.
+
+For instance, 
+        	=> muscles, liver, fat
+	where :
+Step(t) =  1 if t>=0
+	    0 if t<0
+Redistributor :
+1)muscles	value in g. each second
+2)liver		400g. max #check
+3)fat		40g sugar = 30g fat #find, use a factor to set it

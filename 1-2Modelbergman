@@ -1,0 +1,89 @@
+%wc latex: 
+%begin  0
+%obj    
+%end    562
+\section{Mathematical models}
+In order to understand, describe, or predict the mechanisms of blood glucose variations, various models have been developped. Very complex models can be designed to describe the glucose-insulin interaction, using multiple variables. However, a simple ones can cover a large range of needs.
+A model is needed to be used in subsequent parts of this project, as a basis for the simulation tool.
+\\
+
+
+\subsection{Minimal model}
+The first model to describe the interaction between glucose and insulin, known as the “minimal model” of glucose regulation was realised by Richard N. Bergman~\cite{bergman1980minimal, bergman1979quantitative} .
+%[#reference RN Bergman, YZ Ider, CR Bowden, and C Cobelli. Quantitative estimation of insulin sensitivity. Am J Physiol Endocrinol Metab, 236(6):E667{677, 1979.].
+It is composed of three differential equations, this model introduces the distinction between “active” insulin – which is a fictitious concept used to describe the insulin available in the blood- and the “passive” insulin, stated as the insulin in the liver and the muscles.
+
+
+
+We can describe the main ideas carried by the three equations as follows. Concerning insulin, the model makes use of the fact that:
+
+\begin{enumerate}
+\item Insulin is produced only when the amount of glucose exceeds a threshold value.
+\item Inactive insulin degrades after exceeding a value, which is the value in equilibrium, given:
+\begin{itemize}
+\item a rate \alpha that is converted into active insulin
+\item a rate \beta that is lost during the process that lowers glucose level
+\end{itemize}
+\end{enumerate}
+
+%IFTIME
+%
+%This model is still widely used 
+%~\cite{Makroglou2006559}
+%"Types of models which have been used in the literature can be classiﬁed mathematically as: ordinary
+%differential equations (ODEs), delay differential equations (DDEs), partial differential equations (PDES),
+%Fredholm integral equations (FIES) (in the estimation of parameters problem), stochastic differential
+%equations (SDEs) and integro-differential equations (IDEs)."
+%FI
+
+\begin{figure}[h]
+  \caption{Physiological glucose-insulin regulatory system, \cite{makroglou2006mathematical}}
+  \centering
+  \includegraphics[scale=0.4]{model}
+  \label{fig:model}
+\end{figure}
+
+\paragraph{}
+In figure~\ref{fig:model}, Blood glucose variation is described. According to the model of Bergman, glucose amount evolve involving only these 3 processes:
+\begin{enumerate}
+\item Glucose lost due to usage by the human body ("Exercices, fasting and etc." in figure~\ref{fig:model})
+\item Glucose lost due to active insulin action ("Fat cells and etc. consume glucose" in figure~\ref{fig:model})
+\item Glucose added to the previous amount, due to feeding ("Glucose infusion, meal and etc." in figure~\ref{fig:model})
+\end{enumerate}
+This model doesn’t take into account the production of glucose by the liver from glucagon (described as "Liver releases glucose into plasma" in figure~\ref{fig:model}), releasing glucose in the bloodstream when glucose levels are too low. As we will see later, we need a model in the software for two functionalities: virtual simulation, and the amount monitoring view. The two functionalities don’t need the same degree of accuracy. However, the Bergman model cannot be used for any of these functionalities because the liver action need to be taken into account to meet the software’s requirements.
+This historical model has been used to clarify if the diabetes is type 1 or type 2, by comparing the experimental results to the theoretical values given by the model %(#reference 1PolyMontreal_maths)
+, but it is not accurate enough for predicting glucose and insulin levels observed on patients.
+
+\subsection{Berger-Rodbard model, used in AIDA v4.3a}
+[NEW] 
+From \cite{lehmann2011development}, (adress:)%http://www.hindawi.com/journals/jece/2011/427196/ (see article, quite rich bibliography)
+\\
+Similar interesting article (same authors, nice figures): Incorporating a Generic Model of Subcutaneous Insulin Absorption into the AIDA v4 Diabetes Simulator 3. Early Plasma Insulin Determinations , (adress:)%http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2769853/#!po=21.8750
+\\
+"The Berger-Rodbard model [33] adopted in AIDA v4.3a was a simple and flexible tool that enabled the estimation of plasma insulin levels for various insulin preparations. However, this model was developed at the end of the 1980s and thus insulin analogues were not included."
+\\
+This model is used in Aida, a quite famous diabetic simulation tool. This software is described with more details in section~\ref{sec:aidaSection}.
+
+It's a compartmental model describing the interaction between glucose and insulin for a diabetic with type 1, without any insulin secretion. 
+
+
+\subsection{Latest models (to be used in next aida version)}
+[NEW] From \cite{lehmann2011development}, http://www.hindawi.com/journals/jece/2011/427196/
+\\
+
+"Being more physiologically based, the model proposed by Mosekilde et al. [34] and modified by Trajanoski and colleagues [35] was chosen as the basis for the insulin absorption model of Tarín and colleagues [37, 38] and the current collaborative development work with AIDA v4 [39–41]. The Trajanoski model was extended to deal with the long-acting insulin analogue glargine, thereby covering the whole range of insulin preparations currently used in medical therapy. Later works have subsequently appeared in the literature that also consider insulin glargine, but where the diffusion process is neglected or approximated [42–44]."
+
+\iffalse
+\subsection{ OLD Second model}
+A second model, uses an equation for glucose levels (1) and another one for insulin levels (2).
+The variation of glucose is explained by:
+•	glucose lost in tissues
+•	glucose lost due to insulin
+•	the constant contribution of glucose released by the liver
+The variation of insulin can be explained by insulin absorption and insulin-production according to the glucose rates in the blood.
+This model is quite complex as it includes an integral. As we aim to produce a model that will be used in the Opensimulator environment, it shouldn't be too heavy to compute.  Robustness is more important than high precision, as we only need a model that makes sense for triggering the different states the diabetic avatar can go through to display the correct symptoms. The model used for the simulation described in next section will take into account most of the processes that are described above, but will also rely on other features.
+The effective model used for the software take into account principles from the two models described below, but is more formulated in terms of computing rather than a mathematical perspective. Chapter 3 sets out in greater details how the model is made.
+Since Bergman’s model, many others were developed, stressing more on different parameters according to the needs. The more complex one described in [2] uses a set of 14 equations. 
+%reference
+%aida's ?
+\fi

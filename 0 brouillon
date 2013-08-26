@@ -1,0 +1,105 @@
+%Idea : SMS FUNDRAISING website for sms donations with the city or a small message of people that gave money. Incrementing each time + showing the history and name of the latest city. A ranking can be made available ?
+
+%Idea: cahier a spirales high tech ou on peut sortir plusieurs feuilles comme on veut (max 4 feuilles). Spirales solides. cahier amovible. Deux cotes. Rejoignables. Super leger
+
+\begin{itemize}
+\item 
+\item 
+\item 
+\end{itemize}
+
+~\cite{HannaKM}
+~\cite{}
+
+
+%%%%%%%%%%%%
+
+1) aidaDownloads
+From \cite{lehmann2011development}
+
+http://www.hindawi.com/journals/jece/2011/427196/fig1/
+
+
+"Number of (a) visits and (b) downloads per month at the two AIDA websites (http://www.2aida.org/ and http://www.2aida.net/) since March/April 1996 when AIDA first went live on the Internet—up to March/April 2010—just before the web launch of AIDA v4.3b. Despite the age of the software, there continues to be considerable interest in the program with a large number of site visitors and downloads."
+
+
+~\ref{fig:aidaDL}
+
+\begin{figure}[h]
+  \caption{Number of (a) visits and (b) downloads per month at the two AIDA websites (http://www.2aida.org/ and http://www.2aida.net/) from ~\cite{lehmann2011development}}
+  \centering
+  \includegraphics[scale=0.6]{wow.jpg}
+  \label{fig:aidaDL}
+\end{figure}
+
+
+
+
+%%%%%%%%%%%%
+2) Example of use of Aida : Print and show to supervisor, can i use it like this directly ?
+
+From \cite{lehmann2011development}
+
+
+http://www.hindawi.com/journals/jece/2011/427196/fig2/
+
+%%%%%%%%%%%%%%
+3) A study on the knowledge about diabetes in population, in \cite{herrejon2009creation}
+
+Interesting for: 
+*info about the level of knowledge
+*usefulness of educational internet based diabetes tool
+
+Your Guide to Diet and Diabetes - Diabetes: can be cited as an existing tool !
+
+http://online.liebertpub.com/doi/pdf/10.1089/dia.2008.0043
+
+The creation and impact evaluation of “Your guide to diet and diabetes,” an interactive web-based diabetes tutorial
+
+
+%%%%%%%%%%%%%%
+OLD
+
+\begin{figure}[h]
+  \caption{World of Warcraft : Creation and personalization of an avatar~\cite{ref_VE_wow}}
+  \centering
+  \includegraphics[scale=0.6]{wow.jpg}
+  \label{fig:VE_wow}
+\end{figure}
+
+
+~\ref{fig:VE_wow}
+
+
+\begin{figure}[h]
+  \caption{ ~\cite{ref_VE_campus}}
+  \centering
+  \includegraphics[scale=0.4]{           .jpg}
+  \label{fig:VE_campus}
+\end{figure}
+
+
+%Campus
+http://tr.wikipedia.org/w/index.php?title=Dosya:WoWCharCreation_MoP.jpg&filetimestamp=20120401140908&
+
+@misc {VE_wow,
+author ={Activision Blizzard} ,
+title ={Creation and personalization of an avatar in World of Warcraft} ,
+howpublished ={\url {http://tr.wikipedia.org/w/index.php?title=Dosya:WoWCharCreation_MoP.jpg&filetimestamp=20120401140908&}} ,
+note = {Accessed: 2013-07-10},
+year = {2012}
+}
+
+
+
+%Auditorium
+
+@misc {VE_audit ,
+author ={Faculty of Medicine - Imperial College London} ,
+title ={A virtual auditorium in Second Life} ,
+howpublished ={\url {www1.imperial.ac.uk/}} ,
+note = {Accessed: 2013-07-10}
+
+}
+
+~\ref{fig:}

@@ -1,0 +1,78 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  BEGIN OK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter{Progress, work done ( Produced models / Current software implementation) }
+Before designing the simulation software, a relevant prerequisite is to figure out precisely the amount of taught information in the hospital. Attending diabetes educational sessions for newly diagnosed patients and being treated like a teenager with diabetes was a way to do so, and it was also a way to be given the opportunity to ask the questions a youngster with diabetes would be likely to ask.
+Besides getting a rough idea of the children's knowledge about diabetes when they leave hospital, these sessions where ideal to understand the conditions of their stay in the hospital, and find whether using a simulation playful tool would help patients to cope more easily with their new situation.
+\section{Prior analysis: Diabetes sessions at the hospital}
+For this project, I've participated in the theoretical and practical training each newly diagnosed diabetes patient attends during first hospitalisation. A diabetes nurse and a dietetician specialized in children with diabetes are responsible for holding four sessions of about half a day each.  
+
+\paragraph{General pros}
+Positive aspects can be used as guideline for for the software design.
+\begin{itemize}
+\item The sessions are based on an explanation of what diabetes is. The level of explanation seems suitable for a  child, quite general and easy to understand. 
+\item Practical material taught in the very beginning allow the patient to develop self-care autonomous behaviour quickly. This includes blood testing and insulin injections. Some children are even able to perform injections while they are only 6 years old.
+\end{itemize}
+
+\paragraph{General cons}
+\begin{itemize}
+\item The sessions took place during the patient's first hospitalization. Thus, the patient is usually unwell, recovering from a severe hyperglycemia often associated with ketoacidosis. Moreover, the patient is often upset after being diagnosed with diabetes. In these conditions, it might be harder for the patient to focus and understand what is explained.
+
+\item A very large amount of information is delivered in about 2 days of educational sessions. For children and teenagers, it's especially challenging to get them to take full advantage of the sessions. Moreover, according to the diabetes nurse, patients usually don't remember half of what they are taught in these sessions. \\
+
+\item Common situations of everyday life with diabetes, excluding self care diabetes management, are not really covered in these sessions. 
+%
+[NEW] This inadequacy can leads to a worsening of the patient's mental condition after a couple of weeks, even if he aparently seemed to accept his illness. Such a setback occurs when he comes to realize all the non-medical implications of living with diabetes.
+%
+In fact, it may be challenging for a newly diagnosed patient to have an accurate representation of, for instance, how many parts of their life will change, if we only take into account the content of the newly diagnosed sessions. Social life impact, sports practise, going to friends or travelling, are examples of points that will be affected. 
+%
+%Consequently, it is quite common to notice a slow realization of how different his life will become in the next few weeks. 
+%
+The content of the "newly diagnosed sessions" doesn't prepare them to cope with such situations, because it focuses on the minimal knowledge needed to understand diabetes and for basic self care. The other reason why daily life changes are not fully covered is that the sessions are guided by the patient's questions. Usually, a patient that was diagnosed a couple of hours later won't think about wider effects on their future life. Meeting other patients or giving an opportunity to ``see how it is to be diabetic'' could get patients better prepared for their return to every day life.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  FIN OK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{ With the nurse}
+In the begining, the nurse gives a general description of diabetes to the patient. Clarifiying some common misconceptions, such as making clear that the patient has no responsibility in the onset of type 1 diabetes is essential. The basic mechanisms involved in diabetes and some key notions such as glucose, energy and insulin are explained, and extended according to patient's questions. Hypoglycemia, hyperglycemia, are then taught as well as how to avoid and treat them. Practical skills are covered in the second session, and include blood testing and injection. Parents are often present.
+\\The nurse tries to raise patient's awareness about treatment regularity, by stressing that a patient should never forget an injection. However, long term consequences that can occur in case of a poor diabetes management are not covered in details, in order to avoid upsetting newly diagnosed patients.
+
+Some ways to make them carry on the treatment are described in~\ref{sec:TreatEfficiency}. One key point is to base the sessions on the children's experience at the hospital: the nurse explains that a successful diabetes management will prevent them to be be in a poor condition that will bring them to the hospital with ketones. The approach is quite efficient, as children are likely to hope for an early discharge from hospital.
+
+\subsection{With the dietician}
+Dietician sessions focuses on patient's diet, following roughly this pattern: 
+\begin{itemize}
+\item The dietician begins with general advices in healthy eating
+\item Carbohydrates awareness is raised by the use of the "eatwell plate", representing a healthy balanced diet as shown in figure~\ref{fig:eat_wp}.
+\item Carbohydrate counting is explained
+\item \warn{The different kinds of sugar %classified by 'speed'% 
+and the glycemic index are covered}
+\item The snacking issue is addressed
+\item Activities and small exercises are given to make sure the patients understood the different issues
+\end{itemize}
+
+ 
+ 
+\begin{figure}[h]
+  \caption{The eatwell plate}
+  \centering
+  \includegraphics[scale=0.43]{theeatwellplate.pdf}
+  \label{fig:eat_wp}
+\end{figure}
+
+\subsubsection{Patient - Dietician %Health professional%
+relationship}
+\label{sec:TreatEfficiency}
+Like with the nurse, the patient is quite unwell and tend not to be engaged %careful, mindful% 
+during the explanations. It's a little trickier to teach them about nutrition because they are usually familiar with dietetic advices - they have been treated at school already - and because not following the advice won't have the same direct effects a forgotten injection can have. Thus, the dietician needs to teach patients according to their specificities. Specificities can be :
+\begin{itemize}
+\item The age or the ability of the patient affects carbohydrate counting, as it needs some basic mathematic skills like the cross product. When they are too young to do this, parents attend to counting carbohydrates for each meal. 
+\item Being as brief as possible during the explanations allows the dietician to focus on key points. For example, emphasizing on non-skipping insulin injections instead of explaining exactly why the same amount of insulin cannot be taken for the same amount of carbohydrate intake for two different lunches.
+\item The gender can have an importance. For instance, beginning insulin therapy sometimes makes people gain weight. Therefore, female teenagers start quickly to find ways to reduce insulin doses as described in ~\cite{InsulinMisuse}. The dietician needs to make sure they really understand insulin's key role in diabetes treatment.
+\item Another adverse reaction from more simpled-minded children is to try to avoid eating carbs so that they don't need to have insulin injections.  This can be corrected by explaining with more details the "eatwell plate" (figure~\ref{fig:eat_wp}) and the role of each kind of nutrient.
+\end{itemize}
+
+The two last points are interesting from patient adaption point of view: the first one can be seen as more devious, a kind of reaction that can be suspected if the patient seems fragile psychologically and quite intelligent, while the second one can be accounted to ignorance. These reactions aren't expected in this kind of first sessions, but dieticians try to figure out the level of understanding of the teenager by asking questions and looking for feedback.

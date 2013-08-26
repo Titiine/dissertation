@@ -1,0 +1,212 @@
+%how time is speeded: division factor
+%glucose values: found in the leaflets/litterature
+%modelization of the functions for food.
+
+%Project plan: 
+%implementing the complete displaying system + validation by medical staff
+%validation of the symptoms by medical staff
+
+%wc latex: 
+%begin  793
+%obj    
+%end 
+
+%http://www.miv.t.u-tokyo.ac.jp/papers/dohi-IEVC2012.pdf
+
+
+%-ce qu on peut actuellement faire dans l environnement
+%-creation des objects
+%-ajouts des scripts dessus
+%-creation de la carte 
+
+
+\section{Scripts, objects and avatars}
+In this section, implementation issues and choices are discussed, while reporting on the progress made.
+\subsection{Avatars and Objects}
+\\In Opensimulator, each user is characterized by a 3D avatar in the form of a human being. The appearance of the avatar is highly customizable. Modifications are done in the client on the ``appearance'' menu and include physical parameters such as gender, height, weight. Then, each special part of the body has dozens of parameters. Fat, muscles or hair, including colour, size or volume repartition can be personalized. The user can also add create and change clothes with the cloth editor using an interface as shown in figure~\ref{fig:app} ~\cite{SLAvatar}, or import them. 
+\begin{figure}[h]
+  \caption{Appearance editor}
+  \centering
+  \includegraphics[scale=0.6]{app}
+  \label{fig:app}
+\end{figure}
+Communication between different avatars can be done when the user is exploring a grid connected to a network. A simple text message system and voice based communications are available. 
+\paragraph{Avatars} can be moved in the simulator by walking, running, flying and teleportation. An animation system can be modelled to create new activities from special animation files.
+
+\paragraph{Objects} are the second main entity in Opensimulator. They are created by users and can be exported and imported. All the content in Opensimulator is composed of objects: houses, vehicles, pets and furnitures are objects. We will need to use objects to model food and medical stuff related with diabetes, such as syringes or glucose meters. Creating an object can be done by using the user interface by linking prims, that are the basic components such as cubes and cylinders. The other way to create objects is to use sculpties, based on imported meshes created by 3D computer graphics software, and to modify them. Objects can be linked together and compose bigger objects.
+A lot of content is available on the internet, so food objects can be downloaded and imported to be used directly. We already use fruits (pear, apple), drink, sugar cubes and a hot dog in our feeding system.
+
+\\Avatars and objects can be controlled directly in the viewer, which is the 3D client of the opensimulator server. For more complex tasks and automated controls, a scripting language can be used. Scripts are necessary to control or restrict avatars's actions. The main part of the software diabetes simulation is done by scripting. 
+
+
+
+\subsection{Scripts}
+\\Opensimulator has its scripting language called OSSL, and also supports a wide part of LSL~\cite{URLLSL} the Second life scripting language. More than 300 functions are available, controlling the avatars positions and animations (see figure~\ref{fig:piano}) or the objects settings. An system of events allow to trigger reactions. For instance, a door can be opened when an avatar touches it. The event involved would be ``touchEvent'' and a function is then called to rotate the door, or change its position. Vehicles control, like cars is another main usage of scripts.
+
+\paragraph{Avatar scripting and objects}
+Opensimulator scripts are directly written in the 3D viewer when objects are created and modified. Each script is part of a given object, like a sub-object can be part of the main object. However, avatars can't be composed of objects, so scripts cannot be direcly added to avatars. The only way to alter an avatars behavior was to add a script in an object that was attached to an avatar. The attachment mechanism is used to link objects to an avatar on attachment sites, such as the hand, the skull or the back. A bag worn on the back or a hat on the head are examples of objects attached to an avatar. Thus, I created an object that will be the main script to control the avatar's behaviour. This object is then attached and should not be detached from the avatar, else the system that control the diabetic avatar simulation will be broken. 
+
+\begin{figure}[h]
+  \caption{Scripting to make the avatar play the piano}
+  \centering
+  \includegraphics[scale=0.4]{Piano_001.png}
+  \label{fig:piano}
+\end{figure}
+
+\paragraph{Scripts developed: current implementation}
+Two main scripts were developed for the simulation system. The first script encodes the system that controls blood glucose and insulin, and the second one was used to control the ``food's behaviour''.
+
+\paragraph{First script}
+The first script needed to be put in an object attached to an avatar to control its blood levels and behaviour. It also needed to display some values at key moments of the simultion to make the user see how his state is evolving. For this two purposes, I created an invisible flat rectangular object and attached it to the avatar's back. 
+
+Blood glucose and energy consumption are supported by the script.%OLD:underlying system. 
+Blood glucose can increase and decrease by calling the corresponding function : 
+\begin{itemize}
+\item if it is called by a food object after being eaten, 
+\item or if the main script itself calls the function when blood glucose is too low, acting as an artificial liver. This can be done only when the internal liver glucose level is not null. 
+And blood glucose variable can decrease:
+\item if called by the syringe object when an insulin injection is made, 
+\item or if the avatar is doing an activity. For this purpose, at each iteration, we check whether an animation is being played. A list of animations with the corresponding amount of energy consumed each second is available in the script. 
+\end{itemize}
+
+\includegraphics{diabetes_drawing}
+
+It seems important to distinguish a difference of treatment between two kind of activities from a low blood sugar perspective: the ones that will be performed less efficiently and others that will be impossible to do. For instance, running or flying will be impossible, because energy consumption is supposed to be too important in this case, but walking or speaking are allowed actions. In order to model gradually the symptoms of hypoglycemia, walking can be slowed according to the amount of sugar - eg energy - available for consumption. To summarize, three situations would be experienced in case of hypoglycemia, explained with the example of walking to set the ideas:
+\begin{itemize}
+\item below the first threshold, the activity is slowed in proportion to blood glucose levels.
+\item between second and third threshold, the input keys of the keyboard can be randomly changed for avatar's movements. It can turn left instead of right, sit down instead of jump. 
+\item after third threshold, the avatar cannot walk anymore, and all the activities can be disabled, except feeding. When the amount of glucose raises, actions will be enabled again. 
+\item after the forth threshold, the avatar fall unconscious and cannot do anything, until someone gives him sugar. This level can be disabled for educational purpose, if we don't want children running the simulation to be frightened.
+ \end{itemize}
+ 
+This example can be adapted to speech, as the avatar can speak slowly, and may then experience some unexpected words appearing instead of what he was typing. In extreme cases, he can shout by converting lowercase inputs to uppercase ones, before not being able to speak at all. We may also disable some ``non vital'' activities, such as reading. We cannot consider that reading consumes more energy than walking, but activities such as walking or speaking can be pictured as activities that need to be done in order to survive by getting some food or some help. A classification of all the activities should be carefully thought and discussed with the educative diabetes team of the hospital in order to make a simulation that illustrates correctly what teenagers need to understand about the disease and the symptoms. %An additional work on literature reviewing might be done for this purpose.
+
+%todo picture example of speech mix
+The activities that are currently supported by our system are walking, running and flying.
+\paragraph{Second script, the ``food'' script}
+
+The second important script is used to manage food objects and to increment avatar's glucose levels. To eat the food, the avatar needs to click on the ``Eat'' button I created in the objects selection interface. 
+%addPictureForMenu 
+The food script calls the function that increments the level of glucose of the main script. Then, the food script destroys the food object. As normal objects, it's currently possible to copy food objects, so an avatar can copy the food before eating it, and still have another copy. Restrictions might be implemented later, while a complete feeding system will be implemented, including shops where the food can be bought. Currently, there is a ``food generator'' object that can allow an infinite generation of food by replacing the item an avatar took by a new one.
+  
+\subsubsection{Scripting issues}
+\paragraph{Inter-script communication} Communication between scripts was an important issue to solve. 
+The llSay ~\cite{URLsay} family of functions (including the llWhisper~\cite{URLwh} and llShout~\cite{URLShout}) is used for communications between avatars. The message passes through a channel identified by an integer, where 0 is the default value for the public channel on which messages are listened by anyone. The llListen~\cite{URLsay} function can listen to messages filtered according to the channel or the sender's identity. 
+\\I sent messages from the food script and other scripts that need to call functions in other scripts by passing messages with a special format using the channels that are not used by the Opensimulator. The identity is checked to know whether the object is allowed to call the function.
+
+\paragraph{Notifications}
+Knowing the educational purpose of the simulation, certain information need to be displayed in a relevant way so that the user can understand the consequences of his actions. Available information includes:
+\begin{itemize}
+\item glucose blood level (and the normal values)
+\item insulin blood level
+\item liver glucose
+\item the ``amount'' of energy consumed by an activity.
+\end{itemize}
+
+A large amount of other variables is available, but on the contrary of software simulation tools based on graphs and values such as Aida, I choosed to display only a small quantity of information
+% (WHY ? REMOVE OR JUSTIFY THE CHOICE: 
+%, with a maximum of 3 values. 
+. It doesn't make sense to put all the indicators on the screen of the 3D simulation because an overloaded interface would decrease the interest of the teenage final users, according to what was said in the analysis of the Aida tool % in reference ... 
+(or in the guidelines section).
+
+
+Users should be aware of the impacts of:
+\begin{itemize}
+\item the food they eat on their glycemic system
+\item the effects of physical activity on blood levels
+\item how insulin-based blood sugar management impacts the avatar's behavior, from restrictions in avatar's activities and symptoms to unconsciousness (~\ref{fig:unc})
+\end{itemize}
+
+\begin{figure}[h]
+  \caption{Avatar lying on the bed}
+  \centering
+  \includegraphics[scale=0.4]{Sleeping_001.png}
+  \label{fig:unc}
+\end{figure}
+
+For this purpose, the key point is to display indicators at some moments, and to make a good use of colors.% especially when we will add a system dealing with "long term indicators". These new indicators may include values such as glycated hemoglobin, fitness, global comfort, psychological health.%
+
+Difficulties appear, and can be summarized into a range of questions:
+\paragraph{Which unit should we used to display which indicator ?}
+Some values need to be converted into other units. For instance, some facts are know only with equivalences:
+-eating a small potato brings 30g of carbohydrate. Carbohydrate is used for food labels, but is also designed as the generic term of ``glucose''. The effects of eaten grams of glucose have almost no impact on the glycaemia values if we consider it in grams per litre. % EXPLAIN why. Give an example ?
+
+%remove this ? :
+\paragraph{When is it useful to show the values, and for how long ?}
+It's hard to show an impact on values that don't vary a lot. Giving 
+\paragraph{Values need to be contextualized}
+For some variables, their meaning cannot be interpreted if we don't know the ideal values for this indicator. Three approaches offers partial solution to the issue. First, we could include the range of expected values when displaying the plain value written in the standard unity, such as:\\
+4 $mmol/L < current$ $value <$ 8 $mmol/L$
+\\2nd solution: use a normalized unit, at least for the generally unknown values. For instance, it can be a value in [0,1] or a value in [0,100].
+\\3rd solution: display a convenient unit that doesn't make sense medically, just like values used in games. It can be an interval, such as:
+\begin{itemize}
+\item level 0: critical (red)
+\item level 1: low value, but still in the range (orange)
+\item level 2: medium value, in the range (green)
+\item level 3: high value, but still in the range (orange)
+\item level 4 (or level 10, because it's clearer that the value isn't normal): critically high value
+\end{itemize}
+
+An hybrid approach would be usefull with a ``semi-percentage'', where the expected range is displayed (like 1 and 3) %why ? explain
+and that still stays precise: a 'relative percentage', meaning that a value in the range is expressed in percents, but a too low value is given in a negative percentage value, while a too high value stays in a positive-over 100 percentage.
+\begin{itemize}
+\item -10\%: extra-range low value (red colored)
+\item between 1\% and 100\%: in the range value (orange - green - orange colored)
+\item 120\%: extra-range high value (red colored) \\
+\end{itemize}
+
+Symbolic thresholds of -50\% and 150\% might be used to trigger unconsciousnesses of the avatar (hyperglycemia and acido-ketosis)\\
+
+The pitfalls of such a method is that teenagers won't be able to apply easily in real life what they are learning because the values are not the same. However, diabetic teenagers, or their relatives and friends are not medical students. Therefore, it can be objected that true units, not easily meaningful for them, will simply make them ignore the values, relying only on colours. Moreover, the most important aim is to raise their awareness and to teach them in a meaningful way the underlying mechanisms, eg. ``how it works inside''. For this purpose, I think that real values are not the most important. [NEW] An average %traduction de "compromis"% 
+solution is to show sometimes the equivalent of the 'relative percentage' measure in the real unit, or even to enable them to chose the one they prefer. The second advantage of using values similarly to how it's done in video games will make the tool more attractive to teenagers: they can have fun with it.
+
+Currently, the main information shown is energy consumption during an activity. 
+\paragraph{Values that need to be shown only during some of their evolutions%find a synonym
+}
+The idea is to display the values in two cases: when it's changing significatively (usually during a quite small period), or for an ``unusual'' change. 
+For the first category, physical activity is a typical example of high variation in glucose consumption. 
+In this case, showing a -5 kcal each 10 real-life-equivalent minutes (eg, each 2 in-game minutes if the simulation has a division factor of 5) makes sense.
+Other alternative or complementary solution: displaying continuously the real-life-equivalent ``speed'', eg 20 cal/min. 
+
+Concerning second case, it can also be characterized as a usecase of a cause-effect relashionship we wanted to highlight. The effects of blood glucose rising after a meal illustrate this case. 
+
+They effects of food rising blood glucose are not immediate. For this purpose, %CONTINUE OR ERASE
+
+\paragraph{Which units to choose (Bis)}
+Patients are familiar with three kind of units and the corresponding normal ranges: blood glucose (mmol/L), insulin (units), glucose - or carbohydrate - in food (grams). Some equivalences need to be known to be able to manage their diabetes. Every patient that can practice carbohydrate counting knows:
+\begin{itemize}
+\item the unit-gram "equivalence", or how much units should I inject for this given amount of glucose in my meal ?
+\item the unit-mmol/L "equivalence", or how much units should I inject to decrease my blood glucose of this value of mmol/L ?
+\\Less known "equivalences" that are used in the simulation includes:
+\item the gram-mmol/L "equivalence", or how many mmol/L will be added to my blood sugar values if I eat this amount of glucose ?
+\item the energy "equivalence"
+\end{itemize}
+
+The energy equivalence is the trickiest one, because it can be approached %figured out, "or apprehendée"%
+in two ways: 
+\begin{enumerate}
+\item How this amount of calories consumed will decrease my blood levels in mmol/L ?
+\item How much glucose in grams do I need to burn for this amount of energy used in calories ?
+\end{enumerate}
+%CONTINUE, OR ADD A CONCLUSION !
+\iffalse
+Problem for 1: can be hard to find or to model. =>Use a fictitious model based on the weight, BMi, etc ? It can be a variable that doesn't evolve a lot. => Do some computations (in grams?) 
+It might be interesting to notice that blood glucose in Europe is described in g/L, and patients knows that the average range is between 0.9 and 1.2. %(check+sources)
+
+Modes:
+\\Examples of "when food is eaten"
+\\What do we want to teach them ?
+
+\\Patient level 1: new patient
+\\He doesn't know anything. Trying to give him 
+%(tending towards)
+ almost the same knowledge of what's generally expected for an old patient is quite realistic. When food is eaten, carbohydrate counting is the objective we would like to teach him.
+Displaying a jug %jauge
+that increases, and which is graduated regarding the units of insulin needed might be interesting. Indeed %en effet%
+giving him an idea of the qualitative effect of insulin of blood levels is a reasonable goal.
+%schema
+
+\\Patient level 2:
+He already knows about carbohydrate counting. Making him more aware of the amount of carbohydrate for various food, or giving him the ability to estimate the speed of glucose level increase according to the eaten food. Specific issues that touches teenagers are also expected to be explained. Among these issues, we can cite insulin resistance phenomena because of hormonal changes, that make the teenager high more often than we was used to and in need to take more insulin. On the other hand, an adolescent also needs more energy to grow, which means that he can go low quite often. As a solution for these two problems, snacking issue need to be treated and understood. Indeed, children are used to consider snacking as something wrong. BLABLABLA.   
+
+\fi

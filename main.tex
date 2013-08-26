@@ -1,0 +1,261 @@
+%Plagiarism checker http://smallseotools.com/plagiarism-checker/%
+%Beautiful simple design for the web simulation%
+
+%Easy table tool for latex http://truben.no/latex/table/
+
+%Usefull diff tool online http://www.quickdiff.com/
+
+%//
+
+% Uncomment to activate the debug flag for debug mode:
+\def\debug{}
+
+\documentclass[12pt,MSc]{muthesis}
+%{muthesis}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{url}
+\urlstyle{sf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{xcolor}
+% META-TITLE INFORMATION
+\title{Diabetic Avatar: Simulation of Behaviour in a 3D Virtual World \\-\\ Initial report}
+
+\author{Assma Benharkat}
+\date{May 10,  2013}
+
+\makeatletter
+% Comment to keep the chapter numbering: 
+%\renewcommand{\thesection}{\@arabic\c@section}
+
+\makeatother
+
+\usepackage[a4paper, top=1.5cm, left=1.7cm, right=1.7cm, bottom=0.7cm, includehead, includefoot]{geometry}
+%\usepackage{fullpage}
+
+% Debug mode definition :
+\newcommand{\warn}[1]{\ifdefined\debug\textcolor{blue}{#1}\else#1\fi}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{2-2II===Usecases}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\maketitle
+   \begin{abstract}
+
+%\warn{Corrected, but more content needed todo}\\
+%One in ten people admitted to hospital in UK has diabetes.% 
+Diabetes is the fifth most common cause of death in the world. The disease is accounted to be one of the most challenging health issues of the 21st century.  
+%(Roglic G, Unwin N, Bennett PH et al (2005). The burden of mortality attributable to diabetes: realistic estimates for the year 2000. Diabetes Care 28;2130–2135)%
+Experts estimate that diabetes treatment represents 10 \% of the National Health System budget. Besides, 
+%=d'ailleurs, furthermore=en outre% 
+treating diabetes complications cost 3 to 4 times more than normal diabetes treatment according to~\cite{LondonKanavos2012}. %A 2012 report from the London School of Economics, http://www.diabetes.co.uk/cost-of-diabetes.html%
+\\A good diabetes management is essential to reduce these complications ~\cite{complications1993QuasiCours}, ~\cite{nathan2005intensive}
+%NON CITE, nul car type 2 (Stratton IM, Adler AI, Neil HAW et al (2000). Association of glycaemia with macrovascular and microvascular complications of Type 2 diabetes (UKPDS 35): prospective observational study. BMJ 321; 405–412)%
+and provides a better quality of life for patients. However, the management is not easy to achieve, as it requires daily injections, blood testing, and also an understanding of how glucose is used by their body.  
+\\This reports describes an educational tool aimed at patients and their friends or family. Conceived as 3D simulation in a virtual environment, it will allow the user to play the role of a diabetic avatar that can walk, swim or perform any action that can be done in real world, while the impact of his lifestyle on his health can be studied. The simulation of the symptoms and the behavioural and heath impacts on the avatar are directly observed in-world, affecting the way a user explores the virtual world. 
+\\The software presented in this document is a prototype based on Opensimulator, an open-source server platform for hosting virtual worlds, and represents my Msc final year project.
+
+
+\end{abstract}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 0   : Introduction                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+%Something like: "Diabetes is [lieu commun, blabla]. Puis diabetes et education" %sentence?
+\section{Diabetes}
+Diabetes is a disease characterized by a failure in the glycemic regulation system, when there is too much
+sugar in the patient's blood. In a sound organism, energy can be used by the body when there is enough glucose and insulin. Glucose comes from eaten food, while insulin is a chemical hormone normally produced by the pancreas. In case of diabetes, there is no insulin (type 1) or the insulin cannot be used efficiently by the body (type 2). In this project, we will focus on type 1 diabetes, which was also called juvenile diabetes in the past as it's mostly diagnosed in children and young adults.\\There is still no cure for diabetes. However, patients can control their diabetes with different treatments. Treatment success relies mostly on the ability to manage one's own glucose levels. Therefore, patient education is crucial. 
+When patients are diagnosed, they are educated about diabetes in the hospital during some days, and learn how to do blood testing and injections. Dietetic educational sessions are also hold, since some knowledge about food, energy and carbohydrate counting is needed directly after patients leave the hospital. Patient education continues for some months or even years in order to help them enhance their diabetes management.
+
+\section{Simulations to enhance education}
+A lack of education about diabetes can have fatal consequences, leading in some cases to coma
+or death. We focus on teenagers education, accounted to be the most challenging to achieve because teenagers are known to be the hardest to teach. Indeed, as adolescence is a period where teenagers are progressively gaining their independence, they tend to consider adult's supervision as an annoyance.
+%Hanna KM and Guthrie DW stated in [HG01]%
+
+For this purpose, using a virtual environment to provide an immersive experience is expected to be much more effective, knowing the usual attractivity of gaming for a generation of teenagers more comfortable with a mouse than a pen in hand. 
+%More used to mice than pens%
+
+Simulations have been widely used for educational purposes. Two main uses of simulations can be distinguished: instructional simulations, that can be compared to lectures, and training simulations, similar to experimental sessions. We will see later that our tool enables both of these usages, depending on whether the user wants to acquire new knowledge or prefers experiencing the effects of diabetes on health in a safe environment.
+
+As a comparison, teachers can experiment their teaching skills in a virtual classroom with simSchool rather than a real classroom, to avoid the risk of damaging real students. In this 3D realistic world, it would be possible to see how diabetes affects concretely the way patients live, work or do any other activity they usually do in real life. Patients can learn about their disease, and even experiment extreme %several%
+behaviours to see both short term and long term consequences. For this purpose, time can be speeded up, to show things that cannot be experimented %by any practical or lecture% in real life.%, which they are supposed to avoid in real life for health reasons.%
+\section{Opensimulator}
+To develop such a 3D simulation, several alternatives can be considered. I studied them and a chose the most suitable in accordance with the constraints that will be discussed later.
+Opensimulator is the virtual environment chosen to build this simulation. Among the famous virtual environments, we can cite Second Life developped by Linden Labs, and the game World of Warcraft. 
+Opensimulator is similar to Second Life as people inside can owe virtual land, create objects, meet people and attend socializing events such as parties or concerts. The Opensimulator project was created in 2008 after the opensourcing of the 3D client of Second Life. Thus, a certain amount of interoperability between the two servers exists. Many universities created a virtual campus where lectures can be attended, and projects to train medical staff or run industrial simulations make a wide use of Opensimulator as it's an opensource software.
+\\Opensimulator needs a client to connect to the server, as we need a browser to connect the web. A standalone version can also be used, in which case a local server %hosted in the user machine%
+replaces the connexion to a distant server with the internet.
+
+\section{Structure of this report}
+
+First chapter is dedicated the literature review. Diabetes is explain more in detail, before reviewing existing attempts to model how diabetes works on glucose and insulin amounts and the most important contributions of software tools in the fields of diabetes monitoring and education. Second part of literature review stresses more on the close links between adolescence, diabetes and various issues as investigated in a large range of articles. This parts includes various subjects, from eating disorders to psychological and behavioural isssues, but most of them are linked with quality of life and education about diabetes. Such a large overview is needed in order to identify specific issues with diabetic teenagers, in order to figure out the more suitable approch that can be followed by the software. 
+Second chapter presents the main advancements done in the project for various fields. We begin with a clarification of the requirements and needs that was made possible by the help of meetings with the diabetes team of Royal Manchester Children Hospital, and the newly diagnosed educational sessions I was allowed to follow in the hospital. After this, I describe the mathematical model of evolution of insulin and glucose concentrations in the blood. Then, a description of the technical choices made for the implementation is set, followed by the chosen architecture for the software. Last part presents the main developments that were done.
+In the third chapter, the project plan is given, describing what is going to be implemented, software assessment and the principal milestones.
+ 
+\iffalse
+\input{A}
+\fi
+
+\input{B}
+
+
+\iffalse
+\input{C}
+\fi
+
+
+\input{D}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         CHAPTER 1   : State of the art    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%OLD \chapter{State of the art} % or Background research}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         CHAPTER 2   : Diabetes    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%OLD \input{3Diabetes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 3   : (An instructional and training) Simulation Tool    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 4       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%OLD\input{5WorkDone}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 5       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 6       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter{Summary}
+%Simulations have been widely used in the contect of education. 
+%
+%We saw in the literature review that an effective diabetes management can reduce diabetes complications. Technology  cannot be isolated from educational issues, psychological condition o how contribution
+%
+%Design of 
+%
+%Limits of the project have been set 
+%
+%
+%Advancement in today’s technology means that there are fewer barriers to education. Second 
+%Life (SL), currently being the most well-known virtual world platform could do well in 
+%aiding this purpose. However, SL is a commercial version that requires some amount of cost. 
+%OpenSim, which is the open source version, would be better to suite this purpose because it 
+%requires less cost and since it is open source, it encourages developers to extend the version 
+%and make it better to suite education purposes. Sloodle, a combination of OpenSim and 
+%Moodle is one example of extended version of OpenSim that is helpful in learning especially
+%in distance learning. Sloodle not only allows educators to teach using the virtual world but to 
+%also monitor and assess students using the Moodle extension. However, technology alone 
+%would not give much benefit if the content of the teaching material in the virtual world is not 
+%up to standard. Thus, this project  is aimed to find the best way to teach cellular network 
+%handover process in a way that will excite the students and help them in understanding the 
+%concept better. In OpenSim, there are several ways of teaching. This could be done by selfpaced tutorial as %well as by creating quests games. Both this methods will be looked at to 
+%determine the best between the two.  Finally, the outcome of this project is hopefully for 
+%students to be able to learn and understand the concepts taught in the virtual world properly 
+%and at the same time able to enjoy the way these concepts are taught.
+
+\iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%----------OLD-------------       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Old report}
+\section{Summary}
+\subsection{Context}
+Diabetes is a disease that requires a daily constant monitoring from the patient and an ability for self-care management. For this purpose, patients need to be educated about their disease to be able to take care of themselves. This becomes especially challenging in the case of teenagers, since they are progressively gaining their independence. 
+Furthermore, Hanna KM and Guthrie DW stated in~\cite{HannaKM} that it's harder to teach them because they tend to consider adult's supervision as an annoyance.
+\paragraph{}
+This industrial Msc Project is led by the University of Manchester and the adolescent Diabetic clinic of the Royal Manchester Children’s Hospital. The hospital is responsible of accompaniment sessions for diabetic children and teenagers. These sessions might use of a large range of educational supports, from videos and activities to novels. Considering the attractiveness of gaming for teenagers, we may think that playful tools can improve knowledge hand-over, and help to raise their awareness on points that are often neglected. 
+
+\subsection{Diabetes}
+Diabetes is characterized by a failure in the glycaemic regulation system, when there's too much sugar in the patient's blood. As shown in figure 1, in a sound organism, energy is produced when glucose and insulin react. In case of diabetes, there is no insulin (type 1) or the insulin cannot be used by the body (type 2).
+\\
+\includegraphics{diabetes_drawing}
+
+\subsection{Objectives}
+We want to address two issues: 
+\begin{itemize}
+\item Improve patient's education about his disease,
+\item Raise the awareness of patient's entourage.
+\end{itemize}
+% IL MANQUE LA REF!!! ET IL FAUT INTRODUIRE LA CITATION: As XXX stated: blabla
+\paragraph{} 
+A lack of education about diabetes can have fatal consequences, leading in some cases to coma or death. In order to provide more effective for adolescent's education, we want to develop an interactive and adaptive software. Teaching experience can be improved by the use of 3 Dimensional interactive worlds, as they offer an Immersive experience to the user. Such as virtual reality, this kind of environments offers new possibilities for adaptive teaching methods, and their growing importance in motivational reinforcement have been recently studied by Ershow~\cite{virtual_reality}.
+
+Our objective is to develop a tool where the user is an avatar that can be diabetic. In this 3D realistic world, it would be possible to see how diabetes affects the way patients live, work or do any other activity they usually do in real life. Patients can learn about their disease, and experiment several behaviours to get a better understanding. For this purpose, we want to add a diabetic avatar in an existing 3D world. 
+
+\paragraph{}
+% Normalement on met pas ca au debut, on commence par une lettre
+3D worlds can also help to reach our second objective, linked with patient's entourage: even though family and friends have a huge impact in diabetes, there's an obvious need for education here because it's not possible that they all attend lectures in the hospital. Peers pressure is an especially relevant factor during adolescence, while patients can follow teens that aren't aware of the possible harmfulness of their activities~\cite{relatives}.
+With this kind of universe, relatives, or anyone interested can use another avatar, and take part into the simulation. This might lead to a better understanding of their interactions with ill people, and the way diabetics live as well.
+
+\section{Deliverable}
+We want to produce a prototype that can be used at least by the hospital staff before the end of the project, e.g. in September. 
+Then, we want to assess the ability of the tool to meet our expectations.
+
+
+\subsection{Features}
+The software will include features among these three categories, according to the time and planning changes:
+
+\begin{itemize}
+\item A teaching tool:
+Images, videos or web pages can be displayed.
+MCQ can also be used, and content can be added by the hospital staff.
+
+\item Attractivity:
+Users can communicate with other people at the simulation this day if it's done in the hospital, or with their friends by inviting them.
+We can add adaptive content and can take into account the users' 'category' i.e. age, gender and other characteristics that might be relevant to determine which content to display.
+
+\item Simulation:
+An interface where main indicators are displayed, such as glucose, insulin level in the blood will be available. Then, we can run a simulation by "eating" something and looking at the indicators' evolution. 
+A tour can be recorded, so a new user can follow a predefined route, where an overview of the main events a diabetic can go through is shown.
+
+\end{itemize}
+
+\subsection{Test}
+After producing the prototype, we want to measure the impact of this tool in the education of teenagers. For this purpose, we will give multiple choice questions to the patients after they used the tool.
+We will focus both on strict memorization performances, such as more concepts kept in mind by users, or a low forgetting rate, and on the attractiveness for the users. The tool must be able to adapt to the user, e.g. not delivering inappropriate content in the way it can be too complex to understand given the faculties of the user, or appear too childish for a teenager. Techniques from artificial intelligence are to be used, such as ontologies. However, building an accurate model of the student is not expected for this prototype. We need to reach a level of maturity that is acceptable according to the hospital staff expectations, and that matches our main modelling objectives.
+
+% REFERENCE SUR LE SUJET E FRANCAIS : http://cat.inist.fr/?aModele=afficheN&cpsidt=14195630%
+
+
+\subsection*{Achievability}
+A comparison has already been done between several tools and technology that can be used, such as:
+Unity3D,
+Open Simulator,
+Second Life,
+Gaming libraries, such as pygame or the Lightweight Java Game Library,
+or a mobile application. 
+We chose Open Simulator for the development, as many features are already provided: communication with others, object modelling and creation, avatar and physical engine.
+Technically, there is no excessively tricky technology or architecture to use.
+
+\section{Planning}
+
+There is a lot to learn about diabetes and patients daily life before being able to clarify my requirements. Therefore, the project depends a lot on the meetings with hospital staff. In addition, the large wide of techniques and subjects that could be covered in this project make it achievable only if I clearly restrict the scope.
+However, we can state that the key features consists on these points :
+\begin{itemize}
+\item Creating a model for sugar and insulin evolution rates in the blood
+\item Modelling a system of feeding with some food objects
+\item Enabling the display of educational material in at least one teaching support
+\item Building a few effects representing some diabetes symptoms
+\end{itemize}
+
+The planning is detailed in the Gantt chart in annex~\ref{chap:gantt}.
+% dis lesquelles sont optionnelles
+
+ \appendix
+    \chapter{Gantt}
+    \label{chap:gantt}
+%\includegraphics[scale=0.3]{GRANTT.png}
+\includegraphics[scale=0.5]{HAN.png}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \bibliographystyle{alpha}
+    \bibliography{mybib}
+%eatwell plate picture: http://www.food.gov.uk/multimedia/pdfs/theeatwellplate.pdf
+
+\end{document}

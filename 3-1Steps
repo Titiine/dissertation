@@ -1,0 +1,86 @@
+%wc latex: 1033
+%                   15---05---00
+%begin  40_200_250_300
+%obj    1 000+500+500
+%end 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 0   : Introduction                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%What are key interim deliverables and when should these be expected? 
+
+\section{Three key steps}
+This section aims to describe the main milestones for the project.
+
+\subsection{First step: a working simulation}
+
+In order to produce a deliverable that can be shown to the hospital, a minimal amount of functionalities need to be set. Finding what need to be shown clarifies the minimal required features. 
+\paragraph{Aim:} Giving a demonstration of the tool at the hospital will make it possible to figure out whether the product is suitable to test our initial hypotheses. Initially, as described in section 2.2 we wanted to determine how successfully a 3D virtual simulation can change or improve:
+\begin{itemize}
+\item Knowledge about diabetes 
+\item Diabetes management
+\item Quality of life
+\end{itemize}
+
+\paragraph{How patient's relatives can understand diabetes} We can suppose that friends or relatives (parents excluded) have little knowledge about diabetes. However, they may have a significative impact, for example when they invite the diabetic teenager for a meal or if they plan an event. Indeed, children with diabetes often face situations like birthdays where all the available food is sweet. As they cannot eat like the other guests, they may feel isolated or excluded. Activities that do not involve food should be proposed. 
+
+Raising the awareness of this category of people can help a lot for a diabetic. Furthermore, it should be noted that parents are informed and taught about diabetes management at the hospital while relatives cannot. If they find the learning tool proposed pleasant to use, we can expect them to learn more about diabetes by spending more time using it than in reading leaflets.%do the effort of reading a leaflet.
+
+
+The first deliverable will focus more on the simulation side than on the educational side of the software in order to show its potential. Thus, we need to demonstrate a running simulation, to enable patients to experiment the symptoms and play with the values that impact diabetes management. We also need a non playing avatar, that will act here as a kind of tutorial to explain how to use the software and the possibilities offered by the simulation. Moreover, the minimal level of robustness expected for a demonstration version must be achieved.
+
+\paragraph{Features}
+The following features are classified by the order of importance and will be included in the simulation demo.
+\begin{itemize}
+\item The feeding system (2 days)
+A working feeding system is expected, including 5 examples of food objects with different characteristic for glucose amount and glycemic index. At least one of the food item won't contain glucose, to show patients how the simulation deals with this kind of food. The action of injecting insulin will also be available, under a basic form. This means that the different steps usually achieved in real life won't be modelled. Injecting insulin will be as simple as eating a food item.
+The avatar will also be able to perform two fully supported activities, such as dancing. Relevant notifications will be displayed for feeding and activity practise so that the user can really take advantage of the simulation.
+\item A non playing character will be coded (1.5 week). In this version, the character will mainly be used to guide the user, showing him how to move in the simulation, how to make an injection, and the basics of the feeding system.
+\item At least two buildings will be integrated into the simulation (4 days). It will be possible to visit the avatar's house and a supermarket or a hospital.
+\item The rights policy need to be set up correctly (2 days), in order to avoid some problems with the environment. Indeed, opensimulator allows users to make an extensive use of object creation and modification, which currently makes it possible for users to delete furnitures accidently, or even their own house. A solution using different owners and permission will be explored to solve the problem.
+\item The system that manages blood values and avatar's characteristics will be moved on a python server (1 week). In so doing, the simulation will be quicker as removing the computational issues putting less load on the opensimulator server.
+\end{itemize} 
+
+\paragraph{Optional features}
+The following features will be included in the simulation demo if the deliverable doesn't run out of time.
+\begin{itemize}
+\item The architecture will be adapted to run %installed% 
+directly onto a USB memory stick (1 week). A script will be used to launch the standalone opensimulator server, a viewer and a web server. A way to simplify the login procedure will be created. 
+\item A web interface will be designed to display visual indicators with graphs (1 week). This interface also allows the user to change blood sugar value or some global values such as BMI and physical condition.
+\end{itemize} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 0   : Introduction                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Second step: designing the tool evaluation}
+The effectiveness of the software will be assessed using the evaluation of intended users. I will used a questionnaire to collect the required feedback and try to evaluate the software contribution on the expected issues. 
+
+\subsubsection{Questionnaire design}
+The questionnaire will make a distinction between patients and non patients. A common part will be allocated to general perceptions about the simulation. "Did you enjoy using the tool ?" and "Would you like using it again ?" are the kind of questions we can use for this purpose.
+Then, a range of questions will be created for each "pattern" of utilisation we expected in the beginning, among which the newly diagnosed patient, or a patient's relative. Informations about the age, gender and study level/kind of occupation will be asked. 
+We will ensure confidentiality and special confidentiality notices will be inserted. Confidentiality will be ensured. The questionnaire shouldn't be too long, or we may adapt the length according to the interest and available time of the target population. 
+
+\subsubsection{Questionnaire distribution}
+Before the distribution process, we may test it in a small sample of population to readjust the relevance of the answers we may receive. Indeed, the wording induces sometimes the same answer for all the individuals answering the questionnaire. 
+We will probably need to show a demo of the software to the user before we want him to answer the questionnaire. Thus, an electronic online version of the questionnaire seems a good way to process by facilitating further data processing. However, we might also make use of answered questionnaire from people that did not use the software, concerning general issues about general awareness about diabetes or expectations of which features they expect from such a tool. 
+In this case, some paper questionnaire could be distributed to random people in the street.
+\subsubsection{Expected outcomes}
+Given the remaining time before the end of this project, I may not have enough time to finish the results' collection and exploitation. Moreover, the population of diabetics might be limited, because my study is restricted to one hospital. Generally, studies about diabetes cover a population of
+%% TODO %%
+40 to 120 patients. As a conclusion, even if we get interesting results, they are subject to limitations.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 0   : Introduction                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Third step: Value-added approach for diabetes education}
+The next milestone concern a second deliverable. As the first one was dedicated to give an overview of the simulation capabilities, this one will focus on the value added by a 3D environment for education and diabetes management.
+\paragraph{Education} Basic level content will be available for non-diabetic friends or newly-diagnosed patients. This content will include some of the basic content provided by leaflets that are usually given to patients and to patients' friends. Videos or educational content can be displayed on a surface from a webpage in the teaching lesson. Then, MCQs will be used to assess if they understood correctly. 
+
+\\Adolescent diabetics that were diagnosed a couple of years ago have common problems in diabetes management and life with diabetes. Some specific teenage-related issues will be presented in the form of advices in a conversation with non player avatars in the "Teenage house", a place where all this kind of information will be gathered. These issues usually concern peer relations and diabetes, smoking drugs and alcohol, driving with diabetes, or how to deal with diabetes in an internship or at work. 
+
+\\Last aspect concerns motivations in diabetes management. Identified problems cause teenagers feel uncomfortable with diabetes management even if they did well when they were younger. They also want to be 'normal teenagers'. Some schemas were identified to have positive impact on diabetes management, such as:
+\begin{itemize}
+
+\item having a passion. In this situation, they usually found high motivation because doing well with their diabetes has direct consequences on their ability to do what they want to. 
+\item feeling unwell sometimes becomes so common that they consider diabetes management more like an annoyance than a way to feel better  
+\item bad values make them feel guilty
+\item snacking make them feel guilty
+\item an example that they can turn into a motivational example
+
+\end{itemize}
+%Value-added measures for school improvement
+%Value Added of Teachers in High-Poverty Schools
+%diabetes management experience
+%\section{Diabetes education and management}

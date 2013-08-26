@@ -1,0 +1,61 @@
+\subsection{Use cases}
+
+In order to meet the requirements described above, we need to figure out educational content that can be used for the tool. 
+
+A list of example use cases, described according to the topic, are shown in the following figures.
+
+\paragraph{Content to be used by the software}
+
+\begin{figure}[h]
+  \caption{Use case 1: Insulin is not taken correctly}
+  \centering
+  \includegraphics[scale=0.75]{bulle1}
+  \label{fig:bulle1}
+\end{figure}
+
+Insulin treatment is rarely correctly implemented: only 15\% of families can meet the criterias for good glucose management%TODO : find a reference.
+In figure~\ref{fig:bulle1}, various reasons are considered as causes for poor insulin treatment, as enumerated in the circles. In the case of (1), the problem comes from a misunderdstanding or a lack of knowledge or poor skills to correctly handle diabetes management. Thus, the user can use the software to increase his knowledge about diabetes if needed, including carbohydrate counting and injections. \warn{Then, playing with the simulation as a training for diabetes management can help understand the mechanisms of glucose regulation.} %Tips can be provided in the adapted section of the software.
+\\Sometimes, the lack of knowledge, as shown in figure~\ref{fig:bulle3}, is a barrier that prevents good glucose management. For instance, when patients tend to feel affraid of the risk of having an hypoglycemia in class because they will have to eat, they tend to lower their insulin injection to avoid this situation. \warn{In this case, it can trigger the hyperglycemia symptoms, especially that the patient frequently need to urinate, which might be a bigger embarrassment than eating in the class.}
+Motivations to do well can be foung for the youngest teenagers by describing symptoms that are socially embarassing. Making the avatar look and behave in a silly way when he is low can represent a dramatic visual scene.
+
+\begin{figure}[h]
+  \caption{Use case 2: Treatment is a psychological burden}
+  \centering
+  \includegraphics[scale=0.75]{bulle2}
+  \label{fig:bulle2}
+\end{figure}
+
+\begin{figure}[h]
+  \caption{Use case 3: Misconceptions}
+  \centering
+  \includegraphics[scale=0.75]{bulle3}
+  \label{fig:bulle3}
+\end{figure}
+
+
+\warn{Among the use case 1, in figure~\ref{fig:bulle1}, here are other examples that can be developped in the simulation:}
+\paragraph{1. The child doesn't want to take insulin}
+Some young patients try to avoid injection because of the discomfort or the pain. The fear of looking different or weak is another reason of neglecting diabetes management.
+This list of arguments, based on some advice from the nurse, can be used to help:
+
+\begin{itemize}
+\item ``Going to the hospital with ketoses is much more annoying than taking your insulin''
+\item ``Going to the loo many times during schooltime is a bigger embarassment than having an injection in front of your friends''
+\item ``You can show your courage ! Most of them are affraid of needles''
+\end{itemize}
+
+
+\paragraph{2. Patients lowering the injected doses}
+This can be done in order avoid weight gain
+As stated in ~\cite{InsulinMisuse}, insulin misuse is sometimes noted during adolescence among girls mainly.
+A personalized intelligent approach can be relevant here. With the weight or the BMI (Body Mass Index), it's easy to identify users that can be concerned by this phenomemen and to raise their awareness and suggest them a diet plan to tackle the issue of insulin-related weight gain. \cite{AnneMarie2013A128}
+%http://www.sciencedirect.com/science/article/pii/S1262363613721700
+%Les adolescentes ayant un diabète de type 1 et étant en surpoids : une approche éducative spécifique
+suggested that a specific approach for female teenagers who are overweight gave good results in the changes in their BMI, on self perception, and on their motivation in diabetes management.
+
+\\
+\warn{In the same motivational and proactive perspective, the approach chosen in the prototype developped for our project can lead to positive changes on diabetes management. }
+
+In the educational part of the software, we try to develop a motivational and positive approach to diabetes management. Indeed, instead of emphasizing the symptoms and all the negative effects diabetes management can have on health, we try to show diabetes management as a way to achieve great things in life. On the one hand, diabetes should not be seen as a limitation. On the other hand, diabetes management is the key criteria they should tend to master in order to be free to live the way they want. 
+Some non playing avatars can be used to expose these kind of ideas. Passionate people can be used as non playing avatars, explaining that they do their best to manage their diabetes and live their passion. We can expect adolescent to take them as examples in an identification process, like the way teenagers commonly identify with celebrities.
+%\item Dedramatize failure ? See forum posts.%

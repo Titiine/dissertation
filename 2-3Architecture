@@ -1,0 +1,97 @@
+%drawing with canvas https://www.khanacademy.org/cs/tutorials/drawing
+%wc latex: 
+%begin  536
+%obj    
+%end 
+\begin{figure}[h]
+  \caption{Architecture of the software}
+  \centering
+  \includegraphics[scale=0.6]{arch2}
+  \label{fig:arch2}
+\end{figure}
+
+\begin{figure}[h]
+  \caption{Internet}
+  \centering
+  \includegraphics[scale=0.6]{sWEB}
+  \label{fig:sWEB}
+\end{figure}
+
+\begin{figure}[h]
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+                \centering
+                \includegraphics[scale=0.43]{sWEB}
+                \caption{Internet}
+                \label{fig:sWEB}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+                \centering
+                \includegraphics[scale=0.43]{sOS}
+                \caption{Opensimulator}
+                \label{fig:sOS}
+        \end{subfigure}
+        \caption{Analogy between Internet and Virtual worlds like Opensimulator}\label{fig:analogy}
+\end{figure}
+
+\section{Architecture of the software} 
+In this section the architecture chosen for the software development is described.  
+%#schema ?%
+\subsection{Choice of the simulation tool}
+
+It was possible to choose a technology amoung the ones I already knew (Python~\cite{pythonWebsite}, Unity3D~\cite{Unity3DWebsite} ) and others I investigated about. The two main virtual worlds existing nowadays are OpenSimulator and Second Life. 
+\\The choice will be made according to 2 criterias: the tool should gives enough freedom to code all what is needed for this prototype, and the technology should enable a reasonnably short time of developement.
+\\The following table summarizes the characteristics of each tool:
+
+\begin{table}
+\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|llll|}
+    \hline
+    ~                              & Opensimulator & Second Life & Unity 3D (game engine) & Python (library) \\ \hline
+    Engines (physical, network...) & Yes           & Yes         & Yes                    & Yes              \\ \hline
+    Available content              & Yes           & Yes         & Yes                    & No               \\ \hline
+    Multiplayer                    & Yes           & Yes         & Yes                    & ~                \\ \hline
+    Time to learn the language     & 1             & 1           & 0                      & 0                \\ \hline
+    Development time               & 0             & 0           & 2                      & 3                \\ \hline
+    Restrictions                   & Yes           & Yes         & Yes and No             & No               \\ \hline
+    Documentation and community    & Yes           & Yes +       & Yes                    & Yes              \\ \hline
+    Open source                    & Yes           & No          & No                     & Yes              \\ \hline
+    Used in education              & Yes +         & Yes         & -                      & -                \\ \hline
+    Scripting                      & Yes           & Yes         & Yes                    & Yes              \\ \hline
+    \end{tabular}}
+    
+\end{table}
+
+
+Opensimulator and Second life have really close characteristics: a reduced development time, and some already available content. Developping with the two others would be longer because nothing there is prebuilt. \\
+    
+    We chosed Opensimulator because it is open source, and encreasingly used in education while Second Life is more business related. Moreover, Second Life suffered from a certain adverse publicity.
+
+\subsection{Opensimulator - Client and Server}
+The software solution built is using Opensimulator, an open-source simulator. It consists on an Opensimulator server and a client, the Imprudence viewer~\cite{imprudenceWebsite}.
+The Opensimulator virtual world can be compared to the internet, as shown in figure~\ref{fig:analogy}. A browser is used to surf the web, while an Opensimulator or a Second Life viewer should be used to explore the grid. A grid is, roughly, a map, where users can go and explore in the form of avatars. 
+
+\subsection{Django modelling web server}
+The avatar simulation needs a model that predict the variations of glucose in the blood depending on the food intake and the general health condition and  physical activity of the user. For educational purposes, it should also be possible to play with the different parameters so thatthe effects of each one can be seen on the avatar's behaviour and health condition. This will be done by a web page on which each parameter can be set manually by the user.
+Therefore, a web-server is used for both computations of the blood sugar according to a built-in mathematical model, and to record user's entries.
+
+%todo:Communication between Opensimulator and the web-server
+
+\subsection{Behavioural core: scripting}
+%Schema
+Simulating a virtual avatar in a virtual environment implies to implement a large range of activities, enabling diabetes related features such as injections, and also rendering of symptoms.
+This can be done by the script language provided by Opensimulator, OSSL~\cite{OSSLWebsite} and LSL~\cite{LSLWebsite}, which enables lots of features to control avatars' behaviour, position and communication. Scripts apply to objects. We can build and play animations as well, launched by scripts or the user, for all kind of activities, eating, dancing or reading a book for example.
+
+%pasted from the “a simulation tool section”:
+In world, we have two kind of things : avatar and objects %(and non playing characters). 
+An avatar is the virtual appearance a user has in-world. Everything can be configured: clothes, features and skin. Objects are everything else except avatars and ground. They are created and modified by users, without any limitation. Clothes, houses, food or vehicles for instance are objects.
+To animate objects, change their characteristics over the time, or allow an avatar to interact with them, scripts are used. An script cannot be directly written for an avatar, but it's possible to write script in objects that can have an effect on the objects' owner.
+In this environment, it would be possible to add a layer to the program with scripts on objects that can simulate a “living avatar”.
+
+\subsection{Distribution}
+All the components described above will be put on a pen drive and given to the hospital. A user only have to boot on the pen drive and launch a script that runs the client and the server with the right settings:
+\begin{itemize}
+\item Without an internet connexion, the standalone version will be used, with an Opensimulator server, the modelling web-server and the Imprudence client.
+\item If an internet connection is available, the client is launched. The connection to the Opensimulator server and modelling servers from the university will be established.
+%\item (#?) Study the pros and cons of using of a virtual machine to run the software
+\end{itemize}
