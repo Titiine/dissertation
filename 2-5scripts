@@ -22,37 +22,8 @@
 
 \section{Scripts, objects and avatars}
 In this section, implementation issues and choices are discussed, while reporting on the progress made.
-\subsection{Avatars and Objects}
-In Opensimulator, each user is characterized by a 3D avatar in the form of a human being. The appearance of the avatar is highly customizable. Modifications are done in the client on the ``appearance'' menu and include physical parameters such as gender, height, weight. Then, each special part of the body has dozens of parameters. Fat, muscles or hair, including colour, size or volume repartition can be personalized. The user can also add create and change clothes with the cloth editor using an interface as shown in figure~\ref{fig:app} ~\cite{SLAvatar}, or import them. 
-\begin{figure}[h]
-  \caption{Appearance editor}
-  \centering
-  \includegraphics[scale=0.6]{app}
-  \label{fig:app}
-\end{figure}
-Communication between different avatars can be done when the user is exploring a grid connected to a network. A simple text message system and voice based communications are available. 
-\paragraph{Avatars} can be moved in the simulator by walking, running, flying and teleportation. An animation system can be modelled to create new activities from special animation files.
 
-\paragraph{Objects} are the second main entity in Opensimulator. They are created by users and can be exported and imported. All the content in Opensimulator is composed of objects: houses, vehicles, pets and furnitures are objects. We will need to use objects to model food and medical stuff related with diabetes, such as syringes or glucose meters. Creating an object can be done by using the user interface by linking prims, that are the basic components such as cubes and cylinders. The other way to create objects is to use sculpties, based on imported meshes created by 3D computer graphics software, and to modify them. Objects can be linked together and compose bigger objects.
-A lot of content is available on the internet, so food objects can be downloaded and imported to be used directly. We already use fruits (pear, apple), drink, sugar cubes and a hot dog in our feeding system.\\
-
-Avatars and objects can be controlled directly in the viewer, which is the 3D client of the opensimulator server. For more complex tasks and automated controls, a scripting language can be used. Scripts are necessary to control or restrict avatars's actions. The main part of the software diabetes simulation is done by scripting. 
-
-
-
-\subsection{Scripts}
-Opensimulator has its scripting language called OSSL, and also supports a wide part of LSL~\cite{URLLSL} the Second life scripting language. More than 300 functions are available, controlling the avatars positions and animations (see figure~\ref{fig:piano}) or the objects settings. An system of events allow to trigger reactions. For instance, a door can be opened when an avatar touches it. The event involved would be ``touchEvent'' and a function is then called to rotate the door, or change its position. Vehicles control, like cars is another main usage of scripts.
-
-\paragraph{Avatar scripting and objects}
-Opensimulator scripts are directly written in the 3D viewer when objects are created and modified. Each script is part of a given object, like a sub-object can be part of the main object. However, avatars can't be composed of objects, so scripts cannot be direcly added to avatars. The only way to alter an avatars behavior was to add a script in an object that was attached to an avatar. The attachment mechanism is used to link objects to an avatar on attachment sites, such as the hand, the skull or the back. A bag worn on the back or a hat on the head are examples of objects attached to an avatar. 
-% MOVED TO MYWORK Thus, I created an object that will be the main script to control the avatar's behaviour. This object is then attached and should not be detached from the avatar, else the system that control the diabetic avatar simulation will be broken. 
-
-\begin{figure}[h]
-  \caption{Scripting to make the avatar play the piano}
-  \centering
-  \includegraphics[scale=0.4]{Piano_001.png}
-  \label{fig:piano}
-\end{figure}
+%%% BIG PART CUT HERE - put in the opensim 
 
 \paragraph{Scripts developed: current implementation}
 Two main scripts were developed for the simulation system. The first script encodes the system that controls blood glucose and insulin, and the second one was used to control the ``food's behaviour''.
@@ -99,11 +70,26 @@ The second important script is used to manage food objects and to increment avat
 The food script calls the function that increments the level of glucose of the main script. Then, the food script destroys the food object. As normal objects, it's currently possible to copy food objects, so an avatar can copy the food before eating it, and still have another copy. Restrictions might be implemented later, while a complete feeding system will be implemented, including shops where the food can be bought. Currently, there is a ``food generator'' object that can allow an infinite generation of food by replacing the item an avatar took by a new one.
   
 \subsubsection{Scripting issues}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% pasted in my work
+\iffalse
 \paragraph{Inter-script communication} Communication between scripts was an important issue to solve. 
 The llSay ~\cite{URLsay} family of functions (including the llWhisper~\cite{URLwh} and llShout~\cite{URLShout}) is used for communications between avatars. The message passes through a channel identified by an integer, where 0 is the default value for the public channel on which messages are listened by anyone. The llListen~\cite{URLsay} function can listen to messages filtered according to the channel or the sender's identity. 
-\\I sent messages from the food script and other scripts that need to call functions in other scripts by passing messages with a special format using the channels that are not used by the Opensimulator. The identity is checked to know whether the object is allowed to call the function.
+\\I sent messages from the food script and other scripts that need to call functions in other scripts by passing messages with a special format using the channels that are not used by the OpenSimulator. The identity is checked to know whether the object is allowed to call the function.
+\fi
+
+%%% end of pasted in my work
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \paragraph{Notifications}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% PUT IN DESIGN
+\iffalse
+
 Knowing the educational purpose of the simulation, certain information need to be displayed in a relevant way so that the user can understand the consequences of his actions. Available information includes:
 \begin{itemize}
 \item glucose blood level (and the normal values)
@@ -134,6 +120,11 @@ Users should be aware of the impacts of:
 \end{figure}
 
 For this purpose, the key point is to display indicators at some moments, and to make a good use of colors.% especially when we will add a system dealing with "long term indicators". These new indicators may include values such as glycated hemoglobin, fitness, global comfort, psychological health.%
+
+\fi
+
+%%% WAS PUT IN DESIGN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Difficulties appear, and can be summarized into a range of questions:
 \paragraph{Which unit should we used to display which indicator ?}

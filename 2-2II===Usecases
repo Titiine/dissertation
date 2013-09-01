@@ -59,3 +59,42 @@ suggested that a specific approach for female teenagers who are overweight gave 
 In the educational part of the software, we try to develop a motivational and positive approach to diabetes management. Indeed, instead of emphasizing the symptoms and all the negative effects diabetes management can have on health, we try to show diabetes management as a way to achieve great things in life. On the one hand, diabetes should not be seen as a limitation. On the other hand, diabetes management is the key criteria they should tend to master in order to be free to live the way they want. 
 Some non playing avatars can be used to expose these kind of ideas. Passionate people can be used as non playing avatars, explaining that they do their best to manage their diabetes and live their passion. We can expect adolescent to take them as examples in an identification process, like the way teenagers commonly identify with celebrities.
 %\item Dedramatize failure ? See forum posts.%
+
+\subsection{Design}
+\paragraph{Notifications : the Energy Bar}
+Knowing the educational purpose of the simulation, certain information need to be displayed in a relevant way so that the user can understand the consequences of his actions. Available information includes:
+\begin{itemize}
+\item glucose blood level (and the normal values)
+\item insulin blood level
+\item liver glucose
+\item the ``amount'' of energy consumed by an activity.
+\end{itemize}
+
+A large amount of other variables is available, but on the contrary of software simulation tools based on graphs and values such as Aida, I choosed to display only a small quantity of information
+% (WHY ? REMOVE OR JUSTIFY THE CHOICE: 
+%, with a maximum of 3 values. 
+. It doesn't make sense to put all the indicators on the screen of the 3D simulation because an overloaded interface would decrease the interest of the teenage final users, according to what was said in the analysis of the Aida tool % in reference ... 
+(or in the guidelines section).
+
+
+Users should be aware of the impacts of:
+\begin{itemize}
+\item the food they eat on their glycemic system
+\item the effects of physical activity on blood levels
+\item how insulin-based blood sugar management impacts the avatar's behavior, from restrictions in avatar's activities and symptoms to unconsciousness (~\ref{fig:unc})
+\end{itemize}
+
+\begin{figure}[h]
+  \caption{Avatar lying on the bed}
+  \centering
+  \includegraphics[scale=0.4]{Sleeping_001.png}
+  \label{fig:unc}
+\end{figure}
+
+For this purpose, the key point is to display indicators at some moments, and to make a good use of colors.% especially when we will add a system dealing with "long term indicators". These new indicators may include values such as glycated hemoglobin, fitness, global comfort, psychological health.%
+
+%suite available... (in old)
+
+In order to keep the relevance of blood testing, it is necessary to avoid displaying blood glucose on screen. The user need to perform test his blood in world, by using a glucose meter, to get this value. Else, blood testing could be avoided by users which is undesirable because it is a main part of the diabetic's daily routine.\\
+
+An energy bar, varying from red to green, will represent the amount of "available" energy. In case of hypoglycemia, there is little energy so the bar is red. With the amount of glucose building up, the bar will change into green. However, if there is no insulin that can be used by the blood, even with a high blood sugar, the energy won't be available and the bar will be orange, or even red in case of a very strong hyperglycemia. This bar is always visible on the top of the screen.

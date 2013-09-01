@@ -1,4 +1,3 @@
-\subsection{}
 %Diabetes and motivation:
 %http://www.medhelp.org/posts/Diabetes---Juvenile-Type-I/lack-of-enthusiasm-for-caring-for-my-diabetes--need-help/show/420693
 %http://www.medhelp.org/posts/Diabetes---Juvenile-Type-I/motivation-to-manage-my-diabetes/show/420757
@@ -16,14 +15,23 @@
 
 
 \section{What to stimulate ?}
-\subsection{Aims of the simulation}
+%\subsection{Aims of the simulation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLLE A L ARRACHE, REPARER (avant dernier paragraphe de rapport peit de nick)
 %% Coller le dernier ailleurs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{1) Glucosim as a simulation tool}
-We want to offer a simulation environment where users can have a virtual life, and any kind of activities. For this purpose, a user is represented by an avatar, which is a 3D representation of a human being. Opensimulator already allows an advanced personalization of the avatars, and a large range of activities such as running, taking objects, changing clothes or partying. The current version doesn't meet our requirements as there is nothing to handle energy points and food systems in Opensimulator, needed if we want to simulate how diabetes would affect a “diabetic avatar”.
-In our prototype, a feeding system, with food that releases sugar in the avatar's body, and a physical activity system, consuming the avatar's energy according to what he's doing (running, dancing, sleeping...) will be implemented. In order to teach about diabetes, a user should be able to change the values of the in-blood parameters, such as glucose, fat or insulin, and look at how things are evolving. New actions need to be implemented to support the range of caring activities a diabetic patient is expected to perform (blood testing, insulin injection...). In addition, a range of symptoms are to be implemented for matching situations, such as hypo or hyperglycaemia.
+
+%old :
+%\subsubsection{1) Glucosim as a simulation tool }
+
+\subsection{A simulation tool (specifications ?)}
+
+We want to offer a simulation environment where users can have a virtual life, and any kind of activities. For this purpose, a user is represented by an avatar, which is a 3D representation of a human being. 
+
+%OpenSimulator already allows an advanced personalization of the avatars, and a large range of activities such as running, taking objects, changing clothes or partying. 
+
+The current version doesn't meet our requirements as there is nothing to handle energy points and food systems in OpenSimulator, needed if we want to simulate how diabetes would affect a “diabetic avatar”.
+In our prototype, a feeding system, with food that releases sugar in the avatar's body, and a physical activity system, consuming the avatar's energy according to what he's doing (running, dancing, sleeping...) will be implemented. In order to teach about diabetes, a user should be able to change the values of the in-blood parameters, such as glucose, fat or insulin, and look at how things are evolving. New actions need to be implemented to support the range of caring activities a diabetic patient is expected to perform (blood testing and insulin injection). In addition, a range of symptoms are to be implemented for matching situations, such as hypo or hyperglycemia.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -31,5 +39,5 @@ The simulations is a tool for the patient to simulate the direct effect his acti
 Playing with the parameters - blood glucose, insulin, BMI and weight - is a way to understand better what's going on.
 By having a good understanding of the disease, the patient is more able to predict how his blood glucose may evolve. A patient with enough understanding and intuition about the causes of blood level changes would manage his diabetes better than a patient that follows blindly ready-made guidelines.
 \\
-\subsection{(New:) A good/well balanced diabetes management}
+%\subsection{(New:) A good/well balanced diabetes management}
 Good diabetes management is caracterized by glucose levels always 

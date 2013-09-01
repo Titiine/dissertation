@@ -1,0 +1,95 @@
+                        %%%%%% CHAP 
+                        %-repair chap  : LIER LES PARTIES
+
+%TODO :
+1-  list pictures
+1+1 create pictures
+1-  insert pictures
+1-  list missing references
+
+1   (+1-  add missing references (or DELETE if no time))
+1+1 (describe correctly the pictures)
+
+%%%%%% CHAP 3
+-repair chap 3 design : DEPLACER
+
+    -repair chap 3 : ajouter design de la nourriture (avec GI)
+    -repair chap 3 : ajouter un resumé de tte l'implemantation (avec le schema sur la feuille rose discutée avec picnic ? "oui, c'est bien du design")
+    -repair chap 3 : LIER LES PARTIES
+    
+%%%%%% CHAP 4
+-repair chap 4 implem : AJOUTER DES TRUCS DANS LES MINI PARAGRAPHES
+-repair chap 4 implem : CORRIGER LES ERREURS FLAGRANTES
+
+%%%%%% CHAP 2
+-repair chap 2 background : LIER LES PARTIES (surtout GI)
+
+%%%%%% CHAP 5
+-repair chap 5 eval: DEPLACER les trucs d'evaluation + resultats
+-repair chap 5 eval: REPARER LES RESULTATS
+-repair chap 5 eval: ECRIRE l'evaluation
+
+%%%%%% CHAP 6
+-CONCLUSION : FAIRE UN PLAN
+-CONCLUSION : ecrire
+
+~\ref{fig:*}
+
+\begin{figure}[h]
+  \caption{"Insert text here"}
+  \centering
+  \includegraphics[scale=1.0]{*.png}
+  \label{fig:*}
+\end{figure}
+
+%%%%%% 0 Design Figures
+
+1   menuOrder
+Show the order to choose the mode (what to put inside, or the screens...)
+
+
+%%%%%% 1 Implementation Figures:
+
+1   llSayComFig
+    State diagram showing the communications between the main script, StateScript, and other scripts
+2   ?   httpRequestFig
+    Links between the webserver and the simulation, requests, renders, etc.
+3   ?   activityDetectionFig
+    Diagram showing how the activity is recognized (if in air, if this...)
+4   webpageJavascriptFig
+A figure to explain "A dynamic webpage using JavaScript and Ajax" and "Database and web server to access data"
+(DESIGN ?):
+5   symptomTableFig
+Table summurizing the different symptoms and the implemented representation
+(+ explain in the text that a message in the middle of the screen will appear, for educational purpose (+clicable icon to read more about this symptom))
+(make a false screenshot for this purpose, with text + the icon (+maybe a small tooltip window))
+
+%%%%%% 2 Implementation Screenshots (Pics):
+
+1	stateObjectPic
+StateObject is an articifial object created only to put the StateScript inside
+
+2	energyBarPic
+
+3	?   HUDPic
+Show the areas available as HUD + the bar in-world + the bar in HUD
+4	?   videoOnWallPic
+=> use it 2 times : in design, explaining that we need a learning area + here in "An object using HUDs and Shared Media"
+Show 2 walls in the learning area: video + site about diabetes
+5	
+6	
+7	
+8	
+9
+
+10	
+11	
+12	
+13	
+14	
+15	
+16	
+17	
+18	
+19
+20	

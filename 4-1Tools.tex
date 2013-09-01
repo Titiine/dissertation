@@ -1,50 +1,192 @@
 \section{Tools}
 \label{sec:devtools}
 
-\subsection{Opensim}
-Objects can be attached and detached (because we speak about the StateScript that shouldn't be detached later)
 
-TODO Copy from ...
+\subsection{Choice of the simulation tool}
+\label{sec:toolsConstraints}
+It was possible to choose a technology among the ones I already knew (Python~\cite{pythonWebsite}, Unity3D~\cite{Unity3DWebsite} ) and others I investigated about. The two main virtual worlds existing nowadays are OpenSimulator and Second Life. 
+\\The choice was made according to two criteria: the tool should give enough freedom to code all what is needed for this prototype, and the technology should enable a reasonably short time of development.
+\\Table \ref{tab:toolChoice} summarizes the characteristics of each tool:
+
+\begin{table}
+\caption{Comparizon between different 3D development tools}
+\label{tab:toolChoice}
+\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|llll|}
+    \hline
+    ~                              & OpenSimulator & Second Life & Unity 3D (game engine) & Python (library) \\ \hline
+    Engines (physical, network...) & Yes           & Yes         & Yes                    & Yes              \\ \hline
+    Available content              & Yes           & Yes         & A little                    & No               \\ \hline
+    Multiplayer                    & Yes           & Yes         & Yes                    & ~                \\ \hline
+%    Time to learn the language     & 1             & 1           & 0                      & 0                \\ \hline
+    Development time               & Short             & Short           & Medium                      & Long                \\ \hline
+    Restrictions                   & Yes           & Yes         & Yes and No             & No               \\ \hline
+    Documentation and community    & Yes           & Yes +       & Yes                    & Yes              \\ \hline
+    Open source                    & Yes           & No          & No                     & Yes              \\ \hline
+    Used in education              & Yes +         & Yes         & -                      & -                \\ \hline
+    Scripting                      & Yes           & Yes         & Yes                    & Yes              \\ \hline
+    \end{tabular}}
+    
+\end{table}
+
+
+OpenSimulator and Second life have really close characteristics: a reduced development time, and some already available content. Developing with Unity3D or with a Python 3D library would be longer because nothing is prebuilt.\\
+
+    We chose OpenSimulator because it is open source, and increasingly used in education while Second Life is more business related. Moreover, Second Life suffered from a certain adverse publicity.
+
+\begin{figure}[h]
+        %\centering
+        \begin{subfigure}[b]{0.4\textwidth}
+                \centering
+                \includegraphics[scale=0.43]{sWEB}
+                \caption{Internet, client and server}
+                \label{fig:sWEB}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+                \centering
+                \includegraphics[scale=0.43]{sOS}
+                \caption{Opensimulator, client and server}
+                \label{fig:sOS}
+        \end{subfigure}
+        
+        \caption{Analogy between Internet and Virtual Worlds like Opensimulator}
+        \label{fig:analogy}
+\end{figure}
+
+\subsection{A virtual world: OpenSimulator (server)}
+The software solution built is using OpenSimulator, an open-source simulator. It consists on an OpenSimulator server that needs to be installed with a client, such as Imprudence viewer~\cite{imprudenceWebsite}.
+The OpenSimulator virtual world can be compared to the internet, as shown in figure~\ref{fig:analogy}. A browser is used to surf the web, while an OpenSimulator or a Second Life viewer should be used to explore the grid. A grid is, roughly, a map that can be explored by the users. 
+
+In world, we have two kind of entities : avatars and objects %(and non playing characters). 
+An avatar is the virtual appearance a user has in-world. %Everything can be configured: clothes, features and skin. 
+Objects are everything else except avatars and ground. They are created and modified by users, without any limitation. Clothes, houses, food or vehicles for instance are objects.
+
+%%%%%%%%%%%%%%%%
+
+\subsubsection{Avatars}
+In OpenSimulator, each user is characterized by a 3D avatar in the form of a human being. The appearance of the avatar is highly customizable. Modifications are done in the client on the ``appearance'' editor menu shown in figure~\ref{fig:app} and include physical parameters such as gender, height, weight. Then, each special part of the body has dozens of parameters. Fat, muscles or hair, including colour, size or volume repartition can be personalized. The user can also add create and change clothes with the cloth editor.
+
+\begin{figure}[h]
+  \caption{Appearance editor, from ~\cite{SLAvatar}}
+  \centering
+  \includegraphics[scale=0.6]{app}
+  \label{fig:app}
+\end{figure}
+Communication between different avatars can be done when the user is exploring a grid connected to a network. A simple text message system and voice based communications are available. 
+Avatars can be moved in the simulator by walking, running, flying and teleportation. An animation system can be used to create new activities from special animation files, allowing the user to play any kind of motion he created or imported, such as dancing, fishing and reading. Animation creation is described in section~\ref{sec:animText}.
+
+\subsubsection{Objects} 
+
+\begin{figure}[h]
+  \caption{Objects attached to various Head Up Displays (screenshot)}
+  \centering
+  \includegraphics[scale=1.0]{3HUDPic.jpg}
+  \label{fig:3HUDPic}
+\end{figure}
+
+Objects are the second main entity in OpenSimulator. They are created by users and can be exported and imported. All the content in OpenSimulator is composed of objects: houses, vehicles, pets and furniture are objects. We will need to use objects to model food and medical stuff related with diabetes, such as syringes or glucose meters. Creating an object can be done by using the user interface by linking prims, that are the basic components such as cubes and cylinders. The other way to create objects is to use sculpties, based on imported meshes created by 3D computer graphics software like Blender~\cite{BlenderWebsite}, and to modify them. Objects can be linked together and compose bigger objects.
+A lot of content is available on the internet, so food objects can be downloaded and imported to be used directly. We already use fruits (pear, apple), drink, sugar cubes and a hot dog in our feeding system. Objects can be attached and detached to the avatar. The attachment mechanism is used to link objects to an avatar on attachment sites, such as the hand, the skull or the back. A bag worn on the back or a hat on the head are examples of objects attached to an avatar.\\
+Head Up Displays can also be used, attaching the objects directly in the user interface as shown in figure~\ref{fig:3HUDPic}.
+
+Avatars and objects can be controlled directly in the viewer, which is the 3D client of the OpenSimulator server. For more complex tasks and automated controls, a scripting language can be used. The main part of the software diabetes simulation is done by scripting. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% FROM SOMEWHERE ELSE: be carefull with redundancies
+\subsection{Scripts}
+%Schema
+Simulating a virtual avatar in a virtual environment implies to implement a large range of activities, enabling diabetes related features such as injections, and also rendering of symptoms because scripts are necessary to control or restrict avatars' actions.
+% UNUSED This can be done by the script language provided by OpenSimulator, OSSL~\cite{OSSLWebsite} and LSL~\cite{LSLWebsite}, which enables lots of features to control avatars' behaviour, position and communication. Scripts apply to objects. We can build and play animations as well, launched by scripts or the user, for all kind of activities, eating, dancing or reading a book for example.
+
+%pasted from the “a simulation tool section”:
+Scripts are also used to animate objects, change their characteristics over the time, or allow an avatar to interact with them. An script cannot be directly written for an avatar, but it's possible to write script in objects that can have an effect on the objects' owner.
+% NOT USED % In this environment, it would be possible to add a layer to the program with scripts on objects that can simulate a “living avatar”.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% FROM SOMEWHERE ELSE : end
+
+\paragraph{Scripts and scripting languages}
+OpenSimulator has its scripting language called OSSL~\cite{OSSLWebsite} (OpenSimulator Scripting Language), and also supports a wide part of LSL~\cite{URLLSL}, the Second life scripting language. More than 300 functions are available, controlling the avatars positions and animations (see figure~\ref{fig:piano}) or the objects' settings. An system of events allow to trigger reactions. For instance, a door can be opened when an avatar touches it. The event involved would be ``touchEvent'' and a function is then called to rotate the door, or change its position. Vehicles control, like cars is another main usage of scripts.
+
+\paragraph{Avatar scripting and objects}
+OpenSimulator scripts are directly written in the 3D viewer when objects are created and modified. Each script is put of one object, like a sub-object can be part of the main object. However, avatars can't be composed of objects, so scripts cannot be directly added in avatars. The only way to alter an avatar's behaviour is to add a script in an object which is attached to the avatar.  
+% MOVED TO MYWORK Thus, I created an object that will be the main script to control the avatar's behaviour. This object is then attached and should not be detached from the avatar, else the system that control the diabetic avatar simulation will be broken. 
+
+\begin{figure}[h]
+  \caption{Scripting to make the avatar play the piano}
+  \centering
+  \includegraphics[scale=0.4]{Piano_001.png}
+  \label{fig:piano}
+\end{figure}
+
+
 \subsection{Viewers}
-\subsubsection{Imprudence}
-TODO Copy from Architecture 
+
+The OpenSimulator server need to be run with a viewer to display 3D images. Two of them are used in this project. Skipping from a viewer to another one can be done without altering the virtual environment created by the user.  
 \subsubsection{Firestorm}
-TODO
-\cite{firestormWebsite}
+%TODO
+Based on the third version of the official Second Life viewer, Firestorm~\cite{firestormWebsite} is a new generation viewer that supports the latest features. The most important one is the media-on-prim feature, which means that media can be displayed on one of the object's faces. Any webpage, either being a dynamic webpage or a video, can be displayed. This feature is widely used in our project.
+
+\subsubsection{Imprudence}
+Imprudence~\cite{imprudenceWebsite} is a less recent viewer. More stable, it was used most of the time during this project to code the scripts and create objects because crashes are less frequent. Uploading new objects is also more convenient with Imprudence. As it doesn't support the media on prim feature, it won't be used by the final users to test the prototype. This isn't a main issue because users aren't supposed to upload objects in the simulation.
+%TODO Copy from Architecture 
 
 
 \subsection{QAvimator}
-
-Like Second Life, Opensim make use of animations to animate the avatars. They need to be created with an external software and then inported into Opensim.
+\label{sec:animText}
+Like Second Life, OpenSimulator make use of animations to animate the avatars. They need to be created with an external software and then imported into OpenSimulator.
 %The effects of hypoglycemia were then simulated by the use of animations realized using 
-In this project, QAvimator~\cite{qavimatorWebsite} was used to build them. Other softwares can be used to create and edit animations such as Poser~\cite{PoserWebsite}, Maya~\cite{mayaWebsite} and Blender~\cite{BlenderWebsite}, an open-source alternative to Maya. Qavimator was chosen because it's light and easy to use compared to Maya and Blender. Unlike Maya and Poser, it is free.\\
-
-Qavimator is an Qt port of Avimator~\cite{avimatorWebsite}, an open source animation editor originally created for avatar's animations in Second Life. The BVH (Biovision Hierarchy)~\cite{thingvold1999biovision} format is used for the animations in Second life and is popular in the animation community to represent movements of humanoid structures. \\
-
-A BVH file is composed of two sections, a header and a data section. The initial pose of the skeleton is described in the header section by specifiying the position of each joint, which are the green dots visibles in figure~\ref{qavimatorSkeleton}. \\
+In this project, QAvimator~\cite{qavimatorWebsite} was used to build them. Other software can be used to create and edit animations such as Poser~\cite{PoserWebsite}, Maya~\cite{mayaWebsite} and Blender~\cite{BlenderWebsite}, an open-source alternative to Maya. Qavimator was chosen because it's light and easy to use compared to Maya and Blender, and unlike Maya and Poser, it is free.\\
 
 \begin{figure}[h]
   \caption{Skeleton displayed by Qavimator~\cite{qavimatorWebsite}. Each green dot represents a joint}
   \centering
-  \includegraphics[scale=0.6]{qavimatorSkeleton.png}
+  \includegraphics[scale=0.3]{qavimatorSkeleton.png}
   \label{qavimatorSkeleton}
 \end{figure}
 
-An animation is a sequence of frames, which are key moments of the animation, like the pictures for a movie. The frames are visible in the timeline window, visible in figure~\ref{qavimatorTimelineZoom1}.
-By adding a new frame in the timeline, and specifiying the new position of all the joints in the current frame, an animation can be build. The position of each joint is described by a set of rotation, position and scale parameters. Figure~\ref{qavimatorTimeline} shows the editor window with 3 frames in the timeline and all the parameters for a given point (9 parameters) in the parameter window, visible in figure~\ref{qavimatorTimelineZoom2}.
+Qavimator is an Qt port of Avimator~\cite{avimatorWebsite}, an open source animation editor originally created for avatar's animations in Second Life. The BVH (Biovision Hierarchy)~\cite{thingvold1999biovision} format is used for the animations in Second life and itis popular in the animation community to represent movements of humanoid structures. \\
+
+A BVH file is composed of two sections, a header and a data section. The initial pose of the skeleton is described in the header section by specifying the position of each joint, which are the green dots visible in figure~\ref{qavimatorSkeleton}. \\
 
 \begin{figure}[h]
   \caption{Sequence of positions by Qavimator~\cite{qavimatorWebsite}. }
   \centering
-  \includegraphics[scale=0.6]{qavimatorTimeline.png}
+  \includegraphics[scale=0.3]{qavimatorTimeline.png}
   \label{qavimatorTimeline}
 \end{figure}
 
+Technically speaking, an animation is a sequence of frames, which are key moments of the animation, like the pictures for a movie.
+By adding a new frame in the timeline, and specifying the new position of all the joints in the current frame, an animation can be build. The position of each joint is described by a set of rotation, position and scale parameters. Figure~\ref{qavimatorTimeline} shows the editor window with 3 frames in the timeline and all the parameters for a given point (9 parameters) in the parameter window.
 %Insulin animation (CITE THE IMAGES Insulin1 - 4)
 
 %Some animation used in this project were available online (created by Linda Kellie), such as the piano and the fishing animation.
 
 \subsection{Web server}
-TODO \\
-Write (maybe copy a little from architecture ?)\\
-Copy from schlumberger ?
+%TODO \\
+%Write (maybe copy a little from architecture ?)\\
+%Copy from schlumberger ?
+%%%%%%%%%%%%%%
+\subsection{Django web server}
+The avatar simulation uses a model that predict the variations of glucose in the blood depending on the food intake and the general health condition and  physical activity of the user. For educational purposes, it should be possible to play with the different parameters so that the effects of each one can be seen on the avatar's behaviour and health condition. This is done by a web page on which each parameter can be set manually by the user.
+Therefore, the web-server is used to display some web pages that need to be displayed in the virtual world and to record user's entries (figure~\ref{fig:sqliteViewerToolDatabase}).\\
+
+
+\begin{figure}[!h]
+  \caption{Energy records in the database of the web server}
+  \centering
+  \includegraphics[scale=0.8]{sqliteViewerToolDatabase.png}
+  \label{fig:sqliteViewerToolDatabase}
+\end{figure}
+
+\begin{figure}[!h]
+  \caption{Architecture of Django's framework}
+  \centering
+  \includegraphics[scale=0.9]{djangoMVT.png}
+  \label{fig:djangoMVT}
+\end{figure}
+
+%http://mytardis.readthedocs.org/en/latest/_images/DjangoArchitecture-JeffCroft.png
+
+A Django web server was installed, with a SQLite~\cite{sqliteWebsite} database. Django is an open source web server application. Written in Python~\cite{pythonWebsite}, it's free and focuses on allowing a quick development for database-driven websites. 
+The choice of this tool was made because it's a light web server that provided by default with a very light database system. It also allows an URL dispatcher based on regular expressions which is convenient for our needs, as the OpenSimulator server and the web server communicate mainly by means of HTTP requests.\\
+
+Figure~\ref{fig:djangoMVT} gives an overview of Django's architecture, based on the Model–view–controller~\cite{deacon2009model} (MVC). The `Model' consists of a relational database associated with data models (defined as Python classes). The `View' allows performing requests with a system of templates. The URL dispatcher is the `Controller'.
+%explain why ?

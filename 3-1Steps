@@ -35,15 +35,15 @@ A working feeding system is expected, including 5 examples of food objects with 
 The avatar will also be able to perform two fully supported activities, such as dancing. Relevant notifications will be displayed for feeding and activity practise so that the user can really take advantage of the simulation.
 \item A non playing character will be coded (1.5 week). In this version, the character will mainly be used to guide the user, showing him how to move in the simulation, how to make an injection, and the basics of the feeding system.
 \item At least two buildings will be integrated into the simulation (4 days). It will be possible to visit the avatar's house and a supermarket or a hospital.
-\item The rights policy need to be set up correctly (2 days), in order to avoid some problems with the environment. Indeed, opensimulator allows users to make an extensive use of object creation and modification, which currently makes it possible for users to delete furnitures accidently, or even their own house. A solution using different owners and permission will be explored to solve the problem.
-\item The system that manages blood values and avatar's characteristics will be moved on a python server (1 week). In so doing, the simulation will be quicker as removing the computational issues putting less load on the opensimulator server.
+\item The rights policy need to be set up correctly (2 days), in order to avoid some problems with the environment. Indeed, OpenSimulator allows users to make an extensive use of object creation and modification, which currently makes it possible for users to delete furnitures accidently, or even their own house. A solution using different owners and permission will be explored to solve the problem.
+\item The system that manages blood values and avatar's characteristics will be moved on a python server (1 week). In so doing, the simulation will be quicker as removing the computational issues putting less load on the OpenSimulator server.
 \end{itemize} 
 
 \paragraph{Optional features}
 The following features will be included in the simulation demo if the deliverable doesn't run out of time.
 \begin{itemize}
 \item The architecture will be adapted to run %installed% 
-directly onto a USB memory stick (1 week). A script will be used to launch the standalone opensimulator server, a viewer and a web server. A way to simplify the login procedure will be created. 
+directly onto a USB memory stick (1 week). A script will be used to launch the standalone OpenSimulator server, a viewer and a web server. A way to simplify the login procedure will be created. 
 \item A web interface will be designed to display visual indicators with graphs (1 week). This interface also allows the user to change blood sugar value or some global values such as BMI and physical condition.
 \end{itemize} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        CHAPTER 0   : Introduction                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

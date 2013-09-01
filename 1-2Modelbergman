@@ -2,27 +2,52 @@
 %begin  0
 %obj    
 %end    562
-\section{Mathematical models}
-In order to understand, describe, or predict the mechanisms of blood glucose variations, various models have been developped. Very complex models can be designed to describe the glucose-insulin interaction, using multiple variables. However, a simple ones can cover a large range of needs.
-A model is needed to be used in subsequent parts of this project, as a basis for the simulation tool.
-\\
+\section{Mathematical models of Glucose-Insulin metabolism}
+\label{sec:matmodel}
+\warn{Creating a virtual diabetic avatar, necessitate a simulation of its glucose and insulin levels. For this purpose, a model is required as a basis for the simulation tool.\\}
+Various models were developped in order to describe and predict the mechanisms of blood glucose variations. \warn{Very complex models using multiple variables can be designed to describe the glucose-insulin interaction, but a simple model can be enough to cover a large range of needs. In this section, some models will be described in order to create a model that suits our needs.}
+
+%OLD : A model is needed to be used in subsequent parts of this project, as a basis for the simulation tool. Indeed, in order to create a virtual diabetic avatar, a simulation of his glucose-insulin system is required. For this purpose, a model\\
+%In order to understand, describe, or predict the mechanisms of blood glucose variations, various models have been developped. Very complex models can be designed to describe the glucose-insulin interaction, using multiple variables. However, a simple one can cover a large range of needs.
 
 
-\subsection{Minimal model}
+
+\subsection{Bergman's ``Minimal model''}
 The first model to describe the interaction between glucose and insulin, known as the “minimal model” of glucose regulation was realised by Richard N. Bergman~\cite{bergman1980minimal, bergman1979quantitative} .
 %[#reference RN Bergman, YZ Ider, CR Bowden, and C Cobelli. Quantitative estimation of insulin sensitivity. Am J Physiol Endocrinol Metab, 236(6):E667{677, 1979.].
-It is composed of three differential equations, this model introduces the distinction between “active” insulin – which is a fictitious concept used to describe the insulin available in the blood- and the “passive” insulin, stated as the insulin in the liver and the muscles.
+This model introduced the distinction between ``active'' insulin, which is a fictitious concept used to describe the insulin available in the blood, and the ``passive'' insulin, stated as the insulin in the liver and the muscles.\\
 
 
+
+The three differential equations are :\\
+$\frac{\mathrm{d} G(t)}{\mathrm{d} t} =  \left(P_{1}-X(t)\right)G(t)- P_{1}G_{b},$\\
+$\frac{\mathrm{d} X(t)}{\mathrm{d} t} =  P_{2}X(t)+ P_{3}\left(I(t)-I_{b}\right),$\\
+$\frac{\mathrm{d} X(t)}{\mathrm{d} t} = max(0,\gamma \left(G(t)-h\right)t)-nI(t)$
+with the parameters described in ~\ref{fig:equBergmanModel}.
+
+\begin{figure}[h]
+  \caption{Equations for the glucose-insulin}}
+  \centering
+  \label{fig:equBergmanModel}
+  ``$G(t)$ and $I(t)$ are the glucose and the insulin
+concentration in the blood plasma, respectively. The variable
+$X(t)$ describes the effect of insulin on net glucose disappearance and is proportional to insulin in the remote compartment. $Gb$ and $I$
+$b$ are the basal value of plasma glucose and
+plasma insulin, respectively. The coefﬁcient $P1$ represents
+the glucose effectiveness (i.e., the fractional clearance of
+glucose) when insulin remains at the basal level; $P2$ and $P3$
+are the fractional rates of net remote insulin disappearance
+and insulin dependent increase, respectively. The ratio $P3/P2$
+is referred to as the insulin-sensitivity index.''~\cite{van2006minimal}
+\end{figure}
 
 We can describe the main ideas carried by the three equations as follows. Concerning insulin, the model makes use of the fact that:
-
 \begin{enumerate}
 \item Insulin is produced only when the amount of glucose exceeds a threshold value.
 \item Inactive insulin degrades after exceeding a value, which is the value in equilibrium, given:
 \begin{itemize}
-\item a rate \alpha that is converted into active insulin
-\item a rate \beta that is lost during the process that lowers glucose level
+\item a rate $\alpha$ that is converted into active insulin
+\item a rate $\beta$ that is lost during the process that lowers glucose level
 \end{itemize}
 \end{enumerate}
 
@@ -44,16 +69,17 @@ We can describe the main ideas carried by the three equations as follows. Concer
 \end{figure}
 
 \paragraph{}
-In figure~\ref{fig:model}, Blood glucose variation is described. According to the model of Bergman, glucose amount evolve involving only these 3 processes:
+In figure~\ref{fig:model}, Blood glucose variation is described. According to the model of Bergman, the amount of glucose evolves involving only these 3 processes:
 \begin{enumerate}
-\item Glucose lost due to usage by the human body ("Exercices, fasting and etc." in figure~\ref{fig:model})
+\item Glucose lost due to usage by the human body ("Exercice, fasting and etc." in figure~\ref{fig:model})
 \item Glucose lost due to active insulin action ("Fat cells and etc. consume glucose" in figure~\ref{fig:model})
 \item Glucose added to the previous amount, due to feeding ("Glucose infusion, meal and etc." in figure~\ref{fig:model})
 \end{enumerate}
-This model doesn’t take into account the production of glucose by the liver from glucagon (described as "Liver releases glucose into plasma" in figure~\ref{fig:model}), releasing glucose in the bloodstream when glucose levels are too low. As we will see later, we need a model in the software for two functionalities: virtual simulation, and the amount monitoring view. The two functionalities don’t need the same degree of accuracy. However, the Bergman model cannot be used for any of these functionalities because the liver action need to be taken into account to meet the software’s requirements.
+This model doesn’t take into account the production of glucose by the liver from glucagon (described as ``Liver releases glucose into plasma'' in figure~\ref{fig:model}), releasing glucose in the bloodstream when glucose levels are too low. As we will see later, we need a model in the software for two functionalities: virtual simulation, and the amount monitoring view. The two functionalities don’t need the same degree of accuracy. However, the Bergman model cannot be used for any of these functionalities because the liver action needs to be taken into account to meet the software’s requirements.
 This historical model has been used to clarify if the diabetes is type 1 or type 2, by comparing the experimental results to the theoretical values given by the model %(#reference 1PolyMontreal_maths)
 , but it is not accurate enough for predicting glucose and insulin levels observed on patients.
 
+\iffalse
 \subsection{Berger-Rodbard model, used in AIDA v4.3a}
 [NEW] 
 From \cite{lehmann2011development}, (adress:)%http://www.hindawi.com/journals/jece/2011/427196/ (see article, quite rich bibliography)
@@ -81,9 +107,11 @@ The variation of glucose is explained by:
 •	glucose lost due to insulin
 •	the constant contribution of glucose released by the liver
 The variation of insulin can be explained by insulin absorption and insulin-production according to the glucose rates in the blood.
-This model is quite complex as it includes an integral. As we aim to produce a model that will be used in the Opensimulator environment, it shouldn't be too heavy to compute.  Robustness is more important than high precision, as we only need a model that makes sense for triggering the different states the diabetic avatar can go through to display the correct symptoms. The model used for the simulation described in next section will take into account most of the processes that are described above, but will also rely on other features.
+This model is quite complex as it includes an integral. As we aim to produce a model that will be used in the OpenSimulator environment, it shouldn't be too heavy to compute.  Robustness is more important than high precision, as we only need a model that makes sense for triggering the different states the diabetic avatar can go through to display the correct symptoms. The model used for the simulation described in next section will take into account most of the processes that are described above, but will also rely on other features.
 The effective model used for the software take into account principles from the two models described below, but is more formulated in terms of computing rather than a mathematical perspective. Chapter 3 sets out in greater details how the model is made.
 Since Bergman’s model, many others were developed, stressing more on different parameters according to the needs. The more complex one described in [2] uses a set of 14 equations. 
 %reference
 %aida's ?
+
+\fi
 \fi

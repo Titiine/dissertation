@@ -1,12 +1,13 @@
 \subsection{Django web server}
 Used for 3 taks : 
 \begin{enumerate}
-\item The Energy Indicator (EI) displayed in world. It looks like a progress bar indicating the amount of left energy for the avatar (or glucose in the avatar's blood). The energy indicator consists on an dynamic webpage rendered by the web server and displayed on an object in world. 
+\item The Energy Bar displayed in world. 
+% PUT IN MY WORK : It looks like a progress bar indicating the amount of left energy for the avatar (or glucose in the avatar's blood). The energy indicator consists on an dynamic webpage rendered by the web server and displayed on an object in world. 
 \item The glucose graph.
 \item A history of each time the avatar used a glucose-meter to test blood, and the corresponding  values.
 \end{enumerate}
 
-\subsubsection{Energy indicator}
+\subsubsection{Energy Bar}
 Using an SQLite database to store the data.
 Writting a model. For the energy indicator, an object with the energy value associated with the corresponding time and date are needed. In the file '1energy.py', an EnergyLog class is created, with an integer and a date field.
 Writting the view. The view is any function called by the server, and is used to render a webpage as a result of a request. In the file 'views', a method 

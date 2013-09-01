@@ -1,3 +1,5 @@
+% A virtual world is an interactive 3-D environment where users are immersed in the environment. Users can manipulate the environment and interact with other users. 
+
 %Plagiarism checker http://smallseotools.com/plagiarism-checker/%
 %Beautiful simple design for the web simulation%
 
@@ -7,8 +9,11 @@
 
 %//
 
+%%%%%%%%%%%%%%%%%%%%    FLAGS
+% 1) BOLD + 2) BLUE - FLAGS
 % Uncomment to activate the debug flag for debug mode:
-\def\debug{}
+%\def\debug{}
+
 
 \documentclass[12pt,MSc]{muthesis}
 %{muthesis}
@@ -21,22 +26,24 @@
 \usepackage{color}
 \usepackage{xcolor}
 % META-TITLE INFORMATION
-\title{Diabetic Avatar: Simulation of Behaviour in a 3D Virtual World \\-\\ Initial report}
-
+\title{Diabetic Avatar: Simulation of Behaviour in a 3D Virtual World \\-\\ Dissertation}
 \author{Assma Benharkat}
-\date{May 10,  2013}
+\date{August 22,  2013}
 
 \makeatletter
 % Comment to keep the chapter numbering: 
 %\renewcommand{\thesection}{\@arabic\c@section}
 
 \makeatother
-
 \usepackage[a4paper, top=1.5cm, left=1.7cm, right=1.7cm, bottom=0.7cm, includehead, includefoot]{geometry}
 %\usepackage{fullpage}
 
-% Debug mode definition :
-\newcommand{\warn}[1]{\ifdefined\debug\textcolor{blue}{#1}\else#1\fi}
+%%%%%%%%%%%%%%%%%%%%    MODE DEFINITIONS
+
+% 1) CHANGES - Debug mode definition :
+\newcommand{\warn}[1]{\ifdefined\debug\textbf{#1}\else#1\fi}
+% 2) FACULTATIVE (keep only if i have time)- Debug mode definition :
+\newcommand{\benfac}[1]{\ifdefined\debug\textcolor{blue}{#1}\else#1\fi}
 
 \begin{document}
 
@@ -53,17 +60,19 @@
 
 %\warn{Corrected, but more content needed todo}\\
 %One in ten people admitted to hospital in UK has diabetes.% 
-Diabetes is the fifth most common cause of death in the world. The disease is accounted to be one of the most challenging health issues of the 21st century.  
+\benfac{Diabetes is the fifth most common cause of death in the world. The disease is accounted to be one of the most challenging health issues of the 21st century.}  
 %(Roglic G, Unwin N, Bennett PH et al (2005). The burden of mortality attributable to diabetes: realistic estimates for the year 2000. Diabetes Care 28;2130–2135)%
 Experts estimate that diabetes treatment represents 10 \% of the National Health System budget. Besides, 
 %=d'ailleurs, furthermore=en outre% 
-treating diabetes complications cost 3 to 4 times more than normal diabetes treatment according to~\cite{LondonKanavos2012}. %A 2012 report from the London School of Economics, http://www.diabetes.co.uk/cost-of-diabetes.html%
+treating diabetes complications cost 3 to 4 times more than normal diabetes treatment according to~\cite{kanavos2012diabetes}. %A 2012 report from the London School of Economics, http://www.diabetes.co.uk/cost-of-diabetes.html%
 \\A good diabetes management is essential to reduce these complications ~\cite{complications1993QuasiCours}, ~\cite{nathan2005intensive}
 %NON CITE, nul car type 2 (Stratton IM, Adler AI, Neil HAW et al (2000). Association of glycaemia with macrovascular and microvascular complications of Type 2 diabetes (UKPDS 35): prospective observational study. BMJ 321; 405–412)%
-and provides a better quality of life for patients. However, the management is not easy to achieve, as it requires daily injections, blood testing, and also an understanding of how glucose is used by their body.  
-\\This reports describes an educational tool aimed at patients and their friends or family. Conceived as 3D simulation in a virtual environment, it will allow the user to play the role of a diabetic avatar that can walk, swim or perform any action that can be done in real world, while the impact of his lifestyle on his health can be studied. The simulation of the symptoms and the behavioural and heath impacts on the avatar are directly observed in-world, affecting the way a user explores the virtual world. 
-\\The software presented in this document is a prototype based on Opensimulator, an open-source server platform for hosting virtual worlds, and represents my Msc final year project.
+and provides a better quality of life for patients. However, the management is not easy to achieve, as it requires daily injections, blood testing, and also an understanding of how glucose is used by their body.\\ \warn{Research showed that a thorough knowledge of diabetes improves diabetes management, and is directly linked with the risk of complications. For this reason, diabetes education is a crucial issue, especially for teenagers because adolescence represents the moment when the transition from diabetes care carried out by the parents to diabetes care carried out by the adolescent occurs.}\\
+This reports describes an educational tool aimed at patients and their friends or family. Conceived as 3D simulation in a virtual environment, \warn{which is an interactive 3D environment in which users are immersed}, it will allow the user to play the role of a diabetic avatar that can walk, swim or perform any action that can be done in real world, while the impact of his lifestyle on his health can be demonstrated and studied. The simulation of the symptoms and the behavioural and heath impacts on the avatar are directly observed in-world, affecting the way a user explores the virtual world. \warn{With this tool, users will be able to learn about diabetes by practice and by going through the material about diabetes available in-world, rather than getting their knowledge from the leaflets and the sessions provided by the hospital.}\\
 
+The software presented in this document is a prototype based on OpenSimulator, an open-source server platform for hosting virtual worlds, and represents my MSc dissertation project.
+\warn{This thesis provides a general overview about diabetes, diabetes management, patient education about diabetes provided by the hospital and some psychological issues faced by teenagers with diabetes. An outline of various mathematical models used to describe the evolution of blood glucose and insulin is given, as well as an insight into existing diabetes-related software, learning tools and virtual worlds.
+The design choices and the implementation of the 3D simulation are covered, followed by a brief evaluation. Innovative issues related to learning theories are raised, while attempting to frame a set of guidelines for the construction of attractive test-driven educational simulations, aimed at enhancing educational tools.}
 
 \end{abstract}
 
@@ -74,48 +83,139 @@ and provides a better quality of life for patients. However, the management is n
 %Something like: "Diabetes is [lieu commun, blabla]. Puis diabetes et education" %sentence?
 \section{Diabetes}
 Diabetes is a disease characterized by a failure in the glycemic regulation system, when there is too much
-sugar in the patient's blood. In a sound organism, energy can be used by the body when there is enough glucose and insulin. Glucose comes from eaten food, while insulin is a chemical hormone normally produced by the pancreas. In case of diabetes, there is no insulin (type 1) or the insulin cannot be used efficiently by the body (type 2). In this project, we will focus on type 1 diabetes, which was also called juvenile diabetes in the past as it's mostly diagnosed in children and young adults.\\There is still no cure for diabetes. However, patients can control their diabetes with different treatments. Treatment success relies mostly on the ability to manage one's own glucose levels. Therefore, patient education is crucial. 
-When patients are diagnosed, they are educated about diabetes in the hospital during some days, and learn how to do blood testing and injections. Dietetic educational sessions are also hold, since some knowledge about food, energy and carbohydrate counting is needed directly after patients leave the hospital. Patient education continues for some months or even years in order to help them enhance their diabetes management.
+sugar in the patient's blood. In a sound organism, energy can be used by the body \warn{for muscle movement and other uses} when there is enough glucose and insulin\warn{, which is needed to convert glucose into energy by the body cells}. Glucose comes from eaten food, while insulin is a chemical hormone normally produced by the pancreas. In case of diabetes, there is no insulin (type 1) or the insulin cannot be used efficiently by the body (type 2). In this project, we will focus on type 1 diabetes, which was also called juvenile diabetes in the past as it's mostly diagnosed in children and young adults.\\There is still no cure for diabetes. However, patients can control their diabetes with different treatments. Treatment success relies mostly on the ability to manage one's own glucose levels. Therefore, patient education is crucial. 
+When patients are diagnosed, they are educated about diabetes in the hospital during some days, and learn how to do blood testing and injections. Dietetic educational sessions are also held, since some knowledge about food, energy and carbohydrate counting is needed directly after patients leave the hospital. Patient education continues for some months or even years in order to help them enhance their diabetes management.
 
 \section{Simulations to enhance education}
 A lack of education about diabetes can have fatal consequences, leading in some cases to coma
-or death. We focus on teenagers education, accounted to be the most challenging to achieve because teenagers are known to be the hardest to teach. Indeed, as adolescence is a period where teenagers are progressively gaining their independence, they tend to consider adult's supervision as an annoyance.
+or death. We focus on teenagers' education, accounted to be the most challenging to achieve because teenagers are known to be the hardest to teach, \warn{commonly considering that lectures are boring and repetitive~\cite{paulino2011knowing}}. Indeed, as adolescence is a period where teenagers are progressively gaining their independence, they tend to consider adult's supervision as an annoyance.
 %Hanna KM and Guthrie DW stated in [HG01]%
 
-For this purpose, using a virtual environment to provide an immersive experience is expected to be much more effective, knowing the usual attractivity of gaming for a generation of teenagers more comfortable with a mouse than a pen in hand. 
+For this purpose, using a virtual environment to provide an immersive experience is expected to be much more effective, knowing the usual attractiveness of gaming for a generation of teenagers more comfortable with a mouse than a pen in hand. 
 %More used to mice than pens%
 
-Simulations have been widely used for educational purposes. Two main uses of simulations can be distinguished: instructional simulations, that can be compared to lectures, and training simulations, similar to experimental sessions. We will see later that our tool enables both of these usages, depending on whether the user wants to acquire new knowledge or prefers experiencing the effects of diabetes on health in a safe environment.
+Simulations have been widely used for educational purposes\warn{~\cite{ellington1981games}}. Two main uses of simulations can be distinguished: instructional simulations, that can be compared to lectures, and training simulations, similar to experimental sessions. \warn{In~\cite{alinier2007typology}, these two main uses are defined and subclassified into 6 ``levels'', for which the mode of delivery is specified, either as student-led or trainer-led.} We will see \warn{in section~\ref{sec:simulationUsages}} that our tool enables both of these usages, depending on whether the user wants to acquire new knowledge or prefers experiencing the effects of diabetes on health in a safe environment \warn{rather than in the real world.} 
 
-As a comparison, teachers can experiment their teaching skills in a virtual classroom with simSchool rather than a real classroom, to avoid the risk of damaging real students. In this 3D realistic world, it would be possible to see how diabetes affects concretely the way patients live, work or do any other activity they usually do in real life. Patients can learn about their disease, and even experiment extreme %several%
+\begin{figure}[h]
+  \caption{A classroom in simSchool}
+  \centering
+  \includegraphics[scale=0.7]{classarea_simschool.jpg}
+  \label{fig:classarea_simschool}
+\end{figure}
+
+
+As a comparison, teachers can experiment their teaching skills in a virtual classroom with simSchool rather than a real classroom, to avoid the risk of damaging real students. An example of a simSchool classroom is given in figure~\ref{fig:classarea_simschool}.In this 3D realistic world, it would be possible to see how diabetes affects concretely the way patients live, work or do any other activity they usually do in real life. Patients can learn about their disease, and even experiment extreme %several%
 behaviours to see both short term and long term consequences. For this purpose, time can be speeded up, to show things that cannot be experimented %by any practical or lecture% in real life.%, which they are supposed to avoid in real life for health reasons.%
-\section{Opensimulator}
-To develop such a 3D simulation, several alternatives can be considered. I studied them and a chose the most suitable in accordance with the constraints that will be discussed later.
-Opensimulator is the virtual environment chosen to build this simulation. Among the famous virtual environments, we can cite Second Life developped by Linden Labs, and the game World of Warcraft. 
-Opensimulator is similar to Second Life as people inside can owe virtual land, create objects, meet people and attend socializing events such as parties or concerts. The Opensimulator project was created in 2008 after the opensourcing of the 3D client of Second Life. Thus, a certain amount of interoperability between the two servers exists. Many universities created a virtual campus where lectures can be attended, and projects to train medical staff or run industrial simulations make a wide use of Opensimulator as it's an opensource software.
-\\Opensimulator needs a client to connect to the server, as we need a browser to connect the web. A standalone version can also be used, in which case a local server %hosted in the user machine%
-replaces the connexion to a distant server with the internet.
+\section{OpenSimulator}
+To develop such a 3D simulation, several alternatives can be considered. After studying them, the most suitable was chosen in accordance with the constraints that will be discussed in section~\ref{sec:toolsConstraints}.
+OpenSimulator is the virtual environment chosen to build this simulation. Among the famous virtual environments, we can cite Second Life~\cite{SLOfficialWebsite} developed by Linden Labs~\cite{LindenOfficialWebsite}, and the game World of Warcraft~\cite{wowWebsite}. 
+OpenSimulator is similar to Second Life as people inside can own virtual land, create virtual objects, meet each other and attend socializing events such as parties or concerts. The OpenSimulator project was created in 2008 after the open-sourcing of the 3D client of Second Life. %NEED TO BE SOURCED Thus, a certain amount of interoperability between the two servers exists. 
+\warn{Many universities created a virtual campus where lectures can be attended (such as San Jose State University~\cite{graves2008second}) and projects to train medical staff (like the Virtual Neurological Education Centre developed by the University of Plymouth~\cite{boulos2007second}), }or run industrial simulations make a wide use of OpenSimulator as it's an open-source software.
+\warn{(Unuseful, to be removed :) OpenSimulator needs a client to connect to the server, as we need a browser to connect the web. A standalone version can also be used, in which case a local server %hosted in the user machine%
+replaces the connection to a distant server over the internet.}
+
+%\warn{\section{Aims}}
+
+\warn{\section{Hypothesis}}
+
+Various hypothesis will be tested with this project, all closed related to the improvement of diabetes education experience. \\
+
+
+%%%%%%%%%% HYP 1
+\paragraph{First hypothesis}An educational tool based on a virtual environment can be a powerfull tool to offer an enriched experience to users
+that cannot be found in:
+\begin{itemize}
+\item the usual theoretical content find in the leaflet 
+\item the practical aspects of diabetes educational sessions, given by the hospital 
+%\item and also more than simple real life experience usually given to train about diabetes (blood testing, insulin injections...).est whether there is a way to teach 
+\end{itemize}
+Indeed, about the last point, a virtual simulation can offer a way to experiment situations that cannot be replicated safely in real life during the sessions, such as symptoms of hypoglycemia and hyperglycemia.
+%=> Results : in the results part, discussing the different kind of uses of such a simulation
+
+%%%%%%%%%% HYP 2
+\paragraph{Second hypothesis}A test-driven learning policy could bring enhancements in two key points:\\
+1) The quality of teaching can be improved, because we are able to detect:
+\begin{itemize}
+\item What isn't already known by the user: this knowledge can be a frame to provide the user only usefull content.
+\item What is hard to keep in mind, or what tends to be forgotten from time to time: this knowledge can provide a way to test it regularily to make sure that a constant minimum level of knowledge is known.
+\end{itemize}
+
+%=> in results, talk about normal mode and learning mode (cf implementation or design)\\
+
+The latest point is especially important, given the results of studies that showed, firstly, that a better knowledge about diabetes, provided by special educational sessions to teenagers, improves their diabetes management and reduces the risks of complications~\cite{}. Secondly, it was also shown that the benefits taken from these sessions don't last more than about 36 months counting from the end of the sessions~\cite{}. 
+
+%COPIER AILLEURS : For this purpose, providing a tool with the capability of making you learn continously is opening up very promising prospects for further studies about diabetes education.
+%Moreover, such a tool could be even more efficient than group sessions with standardized lectures for all students, as it suits every user's needs because the proposed material takes into account its own memorization capacities, providing personalized and adapted content.\\
+
+2) The motivation and interest of the learners can be improved.\\
+The reluctance of adolescents for traditional teaching materials and methods such as books and lectures could be overcome by a tool that is very similar to 3D gaming environments they are familiar with and found of, such as the Sims or World of Warcraft.\\
+Furthermore, the complete immersion in virtual world strengthens the feeling of being active, which may enhance the efficiency of the educational tool. 
+
+\iffalse COPIER AILLEURS Furthermore, the complete immersion in virtual world strengthens the feeling of being active, which is one of the main requirements for an ideal teaching solution for young adults. Here, the simulation requires from the user to manage his avatar's diabetes correctly to be rewarded. For this purpose, the user needs to know diabetes mechanisms, and learn the day-to-day techniques used in diabetes management. 
+%%%%%%%%%%%%%% HORS SUJET : WOW et addictivité, pour rendre l'utilisation de l'outil quotidienne
+
+Moreover, World of Warcraft (WoW) addictiveness, that was decried by many specialists, could be beneficial to our tool. If only a part of this addictiveness mechanisms can be reproduced, the day to day training on diabetes and diabetes-related skills enhancement will be made possible. This point is extremely crucial because users a expected to use the tool on a regular basis, in order to avoid the problems met by previous attempts to design similar educational tools about diabetes, such as... (exemples in intro ?). These results are detailled in section~\ref{sec:resultsOfToolReview}\\
+
+Contrary to what might sometimes be believed, addictiveness of WoW lies more in the than in the community life players experience than in the interest for the game itself. Obviously, the game design is already good, but it is not enough to explain the extreme consequences that were sometimes observed, such as players that doesn't sleep for more than one day because there were continously playing to WoW. 
+
+\subsection{Results of the educational tools review}
+\label{sec:resultsOfToolReview}
+\subsubsection{``Gamy'' tools}
+What resulted from the overview of the available tools is that usually, tools on diabetes education are either too close to (quite simple) games, with a ``diabetes-friendly'' educational ``overlay'', but with quite poor educational content about diabetes. EXAMPLE : ...
+The first advantage of this kind of games is that the user won't get bored very quickly, as he will consider himself as playing, rather being involved in an educational task. There will be very few differences on his perception of playing the diabetes game or playing a normal video game, according to ... (remember the study with children that don't find the game better when we removed diabetes).\\
+
+The second advantage is that this kind of game will be suitable for diabetic as well as non diabetetic players.\\
+As a conclusion, we can say that this kind of game is more interesting for the case of younger diabetics, because:
+\begin{itemize}
+\item The amount of information they need to learn about diabetes is not as important as the one needed for a teenager, because their parents are mainly in charge of the diabetes management at that time.
+\item The game provides a positive experience about diabetes, usually with heros
+\end{itemize}
+
+Thus, this kind of game can be used by educators as a perfect introduction to encourage or get patients used to mae use of educational softwares about diabetes.
+
+\subsubsection{Serious tools}
+The other kind of educational software about diabetes were designed more as a learning tools, such as forums and materials on various topics, than games. They were not designed to entertain people, but to provide a convenient and attractive tool for diabetes education. A tool that should also suit the teenagers needs.\\
+
+This kind of tool is quite unlikely to be designed to suit both diabetic and non-diabetic people's needs, because they aren't supposed to look for the same kind of knowledge. For instance, in TimeOut, carbohydrates counting is used during all the mission. It is an efficient and playfull way to train teenagers with this technique, and the repetivity of the game concerning this precise point is probably a strenght. However, it is the main knowledge taught in this tool, which means that whenever the user maters this technique, the game becomes boring. Furthermore, it might be difficult to find it interesting for a non diabetic player, because the need to learn and make use of carbohydrates counting isn't strong enough as there is no strong motivation to do so: the only consequence of a good diabetes management will result on a higher score at the end of the game.\\
+
+\subsubsection{Consequences on our design}
+Studiying these mechanisms allows us to develop various attemps to highly involve the user to achieve good diabetes management. 
+
+\subsubsection{The Tamagotchi case}
+The example of Tamagotchis~\cite{holzinger2001triangle} is very instructive from this perspective : how a simple virtual pet device with limited functionalities can entail such a high involvment from users ? The Tamagotchi is a virtual pet that need to be carefully breed in order to keep it alive as long as possible. Technically, the Tamagotchi was a small device with three buttons, beeping when the user has to take care of it. \\
+Initially launched in Japan by Bandai in 1996, the Tamagotchi became quickly extremely popular among teenagers. Highly relayed by the press, adults became rapidly affected by this phenomenon.\\
+
+-presents are kept
+-can communicate with others.
+\fi 
+
+%%%%%%%%%% HYP 3
+\paragraph{Third hypothesis}%The motivation to learn provided by t
+The tool can be adapted to multiple profiles such as patients, parents, newly diagnosed patients, and friends. 
 
 \section{Structure of this report}
 
-First chapter is dedicated the literature review. Diabetes is explain more in detail, before reviewing existing attempts to model how diabetes works on glucose and insulin amounts and the most important contributions of software tools in the fields of diabetes monitoring and education. Second part of literature review stresses more on the close links between adolescence, diabetes and various issues as investigated in a large range of articles. This parts includes various subjects, from eating disorders to psychological and behavioural isssues, but most of them are linked with quality of life and education about diabetes. Such a large overview is needed in order to identify specific issues with diabetic teenagers, in order to figure out the more suitable approch that can be followed by the software. 
-Second chapter presents the main advancements done in the project for various fields. We begin with a clarification of the requirements and needs that was made possible by the help of meetings with the diabetes team of Royal Manchester Children Hospital, and the newly diagnosed educational sessions I was allowed to follow in the hospital. After this, I describe the mathematical model of evolution of insulin and glucose concentrations in the blood. Then, a description of the technical choices made for the implementation is set, followed by the chosen architecture for the software. Last part presents the main developments that were done.
-In the third chapter, the project plan is given, describing what is going to be implemented, software assessment and the principal milestones.
- 
+\warn{Chapter 2 is dedicated the background. Diabetes is explained in more detail, before reviewing existing attempts to model how diabetes works on glucose and insulin amounts and the most important contributions of software tools in the fields of diabetes monitoring and education. The second section stresses more on the close links between adolescence, diabetes and various issues as investigated in a large range of articles. This part includes various subjects, from eating disorders to psychological and behavioural issues, but most of them are linked with quality of life and education about diabetes. Such a large overview is needed in order to identify specific educational issues with diabetic teenagers, in order to figure out the more suitable approach that can be followed by the software. 
+Chapter 3 presents the main advancements done in the project for various fields. We begin with a clarification of the requirements and needs that were learned with the help of meetings with the diabetes team of Royal Manchester Childrens Hospital, and the newly diagnosed educational sessions I was allowed to follow in the hospital. In section~\ref{sec:matmodel}, the mathematical model of evolution of insulin and glucose concentrations in the blood is described. Then, a description of the technical choices made for the implementation is set, followed by the chosen architecture for the software. Last part presents the main developments that were done.
+In the third chapter, the project plan is given, describing what is going to be implemented, software assessment and the principal milestones.}
+
+
 %\iffalse
+
 \input{A}
 %\fi
 
-\input{B}
-
-
 %\iffalse
-\input{C}
+\input{B}
 %\fi
 
+%\iffalse
+%\input{C}
+%\fi
 
+%\iffalse
 \input{D}
-
+%\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         CHAPTER 1   : State of the art    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %OLD \chapter{State of the art} % or Background research}%
@@ -167,7 +267,7 @@ In the third chapter, the project plan is given, describing what is going to be 
 Diabetes is a disease that requires a daily constant monitoring from the patient and an ability for self-care management. For this purpose, patients need to be educated about their disease to be able to take care of themselves. This becomes especially challenging in the case of teenagers, since they are progressively gaining their independence. 
 Furthermore, Hanna KM and Guthrie DW stated in~\cite{HannaKM} that it's harder to teach them because they tend to consider adult's supervision as an annoyance.
 \paragraph{}
-This industrial Msc Project is led by the University of Manchester and the adolescent Diabetic clinic of the Royal Manchester Children’s Hospital. The hospital is responsible of accompaniment sessions for diabetic children and teenagers. These sessions might use of a large range of educational supports, from videos and activities to novels. Considering the attractiveness of gaming for teenagers, we may think that playful tools can improve knowledge hand-over, and help to raise their awareness on points that are often neglected. 
+This industrial MSc Project is led by the University of Manchester and the adolescent Diabetic clinic of the Royal Manchester Children’s Hospital. The hospital is responsible of accompaniment sessions for diabetic children and teenagers. These sessions might use of a large range of educational supports, from videos and activities to novels. Considering the attractiveness of gaming for teenagers, we may think that playful tools can improve knowledge hand-over, and help to raise their awareness on points that are often neglected. 
 
 \subsection{Diabetes}
 Diabetes is characterized by a failure in the glycaemic regulation system, when there's too much sugar in the patient's blood. As shown in figure 1, in a sound organism, energy is produced when glucose and insulin react. In case of diabetes, there is no insulin (type 1) or the insulin cannot be used by the body (type 2).
@@ -242,15 +342,68 @@ However, we can state that the key features consists on these points :
 \item Building a few effects representing some diabetes symptoms
 \end{itemize}
 
-The planning is detailed in the Gantt chart in annex~\ref{chap:gantt}.
-% dis lesquelles sont optionnelles
+
+
+\fi
 
  \appendix
-    \chapter{Gantt}
-    \label{chap:gantt}
-%\includegraphics[scale=0.3]{GRANTT.png}
-\includegraphics[scale=0.5]{HAN.png}
-\fi
+    \chapter{Aida example}
+%\section{Aida example}
+\label{annex1}
+%Put into the annex
+
+\begin{figure}[h]
+  \caption{Aida initial simulation parameters}
+  \centering
+  \includegraphics[scale=0.7]{a1.png}
+  \label{a1}
+\end{figure}
+
+\begin{figure}[h]
+  \caption{Aida modified simulation parameters}
+  \centering
+  \includegraphics[scale=0.7]{a2.png}
+  \label{a2}
+\end{figure}
+
+\begin{figure}[h]
+  \caption{Aida plot results for initial and modified parameters}
+  \centering
+  \includegraphics[scale=0.7]{a3.png}
+  \label{a3}
+\end{figure}
+
+
+This is an example of use of Aida software. 50 cases are available, corresponding to different people with various problems, such as being used to high blood glucose during the night or a too low blood glucose in the afternoon.
+The user chooses a case an specifies the food intakes, with the carbohydrate amounts and when the food was taken. The injected units of insulin with the corresponding times are also specified. Then, we can run the simulation.
+
+We took case number 2, known as Howard Kistler. He is a type 1 diabetes that wants to improve his injection program by changing the doses of insulin. 
+
+Here is the description as found on the website:
+
+\begin{figure}[h]
+  \caption{Description of case number 2 as found on Aida website}
+  This 45 year old man was diagnosed as having diabetes at the 
+age of 14. He is currently on a regimen of combined short 
+and/or intermediate acting insulin preparations four times 
+per day.  As you can see from his home monitoring blood 
+glucose measurements, he tends to higher blood glucose 
+values overnight but has a low blood glucose in the 
+mid-morning.  Try using the simulator to see how you 
+could redistribute his insulin doses to improve his 
+overall control.
+  \centering
+\\  \label{descriptionCaseAida}
+\end{figure}
+
+
+He was treated with short 3 insulin injections and 2 long-acting ones, as described in figure~\ref{a1}. He had hypoglycemia in the middle of the morning and hyperglycemia during the night.
+We corrected the doses as shown in figure~\ref{a3}, reducing the amount of the quick insulin injected in the morning, and adding units to the late afternoon dose and at midnight.
+
+The results for both cases are displayed in figure~\ref{a2}. The results for the the initial doses of insulin are shown in red, with a positive peak during the night and a negative peak during the morning. 
+In the improved doses (in red), the high blood glucose during the night is lowered, and the mid-morning hypoglycemia is corrected. However, blood levels become too low at 3 in the night, so the simulation can still be improved.
+
+The tool helps to understand the effects of insulin injections and food intakes on the blood glucose.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

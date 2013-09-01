@@ -31,12 +31,18 @@
                 \caption{Opensimulator}
                 \label{fig:sOS}
         \end{subfigure}
-        \caption{Analogy between Internet and Virtual worlds like Opensimulator}\label{fig:analogy}
+        \caption{Analogy between Internet and Virtual worlds like Opensimulator}
+        \label{fig:analogy}
 \end{figure}
 
 \section{Architecture of the software} 
 In this section the architecture chosen for the software development is described.  
 %#schema ?%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% COUPE
+\iffalse
+
 \subsection{Choice of the simulation tool}
 
 It was possible to choose a technology amoung the ones I already knew (Python~\cite{pythonWebsite}, Unity3D~\cite{Unity3DWebsite} ) and others I investigated about. The two main virtual worlds existing nowadays are OpenSimulator and Second Life. 
@@ -69,13 +75,20 @@ Opensimulator and Second life have really close characteristics: a reduced devel
 
 \subsection{Opensimulator - Client and Server}
 The software solution built is using Opensimulator, an open-source simulator. It consists on an Opensimulator server and a client, the Imprudence viewer~\cite{imprudenceWebsite}.
-The Opensimulator virtual world can be compared to the internet, as shown in figure~\ref{fig:analogy}. A browser is used to surf the web, while an Opensimulator or a Second Life viewer should be used to explore the grid. A grid is, roughly, a map, where users can go and explore in the form of avatars. 
+The Opensimulator virtual world can be compared to the internet, as shown in figure~\ref{}. A browser is used to surf the web, while an Opensimulator or a Second Life viewer should be used to explore the grid. A grid is, roughly, a map, where users can go and explore in the form of avatars. 
 
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%% COUPE
+\iffalse
 \subsection{Django modelling web server}
 The avatar simulation needs a model that predict the variations of glucose in the blood depending on the food intake and the general health condition and  physical activity of the user. For educational purposes, it should also be possible to play with the different parameters so thatthe effects of each one can be seen on the avatar's behaviour and health condition. This will be done by a web page on which each parameter can be set manually by the user.
 Therefore, a web-server is used for both computations of the blood sugar according to a built-in mathematical model, and to record user's entries.
 
 %todo:Communication between Opensimulator and the web-server
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%% CUT
+\iffalse
 
 \subsection{Behavioural core: scripting}
 %Schema
@@ -87,6 +100,9 @@ In world, we have two kind of things : avatar and objects %(and non playing char
 An avatar is the virtual appearance a user has in-world. Everything can be configured: clothes, features and skin. Objects are everything else except avatars and ground. They are created and modified by users, without any limitation. Clothes, houses, food or vehicles for instance are objects.
 To animate objects, change their characteristics over the time, or allow an avatar to interact with them, scripts are used. An script cannot be directly written for an avatar, but it's possible to write script in objects that can have an effect on the objects' owner.
 In this environment, it would be possible to add a layer to the program with scripts on objects that can simulate a “living avatar”.
+
+%%%%%%%%%%%%%%%%%%%%%%%% CUT
+\fi
 
 \subsection{Distribution}
 All the components described above will be put on a pen drive and given to the hospital. A user only have to boot on the pen drive and launch a script that runs the client and the server with the right settings:

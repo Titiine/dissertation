@@ -1,3 +1,10 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
 %video game for diabetics: http://en.wikipedia.org/wiki/Packy_and_Marlon%
 %2nd video game for diabetics http://en.wikipedia.org/wiki/Captain_Novolin
 %captain novolin, reference dans ce livre http://books.google.co.uk/books?id=GCd5qpAVxLMC&lpg=PA135&dq=%22captain+novolin%22&pg=PA135&redir_esc=y#v=onepage&q=%22captain%20novolin%22&f=false
@@ -23,21 +30,44 @@
 %begin  0
 %obj    
 %end   
+
+
+
 \section{Available tools}
-This section is a review on existing tools and software dealing with diabetes. We can roughly divide them in three according to their aims and target users:
+\label{sec:tools}
 
+\warn{This section is a review on existing tools and software dealing with diabetes. These can be roughly divided to 4: %according to their aims and target users:
+}
+
+\warn{
 \begin{itemize}
-\item Tools for diabetes management, used both by medical staff and patients
+\item Tools for diabetes management %, used both by medical staff and patients in order to track the patient's numbers and medications. They will not be adressed in this dissertation, as they don't aim to improve diabetes education.
+\item Simulation tools
 \item Tools for diabetes education
+\item Serious games
 \end{itemize}
+}
 
-Tools for diabetes education covers software or websites that can be used by medical students and staff, tools that are designed for patients, and tools for the general public. Some of these tools are used by people from different categories. 
+%Mangement tools are only used by patients
 
 \subsection{Simulation tools}
-\\label{sec:aidaSection}
-TODO: add a picture of aida downloads/connections: still intensely used.
+\label{sec:aidaSection}
+
+\begin{figure}
+  \caption{Visits per month to Aida websites}
+  \centering
+  \includegraphics[scale=2]{aidaDownloads}
+  \label{fig:aidaDownloads}
+\end{figure}
+
 \\
-The most important example of a simulation tool is the Aida software\cite{aidaURL1, aidaURL2}. Created in 1991 and made available freely since 1996, this tool simulates the evolution of blood glucose and insulin rates. Many papers descibed the underlying model, and discussed the tool's utility in a teaching purpose, such as~\cite{tatti2001utility}. 
+The most important example of a simulation tool is the Aida software\cite{aidaURL1, aidaURL2}. Created in 1991 and made available freely since 1996, this tool simulates the evolution of blood glucose and insulin rates. 
+Despite of its age, the tool is still widely used online and also downloaded, as shown in figure~\ref{fig:aidaDownloads}.
+%In, April 2011 a revised version of AIDA v4.3b was released, causing some technical problems with the software. 
+
+Many papers descibed the underlying model, and discussed the tool's utility in a teaching purpose, such as~\cite{tatti2001utility}. 
+An example of this simulation tool is descibed in annex~\ref{annex1}.
+%de nombreux sites ne sont qu’exclusivement anglophones (« www.aida.org », « www.nativedancer.com », « www.dbaza.com », …).
 
 \begin{figure}
   \caption{Online version of the aida tool, screenshot (input values)}
@@ -53,20 +83,38 @@ The most important example of a simulation tool is the Aida software\cite{aidaUR
   \label{fig:aida1}
 \end{figure}
 
-The tool is also available online in ~\cite{aidaURL1, aidaURL2}. Figure~\ref{fig:aida2} is a screenshot of the online version, where graphs corresponding to insulin and glucose blood levels can be displayed. However, this tool is quite difficult to use for a patient or their family, mainly because of the wide number of parameters that can be set and a complex user interface, as shown in figure~\ref{fig:aida1}. It is mainly used to teach medical students. Some preconfigurations are interesting from our perspective, because they represent different profiles among diabetic patient's profiles.
+The tool is also available online in ~\cite{aidaURL1, aidaURL2}. Figure~\ref{fig:aida2} is a screenshot of the online version, where graphs corresponding to insulin and glucose blood levels can be displayed.
+ However, this tool is quite difficult to use for a patient or their family, mainly because of the wide number of parameters that can be set and a complex user interface, as shown in figure~\ref{fig:aida1}. 
+ It is mainly used to teach medical students. %Some preconfigurations are interesting from our perspective, because they represent different profiles among diabetic patient's profiles.
 
 \subsection{Management tools}
-Many management tools for diabetes exist. Usually, patients that use insulin pumps can use the matching tool. Harbor Software is a management tool that allows charting, patient monitoring, record and goal managements. It's used by medical staff. \\
+Many management tools for diabetes exist. 
+
+Some tools are designed  for patients, while others are used by the medical staff. Usually, patients that use insulin pumps can use the matching tool. 
+Harbor Software is a management tool that allows charting, patient monitoring, record and goal managements. It's used by medical staff. \\
 [NEW] In ~\cite{arshad2009diabetes}, Diabetes Online Patient Management System (DO-PM) is a project described as a tool aimed for patients to record and analyse their glucose measurements, by making it possible to observe trends and peaks. The tool focuses on its simplicity for records analysis, and the ability to send records to the physian so that an earlier appointment can be decided if needed. Screenshots are available ~\cite{arshad2009diabetes,Do-PmWebsite} but the prototype cannot be tested yet.
 
- 
-% A tool for Diabetes Management (TOREAD to find other interesting stuff/ TOOLS (!) on diabetes management)
+Among free tools for diabetes management, we can cite HealthEngage Diabetes Management tools (web and mobile), and Diabetical.
+% and ManageBGL.com Diabetes BGL Prediction and Live Sharing tool
 
+Some are Open Source, such as Open Source Diabetes and GNU Glyco Control. sugaR R package is especially designed to help for diabetes therapy optimization. A complete user guide is available~\cite{sugarR} 
+Free mobile applications include dLife Diabetes Companion, that provides carb counts and logbook and WaveSense Diabetes Manager, that allows to display glucose graphs, carbohydrates and insulin, with a log book.
+ 
+Management tools don't provide educational content, which is not relevant from our perspective.
 
 \subsection{Educational tools}
-Some interactive presentations or websites are available on the internet. 
-They are mostly about informing people on diabetes with more or less general information.The tool use diverse mediums, such as, presentations, websites about diabetes for teenagers, blogs and videos. 
-\\[NEW] Among them, Your Guide to Diet and Diabetes is an internet website \cite{toolDietAndDiabetesWebsite} released by the University of Illinois, initially for research purposes but it's still freely accessible. The efficiency of this tool was assessed in \cite{herrejon2009creation}.
+
+Tools for diabetes education cover software or websites that can be used by medical students and staff, tools that are designed for patients, and tools for the general public. They are mostly about informing people about diabetes with mainly general information. %Some of these tools are used by people from different categories. 
+Some interactive presentations or websites are available on the internet. These tools make use of diverse mediums, such as, presentations, websites about diabetes for teenagers, blogs and videos. 
+\warn{Among them, Your Guide to Diet and Diabetes \cite{toolDietAndDiabetesWebsite} is an internet website released by the University of Illinois, initially for research purposes but it's still freely accessible. The efficiency of this tool was assessed in \cite{herrejon2009creation}.}
+Videos with animations on Diabetes UK website such as~\cite{videoAnim} can be used as supports to show the biological mechanisms involved in diabetes.
+Some of the websites are specialized, such as~\cite{managementWeb} to learn management techniques, or~\cite{peersupportWeb} to find peer support.
+
+%==
+%Tools for diabetes education cover software or websites that can be used by medical students and staff, tools that are designed for patients, and tools for the general public. various %Some of these tools are used by people from different categories. 
+%Some interactive presentations or websites are available on the internet. 
+%They are mostly about informing people about diabetes with mainly general information. The tool use diverse mediums, such as, presentations, websites about diabetes for teenagers, blogs and videos. 
+%\\[NEW] Among them, Your Guide to Diet and Diabetes is an internet website \cite{toolDietAndDiabetesWebsite} released by the University of Illinois, initially for research purposes but it's still freely accessible. The efficiency of this tool was assessed in \cite{herrejon2009creation}.
 
 
 \subsection{The serious game approach}
@@ -78,19 +126,24 @@ They are mostly about informing people on diabetes with more or less general inf
   \label{fig:escSc}
 \end{figure}
 
+
+The development of serious games about diabetes began quite early, with games such as CaptainNovolin or Packy and Marlon. 
+However, access to these games is limited to players with "consoles de jeu", and these consoles are too old to be still used today.
+
 \paragraph{Escape from Diab}
-Escape from Diab ~\cite{escape} is a game relasead in where the character (see~\ref{fig:escSc}) needs to escape from a city where all citizens are eating junk food and are ill. The player needs to learn about nutrition and to escape from the city. ~\cite{thompson2010serious} explicits the game design, largely based on behavioral theories, including peer impacts and opposition between characters. However, further work is needed to fully understand the way behaviour change is realized from a medical perspective.
-\\It wasn't possible to test the game because access is not available.
+Escape from Diab ~\cite{escape} is a game %relasead in 
+where the main character, Deejay (see~\ref{fig:escSc}) needs to escape from a city where all citizens are eating junk food and are ill. 
+The player needs to learn about nutrition and to escape from the city. ~\cite{thompson2010serious} describes the game design, largely based on behavioral theories, including peer impacts and opposition between characters. 
+However, further work is needed to fully understand the way behaviour change is realized from a medical perspective.\\
+It wasn't possible to test the game because access is not available.
 
 \paragraph{Recent online games}
 
 Two online games were developed in 2011 by the diabetes society les Diablotines available in ~\cite{gluci}. These adventure games focus mainly on carbohydrate counting for diabetes, in the frame of an investigation adventure, in order to be in a good condition to investigate. 
-The main characters are reporters or adventurous people. However, l'affaire birman and Time Out become quickly repetitive. There is a lack of freedom, making the user wait during quite long times. 
-
-
-
+The main characters are reporters or adventurous people. However, l'Affaire Birman~\ref{joubertludidiab} and Time Out become quickly repetitive because they rely mainly on one or two mechanisms, such as carbohydrate counting. 
+There is a also a lack of freedom, because the player needs to wait until each conversation with the non playing characters ends, and because the order of the story needs to be strictly followed: each place and each action done in the game has to follow the order predefined by the story. 
+%making the user wait during quite long times. 
 
 %- Comment immerger un apprenant, un patient dans un jeu pour favoriser son apprentissage, son éducation, sa rééducation ?
-
 %- Comment tester l’efficacité des Serious Games dans le domaine de la santé ?
 %- Comment inclure un patient ou un apprenant dans un environnement ludique dans le cadre d’un processus d’éducation thérapeutique ?
