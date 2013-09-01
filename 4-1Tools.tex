@@ -2,56 +2,6 @@
 \label{sec:devtools}
 
 
-\subsection{Choice of the simulation tool}
-\label{sec:toolsConstraints}
-It was possible to choose a technology among the ones I already knew (Python~\cite{pythonWebsite}, Unity3D~\cite{Unity3DWebsite} ) and others I investigated about. The two main virtual worlds existing nowadays are OpenSimulator and Second Life. 
-\\The choice was made according to two criteria: the tool should give enough freedom to code all what is needed for this prototype, and the technology should enable a reasonably short time of development.
-\\Table \ref{tab:toolChoice} summarizes the characteristics of each tool:
-
-\begin{table}
-\caption{Comparizon between different 3D development tools}
-\label{tab:toolChoice}
-\resizebox{\textwidth}{!}{%
-    \begin{tabular}{|l|llll|}
-    \hline
-    ~                              & OpenSimulator & Second Life & Unity 3D (game engine) & Python (library) \\ \hline
-    Engines (physical, network...) & Yes           & Yes         & Yes                    & Yes              \\ \hline
-    Available content              & Yes           & Yes         & A little                    & No               \\ \hline
-    Multiplayer                    & Yes           & Yes         & Yes                    & ~                \\ \hline
-%    Time to learn the language     & 1             & 1           & 0                      & 0                \\ \hline
-    Development time               & Short             & Short           & Medium                      & Long                \\ \hline
-    Restrictions                   & Yes           & Yes         & Yes and No             & No               \\ \hline
-    Documentation and community    & Yes           & Yes +       & Yes                    & Yes              \\ \hline
-    Open source                    & Yes           & No          & No                     & Yes              \\ \hline
-    Used in education              & Yes +         & Yes         & -                      & -                \\ \hline
-    Scripting                      & Yes           & Yes         & Yes                    & Yes              \\ \hline
-    \end{tabular}}
-    
-\end{table}
-
-
-OpenSimulator and Second life have really close characteristics: a reduced development time, and some already available content. Developing with Unity3D or with a Python 3D library would be longer because nothing is prebuilt.\\
-
-    We chose OpenSimulator because it is open source, and increasingly used in education while Second Life is more business related. Moreover, Second Life suffered from a certain adverse publicity.
-
-\begin{figure}[h]
-        %\centering
-        \begin{subfigure}[b]{0.4\textwidth}
-                \centering
-                \includegraphics[scale=0.43]{sWEB}
-                \caption{Internet, client and server}
-                \label{fig:sWEB}
-        \end{subfigure}
-        \begin{subfigure}[b]{0.4\textwidth}
-                \centering
-                \includegraphics[scale=0.43]{sOS}
-                \caption{Opensimulator, client and server}
-                \label{fig:sOS}
-        \end{subfigure}
-        
-        \caption{Analogy between Internet and Virtual Worlds like Opensimulator}
-        \label{fig:analogy}
-\end{figure}
 
 \subsection{A virtual world: OpenSimulator (server)}
 The software solution built is using OpenSimulator, an open-source simulator. It consists on an OpenSimulator server that needs to be installed with a client, such as Imprudence viewer~\cite{imprudenceWebsite}.

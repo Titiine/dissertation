@@ -3,6 +3,8 @@
 %obj    
 %end 
 
+%%%%%%%%%%%%% OLD, WAS CUT AND PUT IN DESIGN
+
 \section{The Glucose-Insulin underlying model}
 \label{sec:mymodelSection}
     
@@ -79,12 +81,12 @@ where
 \paragraph{}
 The step function allows us to use any kind of mathematical function to describe $Activity$, $GlucoseRel$ or $Insulin$. Indeed, we only take the restriction of the function we are interested in.
 
-For instance, 
-        	=> muscles, liver, fat
-	where :
-Step(t) =  1 if t>=0
-	    0 if t<0
-Redistributor :
-1)muscles	value in g. each second
-2)liver		400g. max %check
-3)fat		40g sugar = 30g fat #find, use a factor to set it
+For instance, \\
+        	=> muscles, liver, fat\\
+	where :\\
+Step(t) =  1 if t>=0\\
+	    0 if t<0\\
+Redistributor :\\
+1)muscles	value in g. each second\\
+2)liver		400g. max %check\\
+3)fat		40g sugar = 30g fat #find, use a factor to set it\\

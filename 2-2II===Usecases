@@ -1,67 +1,191 @@
-\subsection{Use cases}
+%NEW 2) DESIGN
+%\section{Design} PLAN
+%	\subsection{Choice of the simulation tool}
+%	\subsection{Modules} %la feuille de brouillon rose
+%	\subsection{Computational models} 
+%	\subsection{Design issues} %mettre problemes de conception généraux et ceux specifiques a certains outils
 
-In order to meet the requirements described above, we need to figure out educational content that can be used for the tool. 
+	
 
-A list of example use cases, described according to the topic, are shown in the following figures.
 
-\paragraph{Content to be used by the software}
+%NEW 2) DESIGN
+% BEGINNING
+
+\section{Design}
+	\subsection{Choice of the simulation tool}
+\label{sec:toolsConstraints}
+It was possible to choose a technology among the ones I already knew (Python~\cite{pythonWebsite}, Unity3D~\cite{Unity3DWebsite} ) and others I investigated about. The two main virtual worlds existing nowadays are OpenSimulator and Second Life. 
+\\The choice was made according to two criteria: the tool should give enough freedom to code all what is needed for this prototype, and the technology should enable a reasonably short time of development.
+\\Table \ref{tab:toolChoice} summarizes the characteristics of each tool:
+
+\begin{table}
+\caption{Comparizon between different 3D development tools}
+\label{tab:toolChoice}
+\resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|llll|}
+    \hline
+    ~                              & OpenSimulator & Second Life & Unity 3D (game engine) & Python (library) \\ \hline
+    Engines (physical, network...) & Yes           & Yes         & Yes                    & Yes              \\ \hline
+    Available content              & Yes           & Yes         & A little                    & No               \\ \hline
+    Multiplayer                    & Yes           & Yes         & Yes                    & ~                \\ \hline
+%    Time to learn the language     & 1             & 1           & 0                      & 0                \\ \hline
+    Development time               & Short             & Short           & Medium                      & Long                \\ \hline
+    Restrictions                   & Yes           & Yes         & Yes and No             & No               \\ \hline
+    Documentation and community    & Yes           & Yes +       & Yes                    & Yes              \\ \hline
+    Open source                    & Yes           & No          & No                     & Yes              \\ \hline
+    Used in education              & Yes +         & Yes         & -                      & -                \\ \hline
+    Scripting                      & Yes           & Yes         & Yes                    & Yes              \\ \hline
+    \end{tabular}}
+    
+\end{table}
+
+
+OpenSimulator and Second life have really close characteristics: a reduced development time, and some already available content. Developing with Unity3D or with a Python 3D library would be longer because nothing is prebuilt.\\
+
+    We chose OpenSimulator because it is open source, and increasingly used in education while Second Life is more business related. Moreover, Second Life suffered from a certain adverse publicity.
 
 \begin{figure}[h]
-  \caption{Use case 1: Insulin is not taken correctly}
-  \centering
-  \includegraphics[scale=0.75]{bulle1}
-  \label{fig:bulle1}
+        %\centering
+        \begin{subfigure}[b]{0.4\textwidth}
+                \centering
+                \includegraphics[scale=0.43]{sWEB}
+                \caption{Internet, client and server}
+                \label{fig:sWEB}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+                \centering
+                \includegraphics[scale=0.43]{sOS}
+                \caption{Opensimulator, client and server}
+                \label{fig:sOS}
+        \end{subfigure}
+        
+        \caption{Analogy between Internet and Virtual Worlds like Opensimulator}
+        \label{fig:analogy}
 \end{figure}
 
-Insulin treatment is rarely correctly implemented: only 15\% of families can meet the criterias for good glucose management%TODO : find a reference.
-In figure~\ref{fig:bulle1}, various reasons are considered as causes for poor insulin treatment, as enumerated in the circles. In the case of (1), the problem comes from a misunderdstanding or a lack of knowledge or poor skills to correctly handle diabetes management. Thus, the user can use the software to increase his knowledge about diabetes if needed, including carbohydrate counting and injections. \warn{Then, playing with the simulation as a training for diabetes management can help understand the mechanisms of glucose regulation.} %Tips can be provided in the adapted section of the software.
-\\Sometimes, the lack of knowledge, as shown in figure~\ref{fig:bulle3}, is a barrier that prevents good glucose management. For instance, when patients tend to feel affraid of the risk of having an hypoglycemia in class because they will have to eat, they tend to lower their insulin injection to avoid this situation. \warn{In this case, it can trigger the hyperglycemia symptoms, especially that the patient frequently need to urinate, which might be a bigger embarrassment than eating in the class.}
-Motivations to do well can be foung for the youngest teenagers by describing symptoms that are socially embarassing. Making the avatar look and behave in a silly way when he is low can represent a dramatic visual scene.
-
-\begin{figure}[h]
-  \caption{Use case 2: Treatment is a psychological burden}
-  \centering
-  \includegraphics[scale=0.75]{bulle2}
-  \label{fig:bulle2}
-\end{figure}
-
-\begin{figure}[h]
-  \caption{Use case 3: Misconceptions}
-  \centering
-  \includegraphics[scale=0.75]{bulle3}
-  \label{fig:bulle3}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\warn{Among the use case 1, in figure~\ref{fig:bulle1}, here are other examples that can be developped in the simulation:}
-\paragraph{1. The child doesn't want to take insulin}
-Some young patients try to avoid injection because of the discomfort or the pain. The fear of looking different or weak is another reason of neglecting diabetes management.
-This list of arguments, based on some advice from the nurse, can be used to help:
+	\subsection{Modules} %la feuille de brouillon rose
+	
 
-\begin{itemize}
-\item ``Going to the hospital with ketoses is much more annoying than taking your insulin''
-\item ``Going to the loo many times during schooltime is a bigger embarassment than having an injection in front of your friends''
-\item ``You can show your courage ! Most of them are affraid of needles''
-\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% NOUVEAU TITRE
+%\subsection{Computational models} 
+
+% VIEUX TITRE, A CHANGER
+%\section{The Glucose-Insulin underlying model}
+\subsection{The Glucose-Insulin underlying model}
+
+\label{sec:mymodelSection}
+    
+A model describing the evolution of blood glucose depending on the intakes of food and insulin is needed for two reasons.
+
+%OLD \subsection{Model requirements}
+\subsubsection{Model requirements}
+
+\paragraph{}
+The 3D simulation of the symptoms and physical condition needs a model, roughly based on the biological mechanisms. This model doesn't to be exactly accurate, because we need it only to trigger hypos, hypers or abilities to do a range of actions. As an example of ability, we can mention that the less sugar the avatar has (below a given threshold), the hardest it will be for him to run or dance in a party.
+\paragraph{}
+The model will also be needed for the web interface, in which rates and graphs would be displayed so that teenagers that are using the application will be able to see the consequences of having a meal, an insulin injection, or any kind of activity in real time. This will give them a better understanding of how insulin works and how sugars are used, especially along the time. This model do need a certain precision as they are supposed to use it to understand better the underlying mechanisms of diabetes. However, the educational aspect here is also more important than the accuracy needed. For instance, if the complex phenomenon x and y are involved in the process, and other parameters A, B and C has an influence on it, x and y phenomenon won't be modelled nor considered as parameters of our model if they don't need to be known by the adolescents.  
+
+%OLD \subsection{Computational Model}
+\subsubsection{Computational Model}
+The following model tries to meet the requirements described above. As expected, the key variable of this model is glucose. On one hand, we try to estimate realistically his evolution according to the known amounts of glucose eaten by the avatar, insulin intakes, energy consumption. On the other hand, the biological mechanisms should be 
+
+At this point of the project, we don't expect accurate nor complete realistic blood values, because the first use of this model will be done for the "in-game" simulation, eg the simulation of the symptoms and activities in the 3D environment. We should also specify that time in the simulation will be speeded. For this reason, blood glucose and insulin evolution over time won't be the same as the real life ones, which support the fact that a good agreement with experimental medical data is not needed. 
+
+$GlucoseB$ is the glucose in the blood, $p_{activity}$ and $p_{food}$ are the characteristic parameters respectively for a given activity and for a given type of food.$x$ is a quantity of intake (food or insulin).
+ %#todo talk about the links between this model and bergman's%
+\paragraph{}
+
+$\begin{array}{l l}
+    GlucoseB(t) = & \quad  GlucoseB(t-1) + GlucoseFromFood(t, p_{food}, x_{food})\\  & \quad + GlucoseReleased(t)
+    - GlucoseConsumption(t, state, p_{activity})\\  & \quad - InsulinEffect(t, x_{insulin})\\
+  \end{array}$
+
+\paragraph{}
+With $p_{activity}$ = $\left\{ 
+  \begin{array}{l l}
+    \tau & \quad \textrm{fonction's period}\\
+    Activity(t) & \quad \textrm{the fonction describing how glucose is used }\\
+    t_{0} & \quad \textrm{time when the activity began}
+  \end{array} \right.$
+  
+and $p_{food}$ = $\left\{ 
+  \begin{array}{l l}
+    \tau & \quad \textrm{fonction's period}\\
+    Food(t) & \quad \textrm{the fonction describing how glucose is released }\\
+    t_{0} & \quad \textrm{time when food is eaten}
+  \end{array} \right.$
+
+\paragraph{}
+InsulinEffect(t,$x_{insulin}$) describes the part of glucose removed from the bloodstream to be stored (mainly in the liver, in the form of glucagon).
+  
+The previous model can be detailed 
+\paragraph{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\paragraph{2. Patients lowering the injected doses}
-This can be done in order avoid weight gain
-As stated in ~\cite{InsulinMisuse}, insulin misuse is sometimes noted during adolescence among girls mainly.
-A personalized intelligent approach can be relevant here. With the weight or the BMI (Body Mass Index), it's easy to identify users that can be concerned by this phenomemen and to raise their awareness and suggest them a diet plan to tackle the issue of insulin-related weight gain. \cite{AnneMarie2013A128}
-%http://www.sciencedirect.com/science/article/pii/S1262363613721700
-%Les adolescentes ayant un diabète de type 1 et étant en surpoids : une approche éducative spécifique
-suggested that a specific approach for female teenagers who are overweight gave good results in the changes in their BMI, on self perception, and on their motivation in diabetes management.
+\small
+$\begin{array}{l l l}
+    GlucoseB(t) = 
+        & \quad GlucoseB(t-1)      & \quad \textrm{glucose already there}\\
+        
+        & \quad + \displaystyle \sum_{\substack{i\in \textrm{food eaten}  }} x_{i}*Food(t-t_{0}_{i})    
+* Step(t – t_{0}_{i} - \tau_{i})        & \quad \textrm{glucose released by each food}\\
+
+        & \quad +GlucoseRel(t-t_{0}) * Step(Gmax-G(t-1))      & \quad \textrm{glucose released by liver}\\
+        & \quad -BaselineActivity(state)      & \quad \textrm{glucose used for `basal' living}\\
+        & \quad -\displaystyle \sum_{\substack{
+   i\in \textrm{activities}  }}     Activity_{i}(t-t_{0}_{i}) * Step(t – t_{0}_{i} - \tau_{i}     & \quad \textrm{activities and sports}\\
+        & \quad -$\alpha$(meal) * Insulin(t-t_{0}) * Step(t – t_{0} – \tau_{i})      & \quad \textrm{insulin action on glucose}
+  \end{array}$
+  \normalsize
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+where 
+  $\left\{ 
+  \begin{array}{l l}
+    state & \quad \textrm{avatar's state: awake or sleeping}\\
+    $\alpha$(meal) & \quad \textrm{given a meal time, amount of glucose removed per unit of insulin}\\
+    Step(x) & \quad \textrm{step function, whose value is zero for negative argument and}\\ & \quad \textrm{ one for positive argument }
+  \end{array} \right.$
+
+\paragraph{}
+The step function allows us to use any kind of mathematical function to describe $Activity$, $GlucoseRel$ or $Insulin$. Indeed, we only take the restriction of the function we are interested in.
+
+For instance, \\
+        	=> muscles, liver, fat\\
+	where :\\
+Step(t) =  1 if t>=0\\
+	    0 if t<0\\
+Redistributor :\\
+1)muscles	value in g. each second\\
+2)liver		400g. max %check\\
+3)fat		40g sugar = 30g fat #find, use a factor to set it\\
 
 
-\warn{In the same motivational and proactive perspective, the approach chosen in the prototype developped for our project can lead to positive changes on diabetes management. }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\subsection{Design issues} 
+%mettre problemes de conception généraux et ceux specifiques a certains outils
 
-In the educational part of the software, we try to develop a motivational and positive approach to diabetes management. Indeed, instead of emphasizing the symptoms and all the negative effects diabetes management can have on health, we try to show diabetes management as a way to achieve great things in life. On the one hand, diabetes should not be seen as a limitation. On the other hand, diabetes management is the key criteria they should tend to master in order to be free to live the way they want. 
-Some non playing avatars can be used to expose these kind of ideas. Passionate people can be used as non playing avatars, explaining that they do their best to manage their diabetes and live their passion. We can expect adolescent to take them as examples in an identification process, like the way teenagers commonly identify with celebrities.
-%\item Dedramatize failure ? See forum posts.%
+%OLD \subsection{Design}
 
-\subsection{Design}
-\paragraph{Notifications : the Energy Bar}
+\subsubsection{Notifications : the Energy Bar}
 Knowing the educational purpose of the simulation, certain information need to be displayed in a relevant way so that the user can understand the consequences of his actions. Available information includes:
 \begin{itemize}
 \item glucose blood level (and the normal values)

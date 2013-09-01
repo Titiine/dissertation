@@ -114,35 +114,13 @@ OpenSimulator is similar to Second Life as people inside can own virtual land, c
 \warn{(Unuseful, to be removed :) OpenSimulator needs a client to connect to the server, as we need a browser to connect the web. A standalone version can also be used, in which case a local server %hosted in the user machine%
 replaces the connection to a distant server over the internet.}
 
-%\warn{\section{Aims}}
-
-\warn{\section{Hypothesis}}
-
-Various hypothesis will be tested with this project, all closed related to the improvement of diabetes education experience. \\
+\warn{\section{Motivations}}
+%COPIED FROM the 3 requirements (aims) of the simulation, in analysis :
+Besides, the software should provide a motivational way to manage diabetes, trying to make patients aware of how they can take advantage of a well managed diabetes.  This can be done with examples, by using non playing characters like successful story tellers. The non playing avatar can be a passionate athlete, explaining that without using the best management practices, he won't be able to do sport. \\
 
 
-%%%%%%%%%% HYP 1
-\paragraph{First hypothesis}An educational tool based on a virtual environment can be a powerfull tool to offer an enriched experience to users
-that cannot be found in:
-\begin{itemize}
-\item the usual theoretical content find in the leaflet 
-\item the practical aspects of diabetes educational sessions, given by the hospital 
-%\item and also more than simple real life experience usually given to train about diabetes (blood testing, insulin injections...).est whether there is a way to teach 
-\end{itemize}
-Indeed, about the last point, a virtual simulation can offer a way to experiment situations that cannot be replicated safely in real life during the sessions, such as symptoms of hypoglycemia and hyperglycemia.
-%=> Results : in the results part, discussing the different kind of uses of such a simulation
+%\warn{\section{Hypothesis}} SECTION (with 2 hypothesis) MOVED IN DESIGN
 
-%%%%%%%%%% HYP 2
-\paragraph{Second hypothesis}A test-driven learning policy could bring enhancements in two key points:\\
-1) The quality of teaching can be improved, because we are able to detect:
-\begin{itemize}
-\item What isn't already known by the user: this knowledge can be a frame to provide the user only usefull content.
-\item What is hard to keep in mind, or what tends to be forgotten from time to time: this knowledge can provide a way to test it regularily to make sure that a constant minimum level of knowledge is known.
-\end{itemize}
-
-%=> in results, talk about normal mode and learning mode (cf implementation or design)\\
-
-The latest point is especially important, given the results of studies that showed, firstly, that a better knowledge about diabetes, provided by special educational sessions to teenagers, improves their diabetes management and reduces the risks of complications~\cite{}. Secondly, it was also shown that the benefits taken from these sessions don't last more than about 36 months counting from the end of the sessions~\cite{}. 
 
 %COPIER AILLEURS : For this purpose, providing a tool with the capability of making you learn continously is opening up very promising prospects for further studies about diabetes education.
 %Moreover, such a tool could be even more efficient than group sessions with standardized lectures for all students, as it suits every user's needs because the proposed material takes into account its own memorization capacities, providing personalized and adapted content.\\
@@ -154,7 +132,7 @@ Furthermore, the complete immersion in virtual world strengthens the feeling of 
 \iffalse COPIER AILLEURS Furthermore, the complete immersion in virtual world strengthens the feeling of being active, which is one of the main requirements for an ideal teaching solution for young adults. Here, the simulation requires from the user to manage his avatar's diabetes correctly to be rewarded. For this purpose, the user needs to know diabetes mechanisms, and learn the day-to-day techniques used in diabetes management. 
 %%%%%%%%%%%%%% HORS SUJET : WOW et addictivité, pour rendre l'utilisation de l'outil quotidienne
 
-Moreover, World of Warcraft (WoW) addictiveness, that was decried by many specialists, could be beneficial to our tool. If only a part of this addictiveness mechanisms can be reproduced, the day to day training on diabetes and diabetes-related skills enhancement will be made possible. This point is extremely crucial because users a expected to use the tool on a regular basis, in order to avoid the problems met by previous attempts to design similar educational tools about diabetes, such as... (exemples in intro ?). These results are detailled in section~\ref{sec:resultsOfToolReview}\\
+Moreover, World of Warcraft (WoW) addictiveness, that was decried by many specialists, could be beneficial to our tool. If only a part of this addictiveness mechanisms can be reproduced, the day to day training on diabetes and diabetes-related skills enhancement will be made possible. This point is extremely crucial because users a expected to use the tool on a regular basis, in order to avoid the problems met by previous attempts to design similar educational tools about diabetes, such as... (examples in intro ?). These results are detailed in section~\ref{sec:resultsOfToolReview}\\
 
 Contrary to what might sometimes be believed, addictiveness of WoW lies more in the than in the community life players experience than in the interest for the game itself. Obviously, the game design is already good, but it is not enough to explain the extreme consequences that were sometimes observed, such as players that doesn't sleep for more than one day because there were continously playing to WoW. 
 
@@ -176,10 +154,10 @@ Thus, this kind of game can be used by educators as a perfect introduction to en
 \subsubsection{Serious tools}
 The other kind of educational software about diabetes were designed more as a learning tools, such as forums and materials on various topics, than games. They were not designed to entertain people, but to provide a convenient and attractive tool for diabetes education. A tool that should also suit the teenagers needs.\\
 
-This kind of tool is quite unlikely to be designed to suit both diabetic and non-diabetic people's needs, because they aren't supposed to look for the same kind of knowledge. For instance, in TimeOut, carbohydrates counting is used during all the mission. It is an efficient and playfull way to train teenagers with this technique, and the repetivity of the game concerning this precise point is probably a strenght. However, it is the main knowledge taught in this tool, which means that whenever the user maters this technique, the game becomes boring. Furthermore, it might be difficult to find it interesting for a non diabetic player, because the need to learn and make use of carbohydrates counting isn't strong enough as there is no strong motivation to do so: the only consequence of a good diabetes management will result on a higher score at the end of the game.\\
+This kind of tool is quite unlikely to be designed to suit both diabetic and non-diabetic people's needs, because they aren't supposed to look for the same kind of knowledge. For instance, in TimeOut, carbohydrates counting is used during all the mission. It is an efficient and playfull way to train teenagers with this technique, and the repetivity of the game concerning this precise point is probably a strenght. However, it is the main knowledge taught in this tool, which means that whenever the user matters this technique, the game becomes boring. Furthermore, it might be difficult to find it interesting for a non diabetic player, because the need to learn and make use of carbohydrates counting isn't strong enough as there is no strong motivation to do so: the only consequence of a good diabetes management will result on a higher score at the end of the game.\\
 
 \subsubsection{Consequences on our design}
-Studiying these mechanisms allows us to develop various attemps to highly involve the user to achieve good diabetes management. 
+Studying these mechanisms allows us to develop various attempts to highly involve the user to achieve good diabetes management. 
 
 \subsubsection{The Tamagotchi case}
 The example of Tamagotchis~\cite{holzinger2001triangle} is very instructive from this perspective : how a simple virtual pet device with limited functionalities can entail such a high involvment from users ? The Tamagotchi is a virtual pet that need to be carefully breed in order to keep it alive as long as possible. Technically, the Tamagotchi was a small device with three buttons, beeping when the user has to take care of it. \\
@@ -235,7 +213,8 @@ In the third chapter, the project plan is given, describing what is going to be 
 %\chapter{Summary}
 %Simulations have been widely used in the contect of education. 
 %
-%We saw in the literature review that an effective diabetes management can reduce diabetes complications. Technology  cannot be isolated from educational issues, psychological condition o how contribution
+%We saw in the literature review that an effective diabetes management can reduce diabetes complications. 
+Technology  cannot be isolated from educational issues, psychological condition o how contribution
 %
 %Design of 
 %
