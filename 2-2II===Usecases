@@ -1,11 +1,11 @@
 %NEW 2) DESIGN
-%\section{Design} PLAN
-%	\subsection{Choice of the simulation tool}
-%	\subsection{Modules} %la feuille de brouillon rose
-%	\subsection{Computational models} 
-%	\subsection{Design of the modules} 
+%\chapter{Design} PLAN
+%	\section{Choice of the simulation tool}
+%	\section{Modules} %la feuille de brouillon rose
+%	\section{Computational models} 
+%	\section{Design of the modules} 
 		%mettre problemes de conception généraux 
-%	\subsection{General design issues}
+%	\section{General design issues}
 		%mettre problemes de conception specifiques a certains outils
 	
 
@@ -13,8 +13,8 @@
 %NEW 2) DESIGN
 % BEGINNING
 
-\section{Design}
-	\subsection{Choice of the simulation tool}
+\chapter{Design}
+	\section{Choice of the simulation tool}
 \label{sec:toolsConstraints}
 It was possible to choose a technology among the ones I already knew (Python~\cite{pythonWebsite}, Unity3D~\cite{Unity3DWebsite} ) and others I investigated about. The two main virtual worlds existing nowadays are OpenSimulator and Second Life. 
 \\The choice was made according to two criteria: the tool should give enough freedom to code all what is needed for this prototype, and the technology should enable a reasonably short time of development.
@@ -70,7 +70,7 @@ OpenSimulator and Second life have really close characteristics: a reduced devel
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-	\subsection{Modules} %la feuille de brouillon rose
+	\section{Modules} %la feuille de brouillon rose
 	
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -80,18 +80,18 @@ OpenSimulator and Second life have really close characteristics: a reduced devel
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % NOUVEAU TITRE
-%\subsection{Computational models} 
+%\section{Computational models} 
 
 % VIEUX TITRE, A CHANGER
 %\section{The Glucose-Insulin underlying model}
-\subsection{The Glucose-Insulin underlying model}
+\section{The Glucose-Insulin underlying model}
 
 \label{sec:mymodelSection}
     
 A model describing the evolution of blood glucose depending on the intakes of food and insulin is needed for two reasons.
 
 %OLD \subsection{Model requirements}
-\subsubsection{Model requirements}
+\subsection{Model requirements}
 
 \paragraph{}
 The 3D simulation of the symptoms and physical condition needs a model, roughly based on the biological mechanisms. This model doesn't to be exactly accurate, because we need it only to trigger hypos, hypers or abilities to do a range of actions. As an example of ability, we can mention that the less sugar the avatar has (below a given threshold), the hardest it will be for him to run or dance in a party.
@@ -99,7 +99,7 @@ The 3D simulation of the symptoms and physical condition needs a model, roughly 
 The model will also be needed for the web interface, in which rates and graphs would be displayed so that teenagers that are using the application will be able to see the consequences of having a meal, an insulin injection, or any kind of activity in real time. This will give them a better understanding of how insulin works and how sugars are used, especially along the time. This model do need a certain precision as they are supposed to use it to understand better the underlying mechanisms of diabetes. However, the educational aspect here is also more important than the accuracy needed. For instance, if the complex phenomenon x and y are involved in the process, and other parameters A, B and C has an influence on it, x and y phenomenon won't be modelled nor considered as parameters of our model if they don't need to be known by the adolescents.  
 
 %OLD \subsection{Computational Model}
-\subsubsection{Computational Model}
+\subsection{Computational Model}
 The following model tries to meet the requirements described above. As expected, the key variable of this model is glucose. On one hand, we try to estimate realistically his evolution according to the known amounts of glucose eaten by the avatar, insulin intakes, energy consumption. On the other hand, the biological mechanisms should be 
 
 At this point of the project, we don't expect accurate nor complete realistic blood values, because the first use of this model will be done for the "in-game" simulation, eg the simulation of the symptoms and activities in the 3D environment. We should also specify that time in the simulation will be speeded. For this reason, blood glucose and insulin evolution over time won't be the same as the real life ones, which support the fact that a good agreement with experimental medical data is not needed. 
@@ -182,10 +182,10 @@ Redistributor :\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\subsection{Design of the modules} 
+	\section{Design of the modules} 
 %mettre problemes de conception specifiques a certains outils
 
-\subsubsection{Symptoms}
+\subsection{Symptoms}
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%  COLLE from MyWork
 
@@ -252,7 +252,7 @@ To show anger, all the words typed by the user to communicate with other avatars
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%  DEBUT collé from myWork
 
-\subsection{Food system}
+\section{Food system}
 
 % FROM MyWork : 
 The implementation of a food system that allows the representation of a diabetic avatar was designed following the created model described in section~\ref{sec:mymodelSection} and was made as generic as possible so that the model can be easily enhanced or changed. For instance the time-scale can be slowed or accelerated for glucose absorption and the effects of insulin. Similarly, any model can be used in place of the current model for the glucose/insulin changes as we only need to compute tables of values.
@@ -281,14 +281,14 @@ The step used in the simulation is 5 seconds, and can be changed if more precisi
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Insulin}
+\section{Insulin}
 \benfac{Write about the number of units that can be chosen + the progressive release (like food)}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%  DEBUT collé from myWork
 
-	\subsection{Glucose Testing}
+	\section{Glucose Testing}
 
 A glucose meter is needed inworld so that the user can know the blood glucose level and whether it's necessary to have an insulin injection or a meal to rise blood glucose. It is also a major aspect of diabetes experience in real life. Consequently, users need to be familiar with it.
 
@@ -310,7 +310,7 @@ For this purpose, the glucose meter object displays in world the result of the t
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%  DEBUT collé from myWork
-\subsection{Materials for diabetes self-education}
+\section{Materials for diabetes self-education}
 
 A complete module of the application is dedicated to improve the user's knowledge about diabetes. Learning, and testing the knowledge are the two aspect of the educational module.
 
@@ -333,12 +333,12 @@ In the first case, the user needs to be able to answer correctly in order to com
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 
-	\subsection{General design issues} 
+	\section{General design issues} 
 %mettre problemes de conception généraux 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%OLD \subsection{Design}
 
-\subsubsection{Displaying relevant indicators}
+\subsection{Displaying relevant indicators}
 Knowing the educational purpose of the simulation, certain information need to be displayed in a relevant way so that the user can understand the consequences of his actions. Available information includes:
 \begin{itemize}
 \item glucose blood level (and the normal values)

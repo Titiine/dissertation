@@ -1,17 +1,17 @@
 %NEW : 1) ANALYSE 
 %PLAN : 
-%\section{Analysis}
-%	\subsection{Rappel du sujet} (dans 2-1)
-outil educatif pour le diabetes
-pour les adolescents
-interactif et multijoueur
-une simulation a l'interieur
+%\chapter{Analysis}
+%	\section{Rappel du sujet} (dans 2-1)
+outil educatif pour le diabetes\\
+pour les adolescents\\
+interactif et multijoueur\\
+une simulation a l'interieur\\
 
 
-%	\subsection{Nurse} (dans 2-1 diabetes sessions)
-%	\subsection{Analysis of the needs}
-%	\subsection{Functional analysis}
-%	\subsection{Hypothesis} 
+%	\section{Nurse} (dans 2-1 diabetes sessions)
+%	\section{Analysis of the needs}
+%	\section{Functional analysis}
+%	\section{Hypothesis} 
 % ON DOIT REPONDRE A HYPOTHESIS DANS LA PARTIE (IMPLANTATION ET LES ASSESSER DANS LA PARTIE) RESULTATS
 
 %OLD : AVANT Y'AVAIT :
@@ -22,10 +22,10 @@ une simulation a l'interieur
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%   BEGIN
 
-\section{Analysis}
-%	\subsection{Rappel du sujet} (dans 2-1)
-%	\subsection{Nurse} (dans 2-1 diabetes sessions)
-	\subsection{Analysis of the needs}
+\chapter{Analysis}
+%	\section{Rappel du sujet} (dans 2-1)
+%	\section{Nurse} (dans 2-1 diabetes sessions)
+	\section{Analysis of the needs}
 \label{sec:needsAnalysis}
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%   COLLE	LES 3 POINTS QUE L OUTIL VA AMELIORER
@@ -55,7 +55,7 @@ For patients diagnosed long ago, a community based approach, allowed by the conn
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\subsection{Functional analysis}	
+	\section{Functional analysis}	
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%   COLLE	
@@ -167,7 +167,7 @@ Some non playing avatars can be used to expose these kind of ideas. Passionate p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	%OLD : \warn{\section{Hypothesis}} this SECTION was in the end of INTRODUCTION
-\warn{\subsection{Hypothesis}} 
+\warn{\section{Hypothesis}} 
 Various hypothesis will be tested with this project, all closed related to the improvement of diabetes education experience. 
 %%%%%%%%%% HYP 1
 \paragraph{First hypothesis}An educational tool based on a virtual environment can be a powerful tool to offer an enriched experience to users
