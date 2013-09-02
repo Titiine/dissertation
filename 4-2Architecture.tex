@@ -4,13 +4,20 @@
 %TODO : explain how the different development tools from section ~\ref{sec:devtools} will be assembled.
 
 %\subsection{Scripts main architecture - Overview}
-\section{Scripts main architecture - Overview}
+\section{Scripts developed - Overview of the main architecture}
 %TODO : Big schéma\\
 
 This section describes the architecture of the application based on the different scripts and the links between them.
-As OpenSimulator is used as a frame, there is some unusual constraint for coding: each script need to be attached to one object, and scripts cannot share data. \\
+As OpenSimulator is used as a frame, there is some unusual constraint for coding: each script need to be attached to one object, and scripts cannot share data. \warn{For this reason, some objects were created only to host scripts inside.}\\
 
-Scripts can be divided in 3 categories as shown in figure~\ref{fig:bigScriptFigure}:
+\begin{figure}[h!]
+  \caption{Categories of scripts used in the simulation}
+  \centering
+  \includegraphics[scale=0.6]{globalScript.png}
+  \label{fig:globalScript}
+\end{figure}
+
+Scripts can be divided in 3 categories as shown in figure~\ref{fig:globalScript}:
 \begin{itemize}
 \item The StateScript can be considered as the first category. Controlling the avatar's behaviour and its internal blood and insulin systems, it is the main script.
 \item Scripts that perform a specific task strongly related to the nature of the object that is hosting the script. This category of domain-related scripts includes the FoodScript, the InsulinScript, and the MeterScript. All these scripts communicate with the StateScript, as described in ~\ref{ref:scriptComm}.

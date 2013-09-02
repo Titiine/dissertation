@@ -3,8 +3,10 @@
 %	\subsection{Choice of the simulation tool}
 %	\subsection{Modules} %la feuille de brouillon rose
 %	\subsection{Computational models} 
-%	\subsection{Design issues} %mettre problemes de conception généraux et ceux specifiques a certains outils
-
+%	\subsection{Design of the modules} 
+		%mettre problemes de conception généraux 
+%	\subsection{General design issues}
+		%mettre problemes de conception specifiques a certains outils
 	
 
 
@@ -180,28 +182,201 @@ Redistributor :\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\subsection{Design issues} 
-%mettre problemes de conception généraux et ceux specifiques a certains outils
+	\subsection{Design of the modules} 
+%mettre problemes de conception specifiques a certains outils
 
-%OLD \subsection{Design}
+\subsubsection{Symptoms}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%  COLLE from MyWork
 
-\subsubsection{Notifications : the Energy Bar}
+The project focused on improving diabetes management and \warn{education, which involves covering} various symptoms that characterize hypoglycemia and hyperglycemia. \warn{We had to find a way to produce a three-dimensional representation of these symptoms} within OpenSimulator.\\
+The following symptoms are quite common for patients with diabetes: \\
+-Confusion, dizziness\\
+-Headache\\
+-Sweating\\
+-Need to urinate more often than usual
+
+%%
+We figured out various ways to illustrate them, exposed in this section.
+\paragraph{Unresponsiveness} (in case of hyperglycemia), will results in an avatar that cannot move in some directions. This can be done by making some random keys of the keyboard unresponsive. The keys are selected among $\leftarrow \uparrow \rightarrow$ and $\downarrow$, which are normally used to move the avatar.
+\paragraph{}As a consequence, the avatar won't be able to turn left or right while walking, for a given amount of time. 
+While the avatar's condition is worsening, the symptom is strengthened by blocking more keys, and for a longer time.\\
+
+\paragraph{Confusion} means that the avatar won't respond correctly to the commands given by the user. 
+If the user presses key up, instead of jumping, the avatar would turn right, or go backwards. \\
+
+\paragraph{Difficulty to make things because of a lack of energy} is rendered by slowing the avatar's movements. Walking will be slowed. \\
+
+%% (...)
+
+
+%%%%%%  FIN collé from myWork
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  DEBUT collé from myWork
+
+\paragraph{Animations} The use of animations simulates a loss of awareness of the reality due to hypoglycemia. 
+Some people may say silly things or act in completely unusual ways when they have a low blood sugar.
+They can behave spectacularly and even become violent.\\ 
+
+%%%%%%% MORCEAU RESTE DANS IMPLEMENTATION :
+\ifalse
+This solution was implemented to display a bizarre overreaction to hypoglycemia. Another animation is used to render a strong headache, with an avatar taking his head into his hands. 
+\fi
+
+%% (...)
+
+%%%%%%  FIN collé from myWork
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  DEBUT collé from myWork
+
+\paragraph{Altering the avatar's speaking capacities} can be another way to express diabetes symptoms. For confusion, words can be replaced by others words that begin with the same letter. 
+To show anger, all the words typed by the user to communicate with other avatars in-world by text messages can be converted into uppercase. \\
+
+\benfac{If enough time, write the corresponding example in the implementation part.}\\
+
+%%%%%%  FIN collé from myWork
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  DEBUT collé from myWork
+
+\subsection{Food system}
+
+% FROM MyWork : 
+The implementation of a food system that allows the representation of a diabetic avatar was designed following the created model described in section~\ref{sec:mymodelSection} and was made as generic as possible so that the model can be easily enhanced or changed. For instance the time-scale can be slowed or accelerated for glucose absorption and the effects of insulin. Similarly, any model can be used in place of the current model for the glucose/insulin changes as we only need to compute tables of values.
+
+% (...)
+
+The total amount of glucose is taken from tables such as~\ref{fig:foodGlucoseTable} and also from \cite{nutritiondataWebsite} 
+%http://nutritiondata.self.com/
+when the data can't be found in tables. \\
+
+%(...)
+
+The food object communicates to the StateScript (via llSay() method, see section \ref{llsayCom}) the characteristic parameters for the food. When the parameters data cannot be found in the literature, the only parameter sent is the total amount of carbohydrates contained in the food item, and a default behaviour is followed. The default behaviour is based on a interpolation of a sample glucose absorption function (or a curve) taken from a sample glycemic index curve such as\ref{pic:GImissing}. %that was computed from the mathematical model chosen. 
+We know that the maximum blood level is reached 30 minutes after food absorption.
+The default behaviour for a step of 10 minutes (in real life) is given in table\ref{table:default}. 
+
+% values for the default table : 0, 10, 20, 30, 40 min 0, 20, 30, 40, 10. 
+
+At each step, the rise of blood glucose is expressed as a percentage of the global amount of carbohydrates provided by the food item according to the literature (glycemic index for the curve ``profile'', glycemic load for the values, defined in section~\ref{sec:GIGL}). This list of percentage values is the model for the carbohydrates released in the blood during digestion. 
+The percentage associated to each step is directly added to the global blood glucose. 
+
+The step used in the simulation is 5 seconds, and can be changed if more precision is needed for the digestion process.
+
+
+%%%%%%  FIN collé from myWork
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Insulin}
+\benfac{Write about the number of units that can be chosen + the progressive release (like food)}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  DEBUT collé from myWork
+
+	\subsection{Glucose Testing}
+
+A glucose meter is needed inworld so that the user can know the blood glucose level and whether it's necessary to have an insulin injection or a meal to rise blood glucose. It is also a major aspect of diabetes experience in real life. Consequently, users need to be familiar with it.
+
+A glucose meter device was created in world with the OpenSimulator builder tool shown in picture~\ref{fig:opensimBuilder}. The device can be carried in the avatar's %(OLD:) inventory 
+%(NEW :) 
+pocket.
+(which is the equivalent of keeping it in the pocket in real life) and be accessible wherever the avatar is, 
+or kept somewhere in the house (on a desktop, for instance) which means that the avatar needs to move there in order to test his blood glucose. 
+Logs with the results of each test are the main way for the diabetes team in the hospital to follow the day to day evolution of diabetes, in order to improve diabetes management and to adapt the treatment to the patient's needs. \\
+
+For this purpose, the glucose meter object displays in world the result of the test each time it's used. \\
+
+
+%%%%%%  FIN collé from myWork
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  DEBUT collé from myWork
+\subsection{Materials for diabetes self-education}
+
+A complete module of the application is dedicated to improve the user's knowledge about diabetes. Learning, and testing the knowledge are the two aspect of the educational module.
+
+A room is dedicated to improve the knowledge about diabetes. The avatar can teleport to this room, whose walls are covered by screens objects of 3 kinds :
+\begin{itemize}
+\item Theoretical knowledge about diabetes, displayed on web pages
+\item Practical skills about insulin therapy and blood testing, using videos
+\item Tests, displayed on web pages
+\end{itemize}
+
+The materials comes from leaflets and tests used with young patients during the nurse and dietician sessions, all of them provided by the Royal Children's Hospital of Manchester. Videos are directly streamed from videos websites such as YouTube, and some other information are provided by displaying websites such as diabetes.co.uk.\\
+
+\paragraph{Tests}
+Before taking a test, users are given the web pages that contain what they should know in order to be able to answer correctly. After taking the test, they are advised to visit the page that contains the answer of the question that was missed.\\
+
+Tests can be taken in normal or learning mode. The normal mode only displays if the answer was correct, and invites the user to answer again the missed questions after reading the related materials, while in the learning mode, the questions are directly corrected during the test, showing the correct answer for each question. 
+In the first case, the user needs to be able to answer correctly in order to complete the test. The second one is more useful to learn new information about diabetes, for those that don't want to read the materials.\\
+
+%%%%%%  FIN collé from myWork
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+	\subsection{General design issues} 
+%mettre problemes de conception généraux 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%OLD \subsection{Design}
+
+\subsubsection{Displaying relevant indicators}
 Knowing the educational purpose of the simulation, certain information need to be displayed in a relevant way so that the user can understand the consequences of his actions. Available information includes:
 \begin{itemize}
 \item glucose blood level (and the normal values)
 \item insulin blood level
 \item liver glucose
-\item the ``amount'' of energy consumed by an activity.
+\item the ``amount'' of energy available for an activity and the amount consumed by an activity.
 \end{itemize}
 
-A large amount of other variables is available, but on the contrary of software simulation tools based on graphs and values such as Aida, I choosed to display only a small quantity of information
+A large amount of other variables is available, but on the contrary of software simulation tools based on graphs and values such as Aida, we chose to display only a small quantity of information. In fact, an overloaded user interface would distract the user at the expense of the immersion in the simulation, which is a major requirement.\\
+ 
 % (WHY ? REMOVE OR JUSTIFY THE CHOICE: 
 %, with a maximum of 3 values. 
-. It doesn't make sense to put all the indicators on the screen of the 3D simulation because an overloaded interface would decrease the interest of the teenage final users, according to what was said in the analysis of the Aida tool % in reference ... 
-(or in the guidelines section).
 
+1) As it doesn't make sense to put all the indicators on the screen of the 3D simulation, it's also necesary to optimize the integration of the displayed values in the simulation storyboard, else it could decrease the interest of the final user, who is supposed to be a teenagers. As young people are used to First-person shooter (FPS) games, which are video games with combat through a first-person perspective, they are used to have a life bar displayed, showing the amount of energy left before the character dies. We can use the same kind of display to show the effects of the simulation in their glucose system.\\ 
+%%%%%%%%%show a picture of a bar in a FPS ?
 
-Users should be aware of the impacts of:
+2) In order to keep the relevance of blood testing, it is necessary to avoid displaying blood glucose on screen. The user need to perform test his blood in world, by using a glucose meter, to get this value. Else, blood testing could be avoided by users which is undesirable because it is a main part of the diabetes daily routine.\\
+
+%%%%%% Mettre dans une section energy bar séparée ?
+
+\paragraph{Displaying the energy indicator : Energy Bar}
+
+According to points 1) and 2) discussed about the display of relevant indicators, an Energy Bar, varying from red to green, will represent the amount of "available" energy. In case of hypoglycemia, there is little energy (because there is little glucose available to be converted into energy) so the bar is red. With the amount of glucose building up, the bar will change into green. \\
+However, the bar doesn't strictly follow the amount of blood glucose, but the amount of glucose that can be used. As a consequence, if there is no insulin to convert blood glucose into energy, even with a high blood glucose, the energy won't be available and the bar will be orange, or even red in case of a very strong hyperglycemia. \\
+
+%%%%%%% Show un schema avec les couleurs de la barre
+
+\benfac{
+\paragraph{Details about the bar, and how to compute the percentage to be shown :}
+The bar is always visible on the top of the screen.\\
+The displayed value and colour are given by...
+A maximum value is fixed. 
+}
+
+\iffalse
+% was moved in perspective, normally to be followed by a section describing the indicators that will show tooltips...
+
+To meet the educational requirements, users should be aware of the impacts of:
 \begin{itemize}
 \item the food they eat on their glycemic system
 \item the effects of physical activity on blood levels
@@ -219,6 +394,5 @@ For this purpose, the key point is to display indicators at some moments, and to
 
 %suite available... (in old)
 
-In order to keep the relevance of blood testing, it is necessary to avoid displaying blood glucose on screen. The user need to perform test his blood in world, by using a glucose meter, to get this value. Else, blood testing could be avoided by users which is undesirable because it is a main part of the diabetic's daily routine.\\
+\fi
 
-An energy bar, varying from red to green, will represent the amount of "available" energy. In case of hypoglycemia, there is little energy so the bar is red. With the amount of glucose building up, the bar will change into green. However, if there is no insulin that can be used by the blood, even with a high blood sugar, the energy won't be available and the bar will be orange, or even red in case of a very strong hyperglycemia. This bar is always visible on the top of the screen.

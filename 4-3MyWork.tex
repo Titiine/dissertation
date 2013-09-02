@@ -76,47 +76,36 @@ In order to give the user the most relevant feedback on how blood sugar can affe
 We had to choose between two solutions concerning the way to display this indicator:
 
 \begin{itemize}
-\item It can be displayed as an object in-world, that shows the energy value and changes colour according to this value. The advantage is that the object doesn't need any external ressource or database to work because the value can be communicated with the llSay() methods, as described in~\ref{llsayCom}. However, it isn't obvious for the user to understand that an object whose colour changes from time to time is displaying the amount of available energy.
-\item The energy bar can be a webpage displayed on an object. The advantage is that there is no constraint on the colour and the shape of the bar. The disadvantage consists on the additional server infrastructure needed to make this solution work.
+\item It can be displayed as an object in-world, that shows the energy value and changes colour according to this value. The advantage is that the object doesn't need any external resource or database to work because the value can be sent by the StateScript to the script of the object used to display the energy, by using the llSay() methods (as described in~\ref{llsayCom}). However, due to the restrictions of OpenSimulator, the shape of the object won't change with the colour. 
+\item The energy bar can be a web page displayed on an object. The advantage is that there is no constraint on the colour and the shape of the bar. The disadvantage consists on the additional server infrastructure needed to make this solution work.
 \end{itemize}
 
-The webpage solution was chosen because it can be personalized so that it suits exactly our needs. Moreover, webpages are dynamic, which make it possible to create an Energy Bar that will be familiar to the users and easy to understand because it looks like the loading bars commontly used on the Internet.\\
+If the first solution is used, it won't be obvious for the user to understand that an object whose colour changes from time to time is displaying the amount of available energy. Thus, as discussed in the Design chapter, this solution won't allow us to provide indicators on the screen that are enough relevant.\\
+The web page solution was chosen because it can be personalized so that it suits exactly our needs. Moreover, web pages are dynamic, which make it possible to create an Energy Bar that will be familiar to the users %and easy to understand 
+because it looks like the loading bars commonly used on the Internet.\\
 
-\subsubsection{An object using HUDs and Shared Media} The object used to display the bar is a flat parallelepiped, attached to the Heads-up displays (HUD), which mean that the object is always visible, sticking to the top of the screen in the user interface. No script was needed, because the viewer enables the Shared Media\cite{sharedmediaWebsite} feature, which allows a user to select the address of any resource that can be rendered by a normal web browser. The media selected will then be displayed on the object and it can be a video or a web page.\\
+\subsubsection{The Bar display} The object used to display the bar is a flat parallelepiped, attached to the Heads-up displays (HUD), which mean that the object is always visible, sticking to the top of the screen in the user interface. Examples of HUDs are visible in figure~\ref{fig:3HUDPic}. 
+To display the web page on the object's face, no script was needed because the viewer enables the Shared Media\cite{sharedmediaWebsite} feature, which allows a user to select the address of any resource that can be rendered by a normal web browser. The media selected will then be displayed on the object. Media can be videos and web pages.\\
 
 \begin{figure}[h]
-  \caption{"Screenshot of the simulation with the EnergyBar attached to HUD on top, center"}
+  \caption{Screenshot of the simulation with the EnergyBar attached to HUD on top, centre}
   \centering
-  \includegraphics[scale=1.0]{2energyBarPic.jpg}
+  \includegraphics[scale=0.5]{2energyBarPic.jpg}
   \label{fig:2energyBarPic}
 \end{figure}
 
 
-\subsubsection{A dynamic webpage using JavaScript and Ajax}
-The Bar, visible in figure~\ref{fig:2energyBarPic} consists on an dynamic webpage rendered by the web server and displayed on an object in world. 
+\subsubsection{The Bar webpage} 
+%%%%%%%%%%%% OLD \subsubsection{A dynamic web page using JavaScript and Ajax}
 
-\subsubsection{Database and web server to access data} 
-To create the webpage that contains the energy bar, Django web server application was used. The bar is adapted from Bramus' jsProgressBarHandler~\cite{progressBarWebsite}. An Ajax~\cite{jqueryWebsite} request for the latest data is sent every 300 milliseconds to the web server, which retrieves the data from the database.
+The web page used to make the Energy Bar, visible in figure~\ref{fig:2energyBarPic}, is rendered by the web server.\\
+The value needed to render the web page are on the web server. Each time the main script updates the energy value, this value is send via an HTTP request to the web server, which stores it into a SQLite database. Then, the web page sends a request to the server to get the needed value, with Ajax~\cite{jqueryWebsite} as this technology enables interactions with the server without reloading the web page.\\
+When the server answers by giving the new energy value, the web page update the bar display, wait 200 milliseconds, and calls the server again to get the next value. A recursive function is used for this purpose.\\
+The Energy Bar display is adapted from Bramus' jsProgressBarHandler~\cite{progressBarWebsite}, written in javascript. 
+%OLD An Ajax request for the latest data is sent every 300 milliseconds to the web server, which retrieves the data from the database.
 
 \subsection{Symptoms}
 
-The project focused on improving diabetes management and \warn{education, which involves covering} various symptoms that characterize hypoglycemia and hyperglycemia. \warn{We had to find a way to produce a three-dimensional representation of these symptoms} within OpenSimulator.\\
-The following symptoms are quite common for patients with diabetes: \\
--Confusion, dizziness\\
--Headache\\
--Sweating\\
--Need to urinate more often than usual
-
-%%
-We figured out various ways to illustrate them, exposed in this section.
-\paragraph{Unresponsiveness} (in case of hyperglycemia), will results in an avatar that cannot move in some directions. This can be done by making some random keys of the keyboard unresponsive. The keys are selected among $\leftarrow \uparrow \rightarrow$ and $\downarrow$, which are normally used to move the avatar.
-\paragraph{}As a consequence, the avatar won't be able to turn left or right while walking, for a given amount of time. 
-While the avatar's condition is worsening, the symptom is strengthened by blocking more keys, and for a longer time.\\
-
-\paragraph{Confusion} means that the avatar won't respond correctly to the commands given by the user. 
-If the user presses key up, instead of jumping, the avatar would turn right, or go backwards. \\
-
-\paragraph{Difficulty to make things because of a lack of energy} is rendered by slowing the avatar's movements. Walking will be slowed. \\
 
 %a reparer !!! The same kind of script can be used for the two first symptoms. The solution consists in overriding the usual behaviour (?) of the keyboard's keys, calling the ... functions. \\
 %In the first case, ..\\
@@ -131,19 +120,27 @@ A noticeable difference between the two solution will be visible for instance wh
 Starting from the ground, the slope is at first soft so the avatar can walk, even slowly in both cases. Then, it gets steeper and steeper when the avatar reaches the top. 
 In this situation, using the second solution will make it impossible to climb, which is realistic, while the first one will make it possible, without taking into account the difficulty of the task. We used the llSetForce() method to apply the force.\\
 
+
+%%%%%% COUPE ET COLLE DANS DESIGN
+\iffalse
 \paragraph{Animations} The use of animations simulates a loss of awareness of the reality due to hypoglycemia. 
 Some people may say silly things or act in completely unusual ways when they have a low blood sugar.
 They can behave spectacularly and even become violent.\\ 
+\fi
 
 This solution was implemented to display a bizarre overreaction to hypoglycemia. Another animation is used to render a strong headache, with an avatar taking his head into his hands. 
 
 
-\iffalse The following solution was implemented for instance with a headache animation and also a bizarre overreaction to hypoglycemia, the avatar beahaving as if it was happy or angry.\\
+% Nulle part. PUT SOMEWHERE ?
+\iffalse 
+The following solution was implemented for instance with a headache animation and also a bizarre overreaction to hypoglycemia, the avatar beahaving as if it was happy or angry.\\
 An animation can also be  be One the other hand, la prise de parole (?) of the avatar will be negatively affected. INVERSER L'ORDRE\\
 \fi
 
 
-One the other hand, public speaking of the avatar can be negatively affected.
+\benfac{1) On the other hand, public speaking of the avatar can be negatively affected.}\\
+
+\benfac{2) Explain how an animation is created, stored in the inventory, etc}
 
 \paragraph{Altering the avatar's speaking capacities} can be another way to express diabetes symptoms. For confusion, words can be replaced by others words that begin with the same letter. 
 To show anger, all the words typed by the user to communicate with other avatars in-world by text messages can be converted into uppercase. 
@@ -151,18 +148,21 @@ To show anger, all the words typed by the user to communicate with other avatars
 \subsection{Food system}
 
 %\subsubsection{General overview}
-The food object is an object that represents a food item in 3D, with a script inside to make the object eatable. The implementation of a food system that allows the representation of a diabetic avatar was designed following the created model described in section~\ref{sec:mymodelSection} and was made as generic as possible so that the model can be easily enhanced or changed. For instance the time-scale can be slowed or accelerated for glucose absorption and the effects of insulin. Similarly, any model can be used in place of the current model for the glucose/insulin changes as we only need to compute tables of values.
+The food object is an object that represents a food item in 3D, with a script inside to make the object eatable. 
+
+% MOVED IN DESIGN : The implementation of a food system that allows the representation of a diabetic avatar was designed following the created model described in section~\ref{sec:mymodelSection} and was made as generic as possible so that the model can be easily enhanced or changed. For instance the time-scale can be slowed or accelerated for glucose absorption and the effects of insulin. Similarly, any model can be used in place of the current model for the glucose/insulin changes as we only need to compute tables of values.
 
 \begin{figure}[h]
   \caption{Global and local parameters used in the scripts related to the feeding system}
   \centering
-  \includegraphics[scale=0.45]{GLparam.jpg}
+  \includegraphics[=0.45]{GLparam.jpg}
   \label{fig:GLparam}
 \end{figure}
 
 At each time, glucose level can be computed from the model according to global and local parameters as shown in figure~\ref{fig:GLparam}. These parameters are located in two scripts: StateScript and FoodObject. As described in section~\ref{sec:statescript}, StateScript is the main script for the avatar, controlling the glucose-insulin system and the symptoms displayed. FoodObject is a generic script that describes each food item behaviour. 
 
-According to our requirements, a minimal amount of specific features need to be implemented for each kind of food: the total amount of glucose in a food item, its name and the time needed to reach the glucose peak (maximum level of blood glucose since the food consumption). This generic skeleton is used for each food object in the simulation. The total amount of glucose is taken from tables such as~\ref{fig:foodGlucoseTable} and also from \cite{nutritiondataWebsite} 
+According to our requirements, a minimal amount of specific features need to be implemented for each kind of food: the total amount of glucose in a food item, its name and the time needed to reach the glucose peak (maximum level of blood glucose since the food consumption). This generic skeleton is used for each food object in the simulation. 
+% MOVED IN DESIGN : The total amount of glucose is taken from tables such as~\ref{fig:foodGlucoseTable} and also from \cite{nutritiondataWebsite} 
 %http://nutritiondata.self.com/
 when the data can't be found in tables. \\
 
@@ -171,13 +171,16 @@ when the data can't be found in tables. \\
 \begin{figure}[h]
   \caption{Avatar eating a brownie in the simulation, with the Eating animation}
   \centering
-  \includegraphics[scale=1.0]{7eatingPic.jpg}
+  \includegraphics[scale=0.7]{7eatingPic.jpg}
   \label{fig:7eatingPic}
 \end{figure}
 
 When a food object is touched by an avatar, it is attached to his hand, and he begins ``eating'' it, displaying on screen the correct animation as shown in picture~\ref{fig:7eatingPic}. Then, the object is destroyed.
 
-The food object communicates to the StateScript (via llSay() method, see section \ref{llsayCom}) the characteristic parameters for the food. When the parameters data cannot be found in the literature, the only parameter sent is the total amount of carbohydrates contained in the food item, and a default behaviour is followed. The default behaviour is based on a interpolation of a sample glucose absorption function (or a curve) taken from a sample glycemic index curve such as\ref{pic:GImissing}. %that was computed from the mathematical model chosen. 
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\iffalse
+% MOVED TO DESIGN The food object communicates to the StateScript (via llSay() method, see section \ref{llsayCom}) the characteristic parameters for the food. When the parameters data cannot be found in the literature, the only parameter sent is the total amount of carbohydrates contained in the food item, and a default behaviour is followed. The default behaviour is based on a interpolation of a sample glucose absorption function (or a curve) taken from a sample glycemic index curve such as\ref{pic:GImissing}. %that was computed from the mathematical model chosen. 
 We know that the maximum blood level is reached 30 minutes after food absorption.
 The default behaviour for a step of 10 minutes (in real life) is given in table\ref{table:default}. % values for the default table : 0, 10, 20, 30, 40 min 0, 20, 30, 40, 10. 
 
@@ -185,7 +188,9 @@ At each step, the rise of blood glucose is expressed as a percentage of the glob
 The percentage associated to each step is directly added to the global blood glucose. 
 
 The step used in the simulation is 5 seconds, and can be changed if more precision is needed for the digestion process.
-
+\fi
+%%%%%%%%%%
+%%%%%%%%%%
 \iffalse
 
 \begin{figure}[h]
@@ -241,7 +246,82 @@ Furthermore, the destruction of the food object need to be synchronized with the
 %explain animations, sequence of animations
 
 
-	\subsubsection{Realism enhancement}
+
+%%%%%%% Animation issues MOVED down(OLD 'realism enhancement' and eat action, anim library, anim length...)
+
+\subsection{Insulin and glucose meter}
+	\subsubsection{Insulin} 
+
+\begin{figure}[h]
+  \caption{Insulin pen used to give an insulin shot}
+  \centering
+  \includegraphics[scale=0.8]{11insulinObject.jpg}
+  \label{fig:11insulinObject}
+\end{figure}
+
+The insulin object is very similar to the food object. The only changes are that blood sugar decreases instead of increasing and that the animations displayed are different.\\
+The main animation built for this project was the one used to inject insulin. It contains three frames :
+\begin{itemize} 
+\item The first frame is a movement that involves the right collar, shoulder and forearm to move the insulin (carried by the right hand) into the correct position to begin the injection. 
+\item The second frame sets the correct position for the right thigh where insulin will be injected, and change the abdomen and chest position to make the avatar lean forward. \item Next movement is to make the avatar look at his tight, while the arm comes down to put the needle into the thigh and without moving during 10 seconds, as required for an insulin injection.
+\begin{itemize}
+
+A picture of the insulin object built is shown in figure~\ref{fig:11insulinObject}.
+
+
+
+
+
+	\subsubsection{Glucose Testing}
+
+\iffalse
+%%%% BEGIN CUT (put in design)
+%%%%%%%%%
+%%%%%%%%%
+A glucose meter is needed inworld so that the user can know the blood glucose level and whether it's necessary to have an insulin injection or a meal to rise blood glucose. It is also a major aspect of diabetes experience in real life. Consequently, users need to be familiar with it.
+
+A glucose meter device was created in world with the OpenSimulator builder tool shown in picture~\ref{fig:opensimBuilder}. The device can be carried in the avatar's inventory 
+(which is the equivalent of keeping it in the pocket in real life) and be accessible wherever the avatar is, 
+or kept somewhere in the house (on a desktop, for instance) which means that the avatar needs to move there in order to test his blood glucose. 
+Logs with the results of each test are the main way for the diabetes team in the hospital to follow the day to day evolution of diabetes, in order to improve diabetes management and to adapt the treatment to the patient's needs. \\
+
+For this purpose, the glucose meter object displays in world the result of the test each time it's used. \\
+
+\fi
+%%% end cut
+%%%%%%%%%
+%%%%%%%%%
+
+
+To display the value of the blood test in-world %To perform this task
+, the first solution is to send an HTTP request to the server to retrieve from the database the most recent value of blood glucose. 
+This solution make use of the existing web server that is used to display the energy bar on the menu, so it only needs to write a method on the server to send an HTTP response with the result. 
+The problem of this implementation is that the web server is necessary, so the glucose testing functionality won't be available without the server. \\
+
+The second solution is to use the llSay() set of methods to communicate directly with the StateScript, used to compute the avatar's blood glucose at each moment. 
+As described in figure~\ref{glucoseMeterCommunication} the glucose meter script sends a request to the StateScript, which sends the current value of the blood glucose.
+This method is quicker (see come testing results? in the "Technical Evaluation" chapter) and allows the glucose meter to be used even if the web server crashes.\\
+
+Indeed, in case of a server failure, this last point is especially crucial because the energy bar on the top of the screen won't display energy anymore. 
+Given that the main aim of the simulation is to teach users how to test, when to test and how to manage blood glucose, the software has to be able to deal with such a failure and to continue to give a way for the user to know the blood level so that it can still be corrected. \\
+
+For this reason, the second solution was chosen for this critical feature so that there is still a way to test blood levels and to continue using the simulation even without a web server.\\
+
+
+In both cases, after receiving the value of blood glucose, this value is displayed on the meter with a llSetText(). The glucose meter script is also responsible for keeping for logging the values of all the previous blood tests realized by the user. The logs are stored locally in a list (only the dozen of last values), and also sent to the web server database. 
+It is possible to consult the full logs to know whether the testing is done as often as it should be. The Logs web page was realized for this purpose, using the web server and it's database with the complete results.
+
+
+%NEW (moved from en haut) : 
+\subsection{Implementation issues}
+%classification en 2 types, le dire dans la description
+1)Usability (and UIs, user interfaces)\\
+2) Realism enhancement (animations)
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% BEGIN CUT
+
+    \subsubsection{Realism enhancement}
 The main issue to solve with the food object was to give it a realistic behaviour, essentially on 3 points: how the action of eating the food is triggered, how to render an appropriate eating animation according to the food item and how to make the food object disappear realistically.
 \\
 	\paragraph{A realistic trigger for the ``eat'' action}
@@ -263,15 +343,20 @@ To trigger the action of eating the food, different solutions are possible: \\
 
 
 \begin{enumerate}
-\item The food is eaten when the avatar right-clicks on the object to access the contextual menu, then selects the ``Eat'' action visible in figure ~\ref{fig:9eatActionMenu}. The addition of a personalized command in the contextual menu was needed, and was also used for other issues in the implementation. Details are discussed in~\ref{sec:setsittext}. However, this solutions is the most complicated from a user interface perspective, as it requires at least 2 clicks to eat the item.
-\item The food is eaten when the avatar ``walks'' on the object, like in some video games. The main disadvantage of this solution is that the avatar can eat the object by mistake, for instance if he moves back while the food object is behind him.
+\item The food is eaten when the avatar right-clicks on the object to access the contextual menu, then selects the ``Eat'' action visible in figure ~\ref{fig:9eatActionMenu}. The addition of a personalized command in the contextual menu was needed, and was also used for other issues in the implementation. Details are discussed in~\ref{sec:setsittext}. However, this solutions is the most complicated from a user interface perspective, as it requires at least 2 clicks from the user to eat the item.
+\item The food is eaten when the avatar ``walks'' on the object, like in some video games (which, from a technical point of view, occurs when the avatar's body collides with the food object ). The main disadvantage of this solution is that the avatar can eat the object by mistake, for instance if he moves back while the food object is behind him.
 \item The food item is eaten when the avatar simply clicks on it. A minor problem with this solution is that there is no way to know in advance which object can be eaten if there's nothing to show that it's clickable. There is currently a text with the food name onto the object but the rendering is unattractive so the text will be removed in order to enhance realism and user experience.
 %, it will be hard to detect with which object of the kitchen interactions are available.
 \end{enumerate}
 
 The third solution was chosen as it provides a good compromise between the simulation needs and the application's ergonomic. However, an improvement will be added by implementing the solution used to make the avatar sit automatically on a chair, described in section~\ref{sec:seat\\
 
-The same analysis can be done for the action of taking insulin. The third solution was chosen, and the second solution is even worse when transposed to the insulin injection because injecting insulin by mistake is highly undesirable.
+The same analysis can be done for the action of taking insulin. Transposed to the insulin injection, the second solution is even worse 
+because injecting insulin by mistake is highly undesirable. 
+The third solution was also
+chosen in order to improve the user interface, 
+by avoiding to provide too many ways to the user to realize 
+similar interactions (having some food and having an insulin injection). 
 
 	\paragraph{Different animations: an animation library}
 \label{sec:animLib}
@@ -305,57 +390,10 @@ Computing the appropriate moment was complicated by the rights permission that a
 %Graph of the execution ? With one or two animation shown. 
 %The animation lenght is automatically computed ... do it ?
 
-\subsection{Insulin and glucose meter}
-	\subsubsection{Insulin} 
+%%%%%%%%% END CUT
+%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[h]
-  \caption{Insulin pen used to give an insulin shot}
-  \centering
-  \includegraphics[scale=1.0]{11insulinObject.jpg}
-  \label{fig:11insulinObject}
-\end{figure}
-
-The insulin object is very similar to the food object. The only changes are that blood sugar decreases instead of increasing and that the animations displayed are different.\\
-The main animation built for this project was the one used to inject insulin. It contains three frames :
-\begin{itemize} 
-\item The first frame is a movement that involves the right collar, shoulder and forearm to move the insulin (carried by the right hand) into the correct position to begin the injection. 
-\item The second frame sets the correct position for the right thigh where insulin will be injected, and change the abdomen and chest position to make the avatar lean forward. \item Next movement is to make the avatar look at his tight, while the arm comes down to put the needle into the thigh and without moving during 10 seconds, as required for an insulin injection.
-\begin{itemize}
-
-A picture of the insulin object built is shown in figure~\ref{fig:11insulinObject}.
-
-
-
-
-
-	\subsubsection{Glucose Testing}
-
-A glucose meter is needed inworld so that the user can know the blood glucose level and whether it's necessary to have an insulin injection or a meal to rise blood glucose. It is also a major aspect of diabetes experience in real life. Consequently, users need to be familiar with it.
-
-A glucose meter device was created in world with the OpenSimulator builder tool shown in picture~\ref{fig:opensimBuilder}. The device can be carried in the avatar's inventory 
-(which is the equivalent of keeping it in the pocket in real life) and be accessible wherever the avatar is, 
-or kept somewhere in the house (on a desktop, for instance) which means that the avatar needs to move there in order to test his blood glucose. 
-Logs with the results of each test are the main way for the diabetes team in the hospital to follow the day to day evolution of diabetes, in order to improve diabetes management and to adapt the treatment to the patient's needs. \\
-
-For this purpose, the glucose meter object displays in world the result of the test each time it's used. \\
-To perform this task, the first solution is to send an HTTP request to the server to retrieve from the database the most recent value of blood glucose. 
-This solution make use of the existing web server that is used to display the energy bar on the menu, so it only needs to write a method on the server to send an HTTP response with the result. 
-The problem of this implementation is that the web server is necessary, so the glucose testing functionality won't be available without the server. \\
-
-The second solution is to use the llSay() set of methods to communicate directly with the StateScript, used to compute the avatar's blood glucose at each moment. 
-As described in figure~\ref{glucoseMeterCommunication} the glucose meter script sends a request to the StateScript, which sends the current value of the blood glucose.
-This method is quicker (see come testing results? in the "Technical Evaluation" chapter) and allows the glucose meter to be used even if the web server crashes.\\
-
-Indeed, in case of a server failure, this last point is especially crucial because the energy bar on the top of the screen won't display energy anymore. 
-Given that the main aim of the simulation is to teach users how to test, when to test and how to manage blood glucose, the software has to be able to deal with such a failure and to continue to give a way for the user to know the blood level so that it can still be corrected. \\
-
-For this reason, the second solution was chosen for this critical feature so that there is still a way to test blood levels and to continue using the simulation even without a web server.\\
-
-
-In both cases, after receiving the value of blood glucose, this value is displayed on the meter with a llSetText(). The glucose meter script is also responsible for keeping for logging the values of all the previous blood tests realized by the user. The logs are stored locally in a list (only the dozen of last values), and also sent to the web server database. 
-It is possible to consult the full logs to know whether the testing is done as often as it should be. The Logs web page was realized for this purpose, using the web server and it's database with the complete results.
-
-
+%OLD :
 \subsection{General issues}
 
 %This section describes the features implementation. choices and a travers l'implementation des features, je vais décrire des problemes plus generaux, les solutions apportées à ces problemes et les demarches employées pour les résoudre.//
@@ -395,9 +433,9 @@ Set the fishing animation.
 The sitting point has to be defined, which means that any time someone sits on the boat, the avatar will be sitting at the same point, with the same body orientation. If not defined, the sitting point can be anywhere on the boat as shown in figure~\ref{fig:goodSittingPoint, fig:wrongSittingPoint}, which means that the avatar position won't match the animation. It is an important issue because there won't be any realism in this case, and the user may even not recognize the played animation.
 
 \begin{figure}[h]
-  \caption{"Insert text here"}
+  \caption{Wrong object's position while the animation is being played}
   \centering
-  \includegraphics[scale=1.0]{17fishingAnimationWrong.jpg}
+  \includegraphics[scale=0.9]{17fishingAnimationWrong.jpg}
   \label{fig:17fishingAnimationWrong}
 \end{figure}
 
@@ -418,6 +456,9 @@ The aggregate is created by arranging several food objects in the desired displa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Materials for diabetes self-education}
+
+%%%%%%%PUT in design
+\iffalse 
 A complete module of the application is dedicated to improve the user's knowledge about diabetes. Learning, and testing the knowledge are the two aspect of the educational module.
 
 A room is dedicated to improve the knowledge about diabetes. The avatar can teleport to this room, whose walls are covered by screens objects of 3 kinds :
@@ -429,10 +470,16 @@ A room is dedicated to improve the knowledge about diabetes. The avatar can tele
 
 The materials comes from leaflets and tests used with young patients during the nurse and dietician sessions, all of them provided by the Royal Children's Hospital of Manchester. Videos are directly streamed from videos websites such as YouTube, and some other information are provided by displaying websites such as diabetes.co.uk.\\
 
-\pargraph{Tests}
+\paragraph{Tests}
 Before taking a test, users are given the web pages that contain what they should know in order to be able to answer correctly. After taking the test, they are advised to visit the page that contains the answer of the question that was missed.\\
+
 Tests can be taken in normal or learning mode. The normal mode only displays if the answer was correct, and invites the user to answer again the missed questions after reading the related materials, while in the learning mode, the questions are directly corrected during the test, showing the correct answer for each question. 
 In the first case, the user needs to be able to answer correctly in order to complete the test. The second one is more useful to learn new information about diabetes, for those that don't want to read the materials.\\
+\fi
+%%%%%%%%% END
+
 
 The tests are stored in the database used with the web server. For each question, different answers are provided, and one is identified as the correct one. Each question is associated with the address of the web page explaining the concepts(?) treated(?). %it deals with
-A screen object is used to display the web pages, using the script used for the Energy Bar.
+A screen object is used to display the web pages, using the script used for the Energy Bar.\\
+
+\benfac{Expliquer comment la bonne réponse du test est codée dans la base de données}
