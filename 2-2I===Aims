@@ -26,7 +26,7 @@ une simulation a l'interieur
 %	\subsection{Rappel du sujet} (dans 2-1)
 %	\subsection{Nurse} (dans 2-1 diabetes sessions)
 	\subsection{Analysis of the needs}
-
+\label{sec:needsAnalysis}
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%   COLLE	LES 3 POINTS QUE L OUTIL VA AMELIORER
 
@@ -43,7 +43,10 @@ The simulation will be used here from a practice perspective. The patient will b
 %suite coupée
 
 \item \textbf{Improving the quality of life}\\
-When used by newly diagnosed patients, the tool can give them more confidence in diabetes management and provide useful tips that can help to cope with the problems they encounter. During the first stay in the hospital, the tool can be a support for the educational sessions they attend: the approach is more playful than a classic session, and could represent something positive, maybe the first positive experience about diabetes during their stay in the hospital.\\
+When used by newly diagnosed patients, the tool can give them more confidence in diabetes management and provide useful tips that can help to cope with the problems they encounter. During the first stay in the hospital, the tool can be a support for the educational sessions they attend: the approach is more playful than a classic session, and could represent something positive, which might be the first ``positive experience'' about diabetes during their stay in the hospital. Sharing with people that have the same disease can also help combating the feeling of difference and loneliness patients can feel.\\
+
+For patients diagnosed long ago, a community based approach, allowed by the connected features of OpenSimulator on which avatars from all over the world can connect, discuss and do activities together in the same map, can help to get peer support and may represent a way to share positive experiences. % TO PUT SOMEWHERE ELSE benefit from the attractiveness of an on-line community.  
+%added :
 %suite coupée
 
 \end{enumerate}
@@ -81,15 +84,12 @@ For new patients, the focus will be put on recall the steps and important points
 For patients that were diagnosed longer ago, a collection of tips on various topics will be available so that they can find solutions to improve their management. These tips either consulted independently, or proposed as suggestions by the user interface as it's usually done in many software with ``tips of the day'' pop-ups. These suggestions can be based on management techniques used by diabetes teams or on testimonies, both put in the form of ``videos'', or interactive sequences. For instance, ideas about how to tell a friend that you have diabetes or how to inject when you are not alone can be demonstrated.
 
 \item \textbf{Improving the quality of life}\\
+%% PUT in aims
+\iffalse
 When used by newly diagnosed patients, the tool can give them more confidence in diabetes management and provide useful tips that can help to cope with the problems they encounter. During the first stay in the hospital, the tool can be a support for the educational sessions they attend: the approach is more playful than a classic session, and could represent something positive, maybe the first positive experience about diabetes during their stay in the hospital.
-%%added from end of paragraph:
-Sharing with people that have the same disease can help combating the feeling of difference and loneliness patients can feel.\\
+\fi
 
-%% PART CUT, moved to intro
-
-[TOPICTURE] Community based approach, allowed by the connected features of OpenSimulator on which avatars from all over the world can connect, discuss and do activities together in the same map, can benefit from the attractiveness of an on-line community.  
-%added :
-A system of friends, text messages, voice conversations need to be provided, and the players should be able to give objects to their friends and to participate jointly in activities and games.
+A system of friends, text messages, voice conversations need to be provided, and the players should be able to give objects to their friends and to participate jointly in activities and games. We may also think of a system that is similar to online forums to keep a track about the interesting content that could be discussed publicly.
 
 \end{enumerate}
 
@@ -113,7 +113,7 @@ A list of example use cases, described according to the topic, are shown in the 
   \label{fig:bulle1}
 \end{figure}
 
-Insulin treatment is rarely correctly implemented: only 15\% of families can meet the criteria for good glucose management%TODO : find a reference.
+Insulin treatment is rarely correctly implemented: only 15\% of families can meet the criteria for good glucose management. %TODO : find a reference.
 In figure~\ref{fig:bulle1}, various reasons are considered as causes for poor insulin treatment, as enumerated in the circles. In the case of (1), the problem comes from a misunderstanding or a lack of knowledge or poor skills to correctly handle diabetes management. Thus, the user can use the software to increase his knowledge about diabetes if needed, including carbohydrate counting and injections. \warn{Then, playing with the simulation as a training for diabetes management can help understand the mechanisms of glucose regulation.} %Tips can be provided in the adapted section of the software.
 \\Sometimes, the lack of knowledge, as shown in figure~\ref{fig:bulle3}, is a barrier that prevents good glucose management. For instance, when patients tend to feel afraid of the risk of having an hypoglycemia in class because they will have to eat, they tend to lower their insulin injection to avoid this situation. \warn{In this case, it can trigger the hyperglycemia symptoms, especially that the patient frequently need to urinate, which might be a bigger embarrassment than eating in the class.}
 Motivations to do well can be found for the youngest teenagers by describing symptoms that are socially embarrassing. Making the avatar look and behave in a silly way when he is low can represent a dramatic visual scene.
@@ -168,8 +168,7 @@ Some non playing avatars can be used to expose these kind of ideas. Passionate p
 
 	%OLD : \warn{\section{Hypothesis}} this SECTION was in the end of INTRODUCTION
 \warn{\subsection{Hypothesis}} 
-Various hypothesis will be tested with this project, all closed related to the improvement of diabetes education experience. \\
-
+Various hypothesis will be tested with this project, all closed related to the improvement of diabetes education experience. 
 %%%%%%%%%% HYP 1
 \paragraph{First hypothesis}An educational tool based on a virtual environment can be a powerful tool to offer an enriched experience to users
 that cannot be found in:
@@ -191,17 +190,18 @@ Indeed, about the last point, a virtual simulation can offer a way to experiment
 
 %=> in results, talk about normal mode and learning mode (cf implementation or design)\\
 
-The latest point is especially important, given the results of studies that showed, firstly, that a better knowledge about diabetes, provided by special educational sessions to teenagers, improves their diabetes management and reduces the risks of complications~\cite{}. Secondly, it was also shown that the benefits taken from these sessions don't last more than about 36 months counting from the end of the sessions~\cite{}. 
+The latest point is especially important, given the results of studies that showed, firstly, that a better knowledge about diabetes, provided by special educational sessions to teenagers, improves their diabetes management and reduces the risks of complications\benfac{~\cite{}}. Secondly, it was also shown that the benefits taken from these sessions don't last more than about 36 months counting from the end of the sessions\benfac{~\cite{}}. 
 
 2) The motivation and interest of the learners can be improved.\\
 The reluctance of adolescents for traditional teaching materials and methods such as books and lectures could be overcome by a tool that is very similar to 3D gaming environments they are familiar with and found of, such as the Sims or World of Warcraft.\\
-Furthermore, the complete immersion in virtual world strengthens the feeling of being active, which may enhance the efficiency of the educational tool. 
+Furthermore, the complete immersion in virtual world strengthens the feeling of being active, which may enhance the efficiency of the educational tool.\\
+Enhancing the attractiveness of the tool is another interesting approach. We may consider that the on-line community mentioned in section~\ref{sec:needsAnalysis} can be an efficient way to take advantage of the well known addictiveness of MMO games, since the latter is considered as relying heavily on the social links built in-game among the community.  
+
 
 
 %%%%%%%%%% HYP 3
-\paragraph{Third hypothesis}%The motivation to learn provided by t
-The tool can be adapted to multiple profiles such as patients, parents, newly diagnosed patients, and friends. 
-
+\paragraph{Third hypothesis}%The motivation to learn provided by 
+The tool can be adapted to multiple profiles such as patients, parents, newly diagnosed patients, and friends. \warn{This may be enabled by analysing the needs of each category, and providing adapted features. For instance, this could be done by using educational content that is personalized for each category.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

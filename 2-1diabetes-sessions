@@ -6,8 +6,9 @@
 %\chapter{Progress, work done ( Produced models / Current software implementation) }
 Before designing the simulation software, a relevant prerequisite is to figure out precisely the amount of taught information in the hospital. Attending diabetes educational sessions for newly diagnosed patients and being treated like a teenager with diabetes was a way to do so, and it was also a way to be given the opportunity to ask the questions a youngster with diabetes would be likely to ask.
 Besides getting a rough idea of the children's knowledge about diabetes when they leave hospital, these sessions where ideal to understand the conditions of their stay in the hospital, and find whether using a simulation playful tool would help patients to cope more easily with their new situation.
+
 \section{Prior analysis: Diabetes sessions at the hospital}
-For this project, I've participated in the theoretical and practical training each newly diagnosed diabetes patient attends during first hospitalisation. A diabetes nurse and a dietetician specialized in children with diabetes are responsible for holding four sessions of about half a day each.  
+For this project, I've participated in the theoretical and practical training each newly diagnosed diabetes patient attends during first hospitalisation. A diabetes nurse and a dietician specialized in children with diabetes are responsible for holding four sessions of about half a day each. Details about the content of these sessions is available in annex~\ref{annex:diabetesSessions}.
 
 \paragraph{General pros}
 Positive aspects can be used as guideline for for the software design.
@@ -36,33 +37,11 @@ The content of the "newly diagnosed sessions" doesn't prepare them to cope with 
 %%  FIN OK
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{ With the nurse}
-In the begining, the nurse gives a general description of diabetes to the patient. Clarifiying some common misconceptions, such as making clear that the patient has no responsibility in the onset of type 1 diabetes is essential. The basic mechanisms involved in diabetes and some key notions such as glucose, energy and insulin are explained, and extended according to patient's questions. Hypoglycemia, hyperglycemia, are then taught as well as how to avoid and treat them. Practical skills are covered in the second session, and include blood testing and injection. Parents are often present.
-\\The nurse tries to raise patient's awareness about treatment regularity, by stressing that a patient should never forget an injection. However, long term consequences that can occur in case of a poor diabetes management are not covered in details, in order to avoid upsetting newly diagnosed patients.
-
-Some ways to make them carry on the treatment are described in~\ref{sec:TreatEfficiency}. One key point is to base the sessions on the children's experience at the hospital: the nurse explains that a successful diabetes management will prevent them to be be in a poor condition that will bring them to the hospital with ketones. The approach is quite efficient, as children are likely to hope for an early discharge from hospital.
-
-\subsection{With the dietician}
-Dietician sessions focuses on patient's diet, following roughly this pattern: 
-\begin{itemize}
-\item The dietician begins with general advices in healthy eating
-\item Carbohydrates awareness is raised by the use of the "eatwell plate", representing a healthy balanced diet as shown in figure~\ref{fig:eat_wp}.
-\item Carbohydrate counting is explained
-\item \warn{The different kinds of sugar %classified by 'speed'% 
-and the glycemic index are covered}
-\item The snacking issue is addressed
-\item Activities and small exercises are given to make sure the patients understood the different issues
-\end{itemize}
-
- 
- 
-\begin{figure}[h]
-  \caption{The eatwell plate}
-  \centering
-  \includegraphics[scale=0.43]{theeatwellplate.pdf}
-  \label{fig:eat_wp}
-\end{figure}
-
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%% Section describing the sessions cut and put in the annex
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Patient - Dietician %Health professional%
 relationship}
 \label{sec:TreatEfficiency}
@@ -75,4 +54,4 @@ during the explanations. It's a little trickier to teach them about nutrition be
 \item Another adverse reaction from more simpled-minded children is to try to avoid eating carbs so that they don't need to have insulin injections.  This can be corrected by explaining with more details the "eatwell plate" (figure~\ref{fig:eat_wp}) and the role of each kind of nutrient.
 \end{itemize}
 
-The two last points are interesting from patient adaption point of view: the first one can be seen as more devious, a kind of reaction that can be suspected if the patient seems fragile psychologically and quite intelligent, while the second one can be accounted to ignorance. These reactions aren't expected in this kind of first sessions, but dieticians try to figure out the level of understanding of the teenager by asking questions and looking for feedback.
+The two last points are interesting from patient adaptation point of view: the first one can be seen as more devious, a kind of reaction that can be suspected if the patient seems fragile psychologically and quite intelligent, while the second one can be accounted to ignorance. These reactions aren't expected in this kind of first sessions, but dieticians try to figure out the level of understanding of the teenager by asking questions and looking for feedback.
